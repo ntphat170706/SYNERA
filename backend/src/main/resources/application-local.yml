@@ -1,0 +1,31 @@
+server:
+  address: 127.0.0.1
+spring:
+  datasource:
+    url: jdbc:h2:file:./.data/synera;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;AUTO_SERVER=FALSE
+    username: sa
+    password: ${LOCAL_DB_PASSWORD:}
+  data:
+    redis:
+      repositories:
+        enabled: false
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration,org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+management:
+  health:
+    redis:
+      enabled: false
+synera:
+  ai:
+    mode: mock
+  session:
+    secure-cookie: false
+  storage:
+    local-enabled: true
+  jwt:
+    secret: ${JWT_SECRET:synera-local-development-key-only-change-before-production-2026}
+  bootstrap:
+    enabled: true
+    password: ${BOOTSTRAP_PASSWORD:SyneraLocal2026!}
+  integration:
+    otp-mode: local

@@ -1,0 +1,701 @@
+=== PAGE 1 ===
+SYNERA – H ướ ng dẫn build chi tiết Backend
+Tài liệ u kỹ  thuậ t cho nhóm 3 ng ườ i · Java 25 (LTS) · Spring Boot · MySQL 8 · Phiên b ả n 1.0 · Tháng
+11/2026
+Tài liệ u này nố i tiế p "Phân tích & Thiế t kế  Hệ  thố ng SYNERA" (mã FR/BF/b ả ng d ữ  liệ u/API
+lấ y t ừ  đó) và h ướ ng dẫ n phân công frontend. Mục tiêu: t ừ  repo trố ng đế n backend chạy
+đ ượ c, đ ủ  đ ể  frontend thay dầ n d ữ  liệ u mock bằ ng API thậ t.
+1. Mục tiêu và phạm vi
+Xây modular monolith gồ m 20 phân hệ  M01–M20, phục vụ 4 giao diệ n (Web NSX,
+Portal NPP, Web DMS+CRM NPP, App Sales PWA).
+Giao dịch đ ơ n – tồn – công n ợ nhấ t quán (ACID); số  liệ u chố t kỳ bấ t biế n; mọi thao tác
+g ử i lại an toàn (idempotent).
+Phân quyề n RBAC + phạm vi d ữ  liệ u (NSX/vùng/NPP/tuyế n) áp ở  tầ ng truy vấ n.
+Job nề n: đố i soát đêm, chố t kỳ, nhắ c hạn, t ự  xác nhậ n quá hạn, tính đi ể m c ử a hàng.
+Ch ư a làm trong MVP: ERP đầ y đ ủ , thanh toán online, vậ n t ả i bên th ứ  ba (ch ỉ  đ ể  đi ể m
+tích h ợ p).
+Th ứ  t ự  ư u tiên MVP: Auth/phân quyề n → danh mục → chính sách giá → đặ t hàng sell-in +
+hạn m ứ c → kho/giao nhậ n → đố i soát/chố t kỳ → CRM + đ ơ n bán c ử a hàng/offline →
+ticket/trade marketing → báo cáo → AI.
+2. Công nghệ và phiên b ả n
+Hạng mục L ự a chọn Ghi chú
+Ngôn ng ữ /JDK Java 25 (LTS)
+Framework Spring Boot 3.x (Spring MVC) Bạn đã quen Spring MVC
+B ả o mậ t Spring Security 6, JWT (access 15 phút +
+refresh 7 ngày)
+Truy cậ p d ữ
+liệ u
+Spring Data JPA (Hibernate) cho CRUD;
+MyBatis hoặc JdbcTemplate cho báo
+cáo/truy vấ n t ổ ng h ợ p
+Tránh N+1 ở  báo cáo
+CSDL MySQL 8, InnoDB, utf8mb4_unicode_ci
+Migration Flyway Mọi thay đ ổ i schema đi qua
+script
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 1 of 19
+=== PAGE 2 ===
+3. Kiến trúc và cấu trúc d ự  án
+3.1. Nguyên tắc
+1. Package theo phân hệ (by feature), không theo tầng. Mỗ i phân hệ  có api  (controller,
+DTO), service , domain  (entity, enum), repo .
+2. Phân hệ  ch ỉ  gọi nhau qua interface công khai ( XxxFacade ) hoặ c s ự  kiện; không
+import th ẳ ng entity/repo c ủ a phân hệ  khác.
+3. Đ ơ n → tồ n → công n ợ  nằ m trong một giao dịch ( @Transactional ) khi cùng phân hệ
+nghiệ p vụ lõi; DMS ↔  CRM giao tiế p bằ ng s ự  kiệ n qua outbox.
+4. Ki ể m tra ranh gi ớ i t ự  độ ng bằ ng ArchUnit trong test.
+3.2. Cấu trúc th ư  mục
+synera-backend/
+├ ─ pom.xml
+├ ─ docker-compose.yml
+├ ─ src/main/java/vn/synera/
+│  ├ ─ SyneraApplication.java
+Hạng mục L ự a chọn Ghi chú
+Cache/khóa Redis 7 (cache tham số /b ả ng giá, rate-limit,
+khóa job)
+Job Spring @Scheduled  + ShedLock (khóa phân
+tán)
+Hàng đ ợ i s ự
+kiệ n
+Giai đoạn 1: Outbox + worker trong cùng
+ứ ng dụng; giai đoạn 2: RabbitMQ
+L ư u tệ p MinIO (S3-compatible) Ả nh tr ư ng bày, ch ứ ng t ừ
+Tài liệ u API springdoc-openapi (Swagger UI) FE sinh type t ừ  OpenAPI
+Map object MapStruct Entity ↔  DTO
+Validation Jakarta Validation
+Log/Quan sát SLF4J + Logback JSON, Micrometer +
+Prometheus + Grafana
+Test JUnit 5, Mockito, Testcontainers (MySQL,
+Redis), RestAssured
+Build/CI Maven, GitHub Actions, Docker
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 2 of 19
+=== PAGE 3 ===
+│  ├ ─ common/            # BaseEntity, ApiResponse, exception, util, 
+idempotency, audit, datascope
+│  ├ ─ config/            # SecurityConfig, JpaConfig, RedisConfig, 
+OpenApiConfig, SchedulerConfig
+│  ├ ─ iam/               # M01: user, role, permission, org, auth, audit-log
+│  ├ ─ catalog/           # M02: sku, uom, region, npp, store, reason
+│  ├ ─ policy/            # M03: price-list, promotion, pricing engine, 
+policy-doc
+│  ├ ─ notify/            # M04: notification, reminder, workflow/SLA engine, 
+task, comment, attachment
+│  ├ ─ sellin/            # M05: đ ơ n sell-in, duyệt, đặt lại, g ợ i ý nhập
+│  ├ ─ credit/            # M06: hạn m ứ c, công n ợ , thanh toán, đối soát công 
+n ợ
+│  ├ ─ inventory/         # M07: kho, tồn, xuất nhập, ki ể m kê
+│  ├ ─ delivery/          # M08: chuyến giao, xác nhận nhận, đ ổ i tr ả
+│  ├ ─ closing/           # M09: đối soát đêm, kỳ, snapshot, điều ch ı̉ nh
+│  ├ ─ demand/            # M10: kế hoạch nhập, sell-out
+│  ├ ─ ticket/            # M11
+│  ├ ─ trademkt/          # M12 + M13 ph ả n hồi thị tr ườ ng
+│  ├ ─ performance/       # M14: ch ı̉  tiêu, xếp hạng
+│  ├ ─ crm/               # M15: lead, t ươ ng tác, hẹn, báo giá, nhóm, chiến 
+dịch
+│  ├ ─ route/             # M16: tuyến, l ượ t ghé, KPI, bàn giao
+│  ├ ─ salesorder/        # M17+M18: đ ơ n bán c ử a hàng, đồng bộ offline, báo 
+cáo cuối ngày
+│  ├ ─ display/           # M19: tiêu chí, ả nh, kết qu ả  AI
+│  ├ ─ report/            # M20: dashboard, báo cáo, export
+│  └─ integration/       # excel, erp, sms/zalo, ai-client, maps
+├ ─ src/main/resources/
+│  ├ ─ application.yml, application-dev.yml, application-prod.yml
+│  └─ db/migration/      # V1__iam.sql, V2__catalog.sql, ...
+└─ src/test/java/...     # unit + integration + archunit
+3.3. Luồng một request
+Client → Filter (JWT, RequestId, Idempotency) → Controller (validate DTO)
+       → Service (@Transactional, ki ể m tra quyền + phạm vi d ữ  liệu)
+       → Repository / Domain → ghi Outbox event (cùng giao dịch)
+       → Response ApiResponse<T>
+Outbox worker → phát s ự  kiện → CRM / Notify / Report x ử  lý (idempotent)
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 3 of 19
+=== PAGE 4 ===
+4. Kh ở i tạo môi tr ườ ng
+4.1. docker-compose.yml (dev)
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: synera
+      MYSQL_USER: synera
+      MYSQL_PASSWORD: synera
+    command: --character-set-server=utf8mb4 --collation-
+server=utf8mb4_unicode_ci --default-time-zone=+07:00
+    ports: ['3306:3306']
+    volumes: [mysql_data:/var/lib/mysql]
+  redis:
+    image: redis:7
+    ports: ['6379:6379']
+  minio:
+    image: minio/minio
+    command: server /data --console-address ':9001'
+    environment: { MINIO_ROOT_USER: minio, MINIO_ROOT_PASSWORD: minio12345 }
+    ports: ['9000:9000', '9001:9001']
+volumes:
+  mysql_data:
+4.2. application.yml (rút gọn)
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/synera?
+useSSL=false&serverTimezone=Asia/Ho_Chi_Minh
+    username: synera
+    password: synera
+  jpa:
+    hibernate.ddl-auto: validate      # schema do Flyway qu ả n lý
+    open-in-view: false
+    properties.hibernate.jdbc.time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  data.redis.host: localhost
+synera:
+  jwt:
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 4 of 19
+=== PAGE 5 ===
+    secret: ${JWT_SECRET}
+    access-minutes: 15
+    refresh-days: 7
+  rules:
+    credit-warn-pct: 80
+    receipt-remind-hours: 48
+    diff-alert-pct: 5
+  storage:
+    endpoint: http://localhost:9000
+    bucket: synera
+Quy ướ c: th ờ i gian l ư u UTC, hi ể n thị UTC+7; không đặ t secret trong repo (dùng biế n môi
+tr ườ ng hoặ c file .env  không commit).
+4.3. Th ứ  t ự  kh ở i động d ự  án
+1. Tạo repo, project Spring Boot (Web, Security, Validation, Data JPA, MySQL, Redis,
+Flyway, Actuator, springdoc).
+2. Chạy docker compose up -d , chạy ứ ng dụng, ki ể m tra /actuator/health .
+3. Viế t V1__iam.sql , V2__catalog.sql … rồ i chạy; không s ử a script đã chạy, thêm
+script m ớ i.
+4. Bậ t Swagger UI /swagger-ui.html  đ ể  FE xem h ợ p đồ ng API.
+5. Nền t ả ng dùng chung (common)
+5.1. BaseEntity
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public abstract class BaseEntity {
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
+  @CreatedDate private Instant createdAt;
+  @CreatedBy private Long createdBy;
+  @LastModifiedDate private Instant updatedAt;
+  @LastModifiedBy private Long updatedBy;
+  @Version private Long version;          // khóa lạc quan
+  private Instant deletedAt;             // xóa mềm
+}
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 5 of 19
+=== PAGE 6 ===
+5.2. Định dạng ph ả n hồi và lỗi
+public record ApiResponse<T>(boolean success, T data, ApiError error) {}
+public record ApiError(String code, String message, Map<String,Object> 
+details) {}
+Mã lỗ i nghiệ p vụ dùng chung (enum ErrorCode ): VALIDATION_FAILED , NOT_FOUND ,
+FORBIDDEN_SCOPE , CREDIT_LIMIT_EXCEEDED , STOCK_INSUFFICIENT , PERIOD_LOCKED ,
+INVALID_STATE_TRANSITION , DUPLICATE_REQUEST , OPTIMISTIC_LOCK .
+@RestControllerAdvice  ánh xạ ngoại lệ  → HTTP (400/403/404/409/422) v ớ i ApiError .
+5.3. Xác th ự c và phân quyền
+POST /auth/login  → access + refresh token; refresh l ư u hash trong b ả ng
+refresh_token  (thu hồ i đ ượ c); OTP cho vai trò nhạy c ả m.
+Quyề n dạng RESOURCE_ACTION  (ví dụ ORDER_APPROVE , CREDIT_LIMIT_UPDATE ) nạp
+vào GrantedAuthority  t ừ  token.
+Ki ể m tra ở  controller:
+@PreAuthorize("hasAuthority('ORDER_APPROVE')")
+@PostMapping("/sell-in-orders/{id}/approve")
+public ApiResponse<OrderDto> approve(@PathVariable Long id, @Valid 
+@RequestBody ApproveReq req) { ... }
+5.4. Phạm vi d ữ  liệu (data scope)
+B ả ng user_role_scope(user_id, role_id, scope_type, scope_id) . Khi đăng nhậ p nạp
+thành ScopeContext  (ThreadLocal) gồ m tậ p orgIds , nppIds , regionIds , routeIds .
+@Component
+public class ScopeFilter {
+  public Specification<T> byNpp(String field) {
+    return (root, q, cb) -> ScopeContext.isAll() ? cb.conjunction()
+        : root.get(field).in(ScopeContext.nppIds());
+  }
+}
+Quy tắ c: mọi repository tr ả  danh sách ph ả i áp scope (dùng Specification  hoặ c điề u
+kiệ n npp_id IN (:nppIds)  trong SQL báo cáo). Ng ườ i dùng NPP luôn bị khóa theo
+npp_id  c ủ a mình; viế t test riêng cho việ c "NPP A không thấ y d ữ  liệ u NPP B".
+5.5. Idempotency
+Mọi POST  tạo ch ứ ng t ừ  nhậ n header Idempotency-Key .
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 6 of 19
+=== PAGE 7 ===
+// Pseudo: IdempotencyFilter
+key = request.getHeader('Idempotency-Key');
+rec = idemRepo.find(userScope, key);
+if (rec != null) return rec.responseSnapshot();     // tr ả  đúng kết qu ả  cũ
+result = chain.proceed();
+idemRepo.save(key, hash(body), result);              // UNIQUE(scope, key)
+B ả ng idempotency_record(scope, key, request_hash, response_json, created_at)
+v ớ i UNIQUE (scope, key) ; cùng key khác body → 409 DUPLICATE_REQUEST . Đ ơ n offline
+dùng idempotencyKey  ngay trong body c ủ a /sales-orders/sync .
+5.6. Nhật ký ki ể m toán
+Annotation @Audited(entity = 'SellInOrder', action = 'APPROVE')  trên service;
+aspect ghi audit_log  (user, entity, id, tr ướ c/sau dạng JSON, IP, th ờ i đi ể m). Bắ t buộ c cho:
+duyệ t/t ừ  chố i đ ơ n, đ ổ i hạn m ứ c, đ ổ i chính sách, điề u ch ỉ nh sau chố t, thay quyề n, xuấ t d ữ
+liệ u.
+5.7. Máy trạng thái
+Mỗ i đố i t ượ ng có enum trạng thái và b ả ng chuy ể n h ợ p lệ  trong code, không cho
+setStatus  tùy ý:
+public enum OrderStatus {
+  DRAFT, SUBMITTED, ON_HOLD_CREDIT, PENDING_APPROVAL, NEED_INFO, APPROVED,
+  CONFIRMED_QTY, SHIPPED, IN_DELIVERY, DELIVERED, RECEIVED, RECONCILED, 
+REJECTED, CANCELLED;
+  private static final Map<OrderStatus,Set<OrderStatus>> NEXT = Map.of(
+    DRAFT, Set.of(SUBMITTED, CANCELLED),
+    SUBMITTED, Set.of(PENDING_APPROVAL, APPROVED, ON_HOLD_CREDIT),
+    ON_HOLD_CREDIT, Set.of(PENDING_APPROVAL, REJECTED, CANCELLED) /* ... */);
+  public void assertCanMoveTo(OrderStatus to) {
+    if (!NEXT.getOrDefault(this, Set.of()).contains(to))
+      throw new BusinessException(ErrorCode.INVALID_STATE_TRANSITION, this + 
+'->' + to);
+  }
+}
+Mỗ i lầ n chuy ể n ghi order_status_history . B ả ng chuy ể n đầ y đ ủ  xem mục 6 c ủ a tài liệ u
+thiế t kế .
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 7 of 19
+=== PAGE 8 ===
+5.8. Outbox và s ự  kiện nghiệp vụ
+@Transactional
+public void submit(Long orderId) {
+  // ... đ ổ i trạng thái, ki ể m tra hạn m ứ c
+  outbox.add('OrderStatusChanged', orderId, payload);   // cùng giao dịch
+}
+// Worker mỗi 2 giây:
+@Scheduled(fixedDelay = 2000)
+@SchedulerLock(name = 'outboxWorker')
+void publish() { 
+outboxRepo.findPending(100).forEach(this::dispatchAndMarkDone); }
+Ng ườ i nhậ n ph ả i idempotent (l ư u event_id  đã x ử  lý). Danh sách s ự  kiệ n: OrderCreated ,
+OrderStatusChanged , DeliveryShort , ReturnPosted , LeadConverted ,
+AppointmentDue , StoreAtRisk , TicketResolved , PromotionPublished , StockLow .
+6. Thiết kế CSDL và migration
+6.1. Quy ướ c
+Tên b ả ng/cộ t snake_case ; PK BIGINT AUTO_INCREMENT  (riêng đ ơ n bán tạo t ừ  app
+dùng thêm client_uuid CHAR(36) UNIQUE ).
+Tiề n DECIMAL(18,2) ; số  l ượ ng l ư u đ ơ n vị c ơ  s ở DECIMAL(18,3) ; th ờ i gian
+DATETIME(3)  UTC.
+Mọi b ả ng nghiệ p vụ có org_id / npp_id  đ ể  áp scope; ch ỉ  mục cho (npp_id, status,
+created_at) .
+B ả ng s ổ  ( credit_ledger , period_snapshot , stock_movement , audit_log ) ch ỉ
+thêm, không s ử a/xóa; có trigger hoặ c quyề n DB chặ n UPDATE/DELETE trên các b ả ng
+này ở  môi tr ườ ng production.
+6.2. Th ứ  t ự  file migration
+File Nộ i dung
+V1__iam.sql organization, app_user, role, permission,
+role_permission, user_role_scope, refresh_token,
+audit_log, system_param, idempotency_record
+V2__catalog.sql product_category, brand, sku, sku_uom,
+region/province/ward, store, store_group,
+reason_code, warehouse
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 8 of 19
+=== PAGE 9 ===
+6.3. DDL mẫu các b ả ng lõi
+CREATE TABLE sell_in_order (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  code VARCHAR(30) NOT NULL UNIQUE,
+  npp_id BIGINT NOT NULL,
+  source VARCHAR(20) NOT NULL DEFAULT 'PORTAL',
+  status VARCHAR(30) NOT NULL,
+  subtotal DECIMAL(18,2) NOT NULL DEFAULT 0,
+  discount DECIMAL(18,2) NOT NULL DEFAULT 0,
+  total DECIMAL(18,2) NOT NULL DEFAULT 0,
+  credit_check_result VARCHAR(20),
+  hold_reason VARCHAR(255),
+  expected_delivery DATE,
+  submitted_at DATETIME(3), approved_by BIGINT, approved_at DATETIME(3),
+File Nộ i dung
+V3__policy.sql price_list, price_item, promotion, promotion_rule,
+policy_document, policy_ack
+V4__sellin_credit.sql sell_in_order(+line, status_history),
+approval_request, credit_limit, invoice, payment,
+credit_ledger
+V5__inventory_delivery.sql stock_balance, stock_movement, stocktake,
+delivery_trip/stop, return_note/line
+V6__closing.sql reconciliation_item, report_period,
+period_snapshot, adjustment
+V7__demand_ticket.sql demand_plan(+line), sell_out_daily, ticket(+event),
+trade_request, budget_allocation,
+market_feedback, target(+progress)
+V8__crm_route.sql lead, interaction, appointment, quotation, route,
+route_stop, visit, handover, store_stock_survey,
+campaign, daily_report
+V9__salesorder.sql sales_order(+line)
+V10__display_notify.sql display_criteria, display_audit, notification,
+attachment, task, comment,
+domain_event_outbox, processed_event, shedlock
+V11__seed.sql Vai trò, quyề n mặ c định, tham số  hệ  thố ng, tài
+kho ả n qu ả n trị, d ữ  liệ u mẫ u đ ể  FE demo
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 9 of 19
+=== PAGE 10 ===
+  idempotency_key VARCHAR(64),
+  created_at DATETIME(3) NOT NULL, created_by BIGINT,
+  updated_at DATETIME(3), updated_by BIGINT,
+  version BIGINT NOT NULL DEFAULT 0, deleted_at DATETIME(3),
+  UNIQUE KEY uq_order_idem (npp_id, idempotency_key),
+  KEY ix_order_npp_status (npp_id, status, created_at),
+  CONSTRAINT fk_order_npp FOREIGN KEY (npp_id) REFERENCES organization(id)
+);
+CREATE TABLE sell_in_order_line (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  order_id BIGINT NOT NULL,
+  sku_id BIGINT NOT NULL,
+  uom VARCHAR(10) NOT NULL,
+  qty_ordered DECIMAL(18,3) NOT NULL,
+  qty_confirmed DECIMAL(18,3),
+  qty_shipped DECIMAL(18,3),
+  qty_received DECIMAL(18,3),
+  qty_damaged DECIMAL(18,3),
+  price DECIMAL(18,2) NOT NULL,
+  discount DECIMAL(18,2) NOT NULL DEFAULT 0,
+  promotion_id BIGINT, lot_no VARCHAR(40),
+  CONSTRAINT fk_line_order FOREIGN KEY (order_id) REFERENCES 
+sell_in_order(id),
+  KEY ix_line_order (order_id)
+);
+CREATE TABLE credit_ledger (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  npp_id BIGINT NOT NULL,
+  doc_type VARCHAR(20) NOT NULL,          -- INVOICE / PAYMENT / RETURN / 
+ADJUST
+  doc_id BIGINT NOT NULL,
+  debit DECIMAL(18,2) NOT NULL DEFAULT 0,
+  credit DECIMAL(18,2) NOT NULL DEFAULT 0,
+  balance_after DECIMAL(18,2) NOT NULL,
+  posted_at DATETIME(3) NOT NULL,
+  KEY ix_ledger_npp (npp_id, posted_at)
+);
+CREATE TABLE stock_balance (
+  warehouse_id BIGINT NOT NULL, sku_id BIGINT NOT NULL,
+  lot_no VARCHAR(40) NOT NULL, expiry_date DATE,
+  qty_on_hand DECIMAL(18,3) NOT NULL DEFAULT 0,
+  qty_reserved DECIMAL(18,3) NOT NULL DEFAULT 0,
+  version BIGINT NOT NULL DEFAULT 0,
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 10 of 19
+=== PAGE 11 ===
+  PRIMARY KEY (warehouse_id, sku_id, lot_no),
+  CHECK (qty_on_hand >= 0), CHECK (qty_reserved >= 0)
+);
+CREATE TABLE report_period (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  type VARCHAR(10) NOT NULL,              -- DAY / WEEK / MONTH / QUARTER
+  start_date DATE NOT NULL, end_date DATE NOT NULL,
+  status VARCHAR(15) NOT NULL,            -- OPEN / PRE_CLOSE / CLOSED / 
+LOCKED / PUBLISHED
+  closed_by BIGINT, locked_at DATETIME(3),
+  UNIQUE KEY uq_period (type, start_date)
+);
+Các b ả ng còn lại viế t theo mục 7.3 c ủ a tài liệ u thiế t kế . Mỗ i ng ườ i phụ trách script c ủ a
+phân hệ  mình (xem mục phân công) nh ư ng tên b ả ng/cột chốt chung ở  bu ổ i họp thiết kế
+tr ướ c khi viế t migration đ ể  tránh s ử a dây chuyề n.
+7. H ướ ng dẫn build theo module
+Mỗ i module làm theo cùng mộ t quy trình: migration → entity/repo → service (quy tắc
+nghiệp vụ) → controller + DTO → test → cập nhật OpenAPI → báo FE. D ướ i đây là phầ n cố t
+lõi cầ n chú ý; endpoint đầ y đ ủ  xem mục 9 c ủ a tài liệ u thiế t kế .
+7.1. M01 – IAM (đăng nhập, t ổ  ch ứ c, phân quyền)
+Việ c Cách làm
+Đăng nhậ p AuthService.login : ki ể m tra mậ t kh ẩ u (BCrypt),
+đế m lầ n sai (Redis, khóa 15 phút sau 5 lầ n), phát
+JWT ch ứ a userId , roles , authorities , scopes
+Refresh/logout L ư u hash refresh token; logout thu hồ i; đ ổ i mậ t
+kh ẩ u thu hồ i toàn bộ  token
+OTP Vai trò kế  toán/duyệ t: sau mậ t kh ẩ u đúng g ử i OTP
+(SMS/email), mã 6 số  hế t hạn 5 phút, l ư u Redis
+Cây t ổ  ch ứ c organization(type, parent_id) ; endpoint tr ả
+cây; ki ể m tra không tạo vòng lặ p cha–con
+Vai trò/quyề n Seed ở  V11; API CRUD vai trò tùy ch ỉ nh; quyề n dạng
+RESOURCE_ACTION
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 11 of 19
+=== PAGE 12 ===
+Test bắt buộc: đăng nhậ p sai/khóa; token hế t hạn; ng ườ i NPP A gọi d ữ  liệ u NPP B nhậ n
+403/404; vai trò thiế u quyề n không gọi đ ượ c endpoint duyệ t.
+7.2. M02 – Danh mục
+Quy đ ổ i đ ơ n vị: tạo UomService.toBase(skuId, uom, qty)  và fromBase(...) . Mọi
+n ơ i khác (đ ơ n, kho, báo cáo) ch ỉ  dùng service này, không t ự  nhân hệ  số .
+Chống trùng c ử a hàng: khi tạo/import, so kh ớ p SĐT chu ẩ n hóa, kho ả ng cách tọa độ
+(Haversine < 30 m) và độ  giố ng tên; tr ả  danh sách nghi trùng cho ng ườ i dùng quyế t
+định.
+Hồ s ơ  c ử a hàng 360: endpoint /stores/{id}/360  gom đ ơ n (t ừ  salesorder ), t ươ ng
+tác, hẹn, ticket, tr ư ng bày bằ ng các l ờ i gọi Facade, t ả i song song, mỗ i phầ n phân trang
+riêng.
+7.3. M03 – Chính sách và động c ơ  giá
+Tách rõ hai l ớ p: d ữ  liệ u (b ả ng giá, ch ươ ng trình) và động c ơ  tính ( PricingEngine ) là hàm
+thuầ n đ ể  dễ  test.
+public record PricingRequest(Long scopeOrgId, Long storeId, LocalDate date, 
+List<Line> lines) {}
+public record PricingResult(List<PricedLine> lines, BigDecimal subtotal,
+                            BigDecimal discount, BigDecimal total, 
+List<AppliedBenefit> applied) {}
+// Các b ướ c trong PricingEngine.price(req)
+// 1. Lấy b ả ng giá hiệu l ự c theo (nhóm NPP / nhóm c ử a hàng, ngày) -> giá t ừ ng 
+SKU/UOM
+// 2. Lấy các promotion ACTIVE phù h ợ p đối t ượ ng, SKU, ngày, còn ngân sách
+// 3. Sắp theo priority; mỗi promotion ki ể m tra điều kiện (số l ượ ng, giá trị, 
+combo)
+// 4. Gi ả i xung đột: loại tr ừ  lẫn nhau theo nhóm, gi ớ i hạn l ượ t/ngân sách
+// 5. Tr ả  kết qu ả  kèm lý do t ừ ng ư u đãi (hi ể n thị cho FE)
+Quy tắ c: không đọc b ả ng giá tr ự c tiế p trong module khác, luôn gọi PricingFacade.quote ;
+cache theo (price_list_id, version) , xóa cache khi phát hành. Dùng BigDecimal  +
+RoundingMode.HALF_UP ; ngân sách ch ươ ng trình tr ừ  trong cùng giao dịch v ớ i tạo đ ơ n
+Việ c Cách làm
+Import Excel Apache POI/EasyExcel, đọc streaming, tr ả  báo cáo
+lỗ i theo t ừ ng dòng (dòng, cộ t, lý do), không d ừ ng c ả
+file vì mộ t dòng lỗ i
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 12 of 19
+=== PAGE 13 ===
+( UPDATE ... SET used_budget = used_budget + :x WHERE used_budget + :x <=
+budget , ki ể m tra số  dòng cậ p nhậ t).
+Test: bộ  d ữ  liệ u mẫ u (ít nhấ t 20 ca) gồ m chồ ng khuyế n mãi, hế t ngân sách, ngày biên, đ ổ i
+đ ơ n vị lố c/thùng.
+7.4. M05 + M06 – Đặt hàng sell-in và hạn m ứ c (trái tim c ủ a hệ thống)
+Luồng SellInOrderService.submit(orderId)  (mộ t giao dịch):
+1. Khóa đ ơ n ( @Version ) và ki ể m tra trạng thái DRAFT.
+2. Gọi PricingFacade.quote  đ ể  chố t giá/ ư u đãi tại th ờ i đi ể m g ử i (giá l ư u vào dòng đ ơ n,
+không tính lại sau).
+3. Ki ể m tra SKU còn bán, bộ i số  tố i thi ể u, tồ n kh ả  dụng NSX (ch ư a gi ữ  tồ n ở  b ướ c này).
+4. Chạy ki ể m tra hạn m ứ c (đoạn mã d ướ i).
+5. Ghi kế t qu ả , đ ổ i trạng thái, ghi order_status_history , ghi outbox.
+@Transactional
+public CreditCheckResult check(Long nppId, BigDecimal newOrderTotal) {
+  CreditLimit lim = limitRepo.findActive(nppId);
+  BigDecimal debt     = ledgerRepo.currentBalance(nppId);          // số d ư 
+cuối trong s ổ
+  BigDecimal inFlight = orderRepo.sumOpenOrders(nppId);            // đ ơ n 
+đang x ử  lý ch ư a lên hóa đ ơ n
+  boolean overdue     = invoiceRepo.hasOverdueBeyond(nppId, 
+lim.getOverdueDaysThreshold());
+  BigDecimal exposure = debt.add(inFlight).add(newOrderTotal);
+  if (overdue || exposure.compareTo(lim.getLimitAmount()) > 0)
+    return 
+CreditCheckResult.hold(lim.getLimitAmount().subtract(debt.add(inFlight)), 
+overdue);
+  if (exposure.compareTo(lim.getLimitAmount().multiply(warnRatio)) >= 0)
+    return CreditCheckResult.warn();
+  return CreditCheckResult.ok();
+}
+Kế t qu ả  hold  → trạng thái ON_HOLD_CREDIT , tạo approval_request  kèm công n ợ ,
+tu ổ i n ợ , lịch s ử  thanh toán, giao cho vai trò duyệ t theo phạm vi vùng c ủ a NPP.
+Duyệ t ngoại lệ  có th ể  kèm nâng hạn m ứ c tạm th ờ i ( credit_limit  có valid_to ); bắ t
+buộ c lý do, ghi audit_log .
+Khi ghi nhậ n thanh toán ( PaymentService.confirm ) phát s ự  kiệ n đ ể  ki ể m tra lại các
+đ ơ n đang gi ữ c ủ a NPP đó.
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 13 of 19
+=== PAGE 14 ===
+Dòng đ ơ n l ư u bốn con số: qty_ordered , qty_confirmed , qty_shipped ,
+qty_received ; không ghi đè con số  cũ.
+Đặ t lại đ ơ n cũ: POST /sell-in-orders/{id}/reorder  tạo DRAFT m ớ i t ừ  đ ơ n cũ, tính
+lại giá/đ ơ n vị hiệ n hành, đánh dấ u SKU ng ừ ng bán.
+G ợ i ý b ổ  sung: ReplenishmentService  tính g ợ i ý = tốc độ tiêu thụ(14–28 ngày)
+× (chu kỳ đặt + tồn an toàn) − tồn hiện tại − hàng đang về, làm tròn theo bộ i
+số  quy cách.
+Test: v ừ a đ ủ /v ượ t hạn m ứ c; n ợ  quá hạn; hai đ ơ n g ử i đồ ng th ờ i cùng NPP (không đ ượ c cùng
+lọt vì v ượ t t ổ ng) – dùng khóa dòng credit_limit  ( SELECT ... FOR UPDATE ) trong b ướ c
+ki ể m tra đ ể  tuầ n t ự  hóa theo NPP.
+7.5. M07 – Kho và tồn
+Chố ng bán v ượ t tồ n bằ ng gi ữ  tồn nguyên t ử:
+// StockService.reserve(warehouseId, skuId, qtyBase)  -- theo FEFO
+List<StockBalance> lots = balanceRepo.lockLotsFefo(warehouseId, skuId); // 
+SELECT ... ORDER BY expiry_date FOR UPDATE
+BigDecimal need = qtyBase;
+for (StockBalance b : lots) {
+  BigDecimal avail = b.getQtyOnHand().subtract(b.getQtyReserved());
+  BigDecimal take = avail.min(need);
+  if (take.signum() > 0) { b.reserve(take); alloc.add(new Alloc(b.getLotNo(), 
+take)); need = need.subtract(take); }
+  if (need.signum() == 0) break;
+}
+if (need.signum() > 0) throw new 
+BusinessException(ErrorCode.STOCK_INSUFFICIENT, skuId.toString());
+Mọi biế n độ ng ghi stock_movement  (IN/OUT/TRANSFER/ADJUST/RETURN, tham
+chiế u ch ứ ng t ừ ); stock_balance  ch ỉ  là số  d ư  suy ra, có job đố i chiế u so v ớ i t ổ ng
+movement mỗ i đêm.
+Xuấ t kho: gi ả m qty_on_hand  và qty_reserved , ghi số  th ự c xuất, lô, hạn dùng vào
+dòng đ ơ n.
+C ả nh báo tồ n: job tính d ướ i m ứ c an toàn, cậ n hạn (< N ngày), tồ n đọng; phát
+StockLow .
+Ki ể m kê: phiế u chụp số  hệ  thố ng tại th ờ i đi ể m, so v ớ i số  đế m, chênh lệ ch cầ n duyệ t
+m ớ i sinh movement ADJUST.
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 14 of 19
+=== PAGE 15 ===
+7.6. M08 – Giao nhận, xác nhận nhận hàng, đ ổ i tr ả
+Xác nhận nhận hàng ( DeliveryService.confirmReceipt ): nhậ n danh sách dòng
+{lineId, received, damaged, returned, photos} ; ki ể m tra received + damaged
+≤ shipped ; lệ ch → sinh b ả n ghi chênh lệ ch và công việ c theo dõi gắ n đúng dòng đ ơ n;
+cộ ng tồ n NPP bằ ng stock_movement IN .
+T ự  xác nhận quá hạn: job mỗ i gi ờ  tìm đ ơ n DELIVERED quá receipt-remind-hours  →
+nhắ c; quá hạn quy định → xác nhậ n theo số  th ự c giao, gắ n nhãn AUTO_RECEIVED .
+Đ ổ i tr ả : ReturnService  tạo phiế u hoàn (lý do, SKU, lô, số  l ượ ng, ả nh) → duyệ t → nhậ p
+kho hoàn → ghi s ổ  công n ợ  gi ả m và gi ả m sell-in kỳ hiệ n tại (không s ử a kỳ đã chố t).
+Điề u phố i giao: delivery_trip  + delivery_stop ; webhook đ ơ n vị vậ n t ả i cậ p nhậ t
+trạng thái (xác th ự c ch ữ  ký HMAC).
+7.7. M09 – Đối soát cuối ngày và chốt kỳ
+Các job chạy theo lịch (múi gi ờ  Asia/Ho_Chi_Minh), đề u khóa ShedLock, ghi job_run_log
+(bắ t đầ u, kế t thúc, số  b ả n ghi, lỗ i).
+Job Lịch Việ c làm
+ReconcileNightlyJob 01:00 hằ ng ngày Làm sạch (b ỏ  đ ơ n h ủ y, tr ừ  hoàn, gộ p
+trùng) → kh ớ p 3 bên (đặ t – xuấ t – nhậ n)
+→ tạo reconciliation_item  cho đ ơ n
+lệ ch → đố i chiế u công n ợ
+DailyCloseJob 05:30, đ ả m b ả o xong
+tr ướ c 06:00
+Tạo period_snapshot  ngày T+1,
+chuy ể n kỳ sang CLOSED nế u không
+còn ngoại lệ  chặ n
+WeeklyCloseJob Sáng th ứ  Hai T ổ ng h ợ p tuầ n theo NPP/SKU/target
+MonthlyCloseJob Ngày làm việ c th ứ  3
+(cấ u hình)
+Chố t tháng, tính DSO, chiế t
+khấ u/th ưở ng, xế p hạng; kế  toán bấ m
+LOCK
+AutoConfirmReceiptJob Mỗ i gi ờ Nhắ c/t ự  xác nhậ n nhậ n hàng
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 15 of 19
+=== PAGE 16 ===
+@Scheduled(cron = '0 0 1 * * *', zone = 'Asia/Ho_Chi_Minh')
+@SchedulerLock(name = 'reconcileNightly', lockAtMostFor = 'PT2H')
+public void run() {
+  LocalDate day = LocalDate.now(VN).minusDays(1);
+  cleanService.clean(day);
+  var items = matchService.threeWayMatch(day);
+  exceptionRepo.saveAll(items);
+  creditRecon.reconcile(day);
+}
+Quy tắc khóa kỳ:
+Kỳ LOCKED  không cho s ử a tr ự c tiế p. Mọi service ghi vào kỳ ph ả i gọi
+PeriodGuard.assertOpen(date)  → ném PERIOD_LOCKED .
+S ử a số  đã chố t qua AdjustmentService : phiế u có lý do, ng ườ i duyệ t; khi duyệ t ghi vào
+kỳ hiện tại ( posted_period_id ), báo cáo kỳ cũ gi ữ  nguyên.
+period_snapshot  ch ỉ  thêm. Báo cáo l ớ p 2 đọc snapshot; l ớ p 1 đọc b ả ng giao dịch và
+gắ n nhãn "Tạm tính".
+Đố i chiế u hai l ớ p: truy vấ n cùng ch ỉ  số  ở  hai nguồ n, tr ả  độ  lệ ch %, c ả nh báo khi v ượ t
+diff-alert-pct .
+7.8. M10 – Kế hoạch nhập và sell-out
+sell_out_daily  đ ượ c nạp t ừ  đ ơ n bán c ử a hàng (job t ổ ng h ợ p cuố i ngày theo
+NPP/SKU/vùng); v ớ i NPP dùng phầ n mề m khác thì import Excel vào cùng b ả ng
+( source = IMPORT ), có ràng buộ c không trùng (date, npp_id, sku_id, source) .
+SellThroughService : sell-through = sell-out / (tồ n đầ u + sell-in); c ờ  "nhậ p dồ n" khi
+sell-in tăng mạnh nh ư ng sell-through thấ p h ơ n ng ưỡ ng.
+demand_plan  có luồ ng DRAFT → SUBMITTED → ACCEPTED/ADJUSTED; b ả n chấ p
+nhậ n làm đầ u vào g ợ i ý đ ơ n (7.4).
+7.9. M11 – Ticket
+Định tuyế n theo type : b ả ng cấ u hình ticket_routing(type, department_role,
+sla_hours) ; khi tạo ticket gán ng ườ i x ử  lý (round-robin theo phạm vi) và sla_due_at .
+Chuy ể n trạng thái qua máy trạng thái (6.3 tài liệ u thiế t kế ); mỗ i s ự  kiệ n ghi
+ticket_event .
+Khi chố t ph ươ ng án: TicketResolutionHandler  sinh phiế u hoàn/giao bù/điề u ch ỉ nh
+công n ợ  qua Facade c ủ a module t ươ ng ứ ng.
+Job SLA mỗ i 15 phút: gầ n hạn → nhắ c; quá hạn → gắ n c ờ  ESCALATED , báo qu ả n lý.
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 16 of 19
+=== PAGE 17 ===
+C ả nh báo chấ t l ượ ng: nhiề u ticket cùng SKU/lô trong 7 ngày v ượ t ng ưỡ ng → thông báo
+CSKH.
+7.10. M04 – Thông báo, nhắc việc, workflow/SLA
+NotificationService.send(userId, type, payload)  ghi b ả ng notification  rồ i
+đ ẩ y kênh (in-app, email, SMS/Zalo OA, web push) theo tùy chọn ng ườ i dùng, g ử i bất
+đồng bộ có retry (tố i đa 3 lầ n, backoff).
+WorkflowEngine : b ả ng workflow_definition(entity_type, step_no,
+approver_role, condition_json, sla_hours)  + approval_request . Dùng chung
+cho đ ơ n, đề  xuấ t, phiế u điề u ch ỉ nh; leo thang khi quá SLA.
+Nhắ c việ c: ReminderJob  mỗ i phút quét appointment/task  có remind_at <= now
+ch ư a g ử i; đánh dấ u đã g ử i trong cùng giao dịch đ ể  không nhắ c trùng.
+7.11. M15 + M16 – CRM, tuyến, l ượ t ghé
+Lead → c ử a hàng: LeadService.convert  tạo store , gắ n NPP/tuyế n/nhóm giá, phát
+LeadConverted  đ ể  DMS sinh l ượ t ghé định kỳ.
+Đi ể m tiềm năng và nguy c ơ  ng ừ ng mua: job đêm tính chu kỳ mua trung vị t ừ  lịch s ử
+đ ơ n; nế u now - last_order_at > k × chu kỳ  hoặ c doanh số  4 tuầ n gi ả m > X% →
+phát StoreAtRisk , tạo công việ c chăm sóc cho sales phụ trách.
+Sinh l ượ t ghé: VisitPlanner  mỗ i đêm sinh visit  cho ngày kế  tiế p theo
+route_stop.frequency_rule .
+Check-in GPS: VisitService.checkIn  tính kho ả ng cách t ớ i tọa độ  c ử a hàng; ngoài
+bán kính (mặ c định 100 m) vẫ n cho ghi nh ư ng gắ n c ờ  và bắ t buộ c lý do.
+Bàn giao: HandoverService  chuy ể n visit  PLANNED, appointment  OPEN, task
+OPEN sang ng ườ i nhậ n trong mộ t giao dịch, ghi lịch s ử ; ng ườ i cũ vẫ n đọc đ ượ c lịch s ử ,
+quyề n ghi chuy ể n theo ng ườ i nhậ n.
+KPI nhân viên: truy vấ n t ổ ng h ợ p (l ượ t ghé, t ỷ  lệ  chuy ể n đ ổ i, doanh số ) có th ể  dùng
+b ả ng t ổ ng h ợ p kpi_daily  cậ p nhậ t cuố i ngày đ ể  dashboard nhanh.
+7.12. M17 + M18 – Đ ơ n bán c ử a hàng và đồng bộ offline
+Đây là API quan trọng nhấ t cho App Sales. H ợ p đồ ng:
+POST /api/v1/sales-orders/sync
+Body: [{ clientId, idempotencyKey, storeId, createdAt,
+         lines:[{skuId, uom, qty, clientPrice}] }]
+Resp: [{ clientId, status: CREATED|DUPLICATE|REJECTED|PRICE_CHANGED,
+         orderId?, message?, serverPrice? }]
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 17 of 19
+=== PAGE 18 ===
+@Transactional(propagation = Propagation.REQUIRES_NEW)   // mỗi đ ơ n một giao 
+dịch riêng
+SyncItemResult syncOne(SyncItem it) {
+  var existing = orderRepo.findByRepAndKey(repId, it.idempotencyKey());
+  if (existing.isPresent()) return SyncItemResult.duplicate(existing.get());
+  var priced = pricingFacade.quote(...);                       // tính lại 
+giá phía server
+  if (priceChangedBeyondPolicy(it, priced)) return 
+SyncItemResult.priceChanged(priced);
+  var order = SalesOrder.create(it, priced, repId);            // 
+UNIQUE(rep_id, idempotency_key)
+  orderRepo.save(order);
+  outbox.add('OrderCreated', order.getId());
+  return SyncItemResult.created(order);
+}
+Mộ t đ ơ n lỗ i không làm h ỏ ng c ả  lô; kế t qu ả  tr ả  theo clientId .
+Bắ t DataIntegrityViolationException  (hai request trùng chạy song song) → x ử  lý
+nh ư  DUPLICATE .
+Chính sách giá khi offline: chấ p nhậ n giá cũ trong kho ả ng th ờ i gian cho phép (tham
+số ), ngoài kho ả ng đó tr ả  PRICE_CHANGED  kèm giá m ớ i đ ể  sales xác nhậ n lại.
+Báo cáo cuố i ngày: DailyReportService.draft(userId, date)  t ổ ng h ợ p t ừ  visit,
+order, interaction; ng ườ i dùng s ử a và nộ p ( daily_report.status ).
+Giao thiế u: khi qty_delivered < qty_confirmed  phát DeliveryShort  → CRM tạo
+công việ c gắ n đúng dòng đ ơ n.
+7.13. M12, M13, M14 – Trade marketing, ph ả n hồi, ch ỉ  tiêu
+TradeRequestService  dùng WorkflowEngine  (duyệ t nhiề u cấ p theo giá trị); khi
+duyệ t tr ừ  budget_allocation.committed  bằ ng câu UPDATE có điề u kiệ n (không âm).
+MarketFeedbackService.aggregate : gom theo SKU/ch ủ  đề /vùng/tuầ n, tr ả  top vấ n
+đề ; nâng thành ticket chấ t l ượ ng bằ ng mộ t thao tác.
+TargetService : target_progress  cậ p nhậ t t ừ  period_snapshot  (số  đã chố t) –
+th ưở ng ch ỉ  tính t ừ  số l ớ p 2; dashboard NPP hi ể n thị tiế n độ  tạm tính tách riêng.
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 18 of 19
+=== PAGE 19 ===
+7.14. M19 – AI ki ể m tra tr ư ng bày
+App Sales → POST /display-audits ( ả nh qua pre-signed URL MinIO) → l ư u 
+display_audit(status=SUBMITTED)
+          → gọi AI Service bất đồng bộ (queue) → callback /internal/display-
+audits/{id}/result
+          → ai_score, ai_result_json (SKU nhận diện, số mặt), confidence
+          → confidence < ng ưỡ ng → NEEDS_REVIEW (ng ườ i phụ trách duyệt) | else 
+AI_SCORED
+Ả nh gố c luôn đ ượ c l ư u; kế t qu ả  cuố i ghi reviewed_by , final_score  đ ể  truy vế t.
+Trong giai đoạn đầ u cài AiClient  có hai b ả n tri ể n khai: MockAiClient  (tr ả  kế t qu ả
+gi ả  lậ p theo SKU kỳ vọng) và HttpAiClient , chọn bằ ng profile đ ể  FE/QA chạy đ ượ c
+tr ướ c khi có mô hình.
+Đố i chiế u ư u đãi phụ thuộ c l ượ ng mua: gọi SalesOrderFacade  lấ y số  đã giao tr ừ  hàng
+tr ả  trong kỳ tr ướ c khi duyệ t th ưở ng tr ư ng bày.
+7.15. M20 – Báo cáo và dashboard
+L ớ p 1: truy vấ n SQL t ổ ng h ợ p ( JdbcTemplate /MyBatis), có ch ỉ  mục ph ủ , cache Redis
+30–60 giây; mọi response kèm generatedAt  đ ể  FE gắ n nhãn "Tạm tính, cậ p nhậ t lúc
+hh:mm".
+L ớ p 2: đọc period_snapshot  (không đọc b ả ng giao dịch).
+Drill-down: t ừ  số  t ổ ng tr ả  filter token  đ ể  m ở  danh sách đ ơ n gố c v ớ i cùng điề u kiệ n
+lọc.
+Xuấ t Excel: dùng streaming (SXSSF), chạy bấ t đồ ng bộ  cho d ữ  liệ u l ớ n, tr ả  link t ả i khi
+xong; ghi audit_log  mỗ i lầ n xuấ t.
+G ử i báo cáo định kỳ: ReportScheduleJob  tạo file và g ử i email theo ng ườ i nhậ n.
+SYNERA – Hướng dẫn build chi tiết Backend
+Page 19 of 19

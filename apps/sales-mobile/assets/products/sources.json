@@ -1,0 +1,43 @@
+[
+  {
+    "file": "milk.png",
+    "source": "https://product.hstatic.net/200000077081/product/frq_d4e4f25b0cda48da8e61eebeb38a54e2.png",
+    "sha256": "c4aac0cdf9ea14d424e53e852fdc477e24b0f2a20a50593be22246191f8cb161",
+    "bytes": 206715,
+    "usage": "illustrative catalog thumbnail; not verified SKU packaging"
+  },
+  {
+    "file": "tea.jpg",
+    "source": "https://itoen.com/cdn/shop/products/Oi-Ocha-Green-1.jpg?width=400",
+    "sha256": "09231edb3af11723f6042c91c20e73803a59aa29ae71dcced32ed08b636d9cd2",
+    "bytes": 17280,
+    "usage": "illustrative catalog thumbnail; not verified SKU packaging"
+  },
+  {
+    "file": "water.png",
+    "source": "https://img03.rl0.ru/afisha/e1200x1200i/daily.afisha.ru/uploads/images/9/7f/97f9bbab591e4ea3a8866b995de136b1.png",
+    "sha256": "5f048948f1f03527ec0fb785b3487f6fe044ea4cd8c14c0b77196a1920901287",
+    "bytes": 468542,
+    "usage": "illustrative catalog thumbnail; not verified SKU packaging"
+  },
+  {
+    "file": "almond.jpg",
+    "source": "https://www.walnutcreekfoods.com/sites/default/files/2024-01/311881.jpg",
+    "sha256": "0a1427c9fc731ffb3d034a8afc6eeee3d70bdc26f04ac4024ac9ec758bb071b2",
+    "bytes": 245789,
+    "usage": "illustrative catalog thumbnail; not verified SKU packaging"
+  },
+  {
+    "file": "orange.jpg",
+    "source": "https://product.hstatic.net/1000282430/product/orange-juice-100_-prima-1l_6d5cd3e63350459d8376a7571268e1b6.jpg",
+    "sha256": "1cecff9c2c02d98b15b3e31174040892bb77323ed69ee1e8dda6cbedc6578d90",
+    "bytes": 29698,
+    "usage": "illustrative catalog thumbnail; not verified SKU packaging"
+  },
+  {
+    "file": "cookies.png",
+    "source": "https://images.heb.com/is/image/HEBGrocery/002089040-1?hei=400&wid=400&fit=constrain",
+    "sha256": "c4f6d30ee91731d4eb166e048c134cd9b90c87b66a91ffae81b046a79439c910",
+    "usage": "illustrative catalog thumbnail; not verified SKU packaging"
+  }
+]

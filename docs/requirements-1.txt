@@ -1,0 +1,181 @@
+=== PAGE 1 ===
+SYNERA · Phân công Frontend
+Trang 1
+SYNERA – Hướng dẫn build Frontend &
+phân công nhiệm vụ cho 3 người
+Tài liệu kèm theo phân tích thiết kế hệ thống SYNERA · Phiên bản 1.0 · Tháng 11/2026
+1. Chọn công nghệ
+Hạng mục
+Đề xuất
+Lý do
+Framework
+React 18 + Vite + TypeScript
+3 người làm song song, tách FE/BE rõ, dễ làm PWA
+offline cho App Sales
+UI
+Tailwind CSS + shadcn/ui (hoặc Ant
+Design)
+Có sẵn bảng, form, modal, tiết kiệm thời gian
+Gọi API
+Axios + TanStack Query
+Cache, loading/error có sẵn
+Form
+React Hook Form + Zod
+Validate đơn hàng, hạn mức
+Điều hướng
+React Router v6
+Route theo vai trò
+Biểu đồ
+Chart.js (react-chartjs-2)
+Đã quen dùng
+Bản đồ
+Leaflet
+Cửa hàng, tuyến, check-in
+Offline (App Sales)
+Service Worker + IndexedDB (Dexie)
+Đơn nháp, idempotency key
+Mock API
+MSW (Mock Service Worker)
+FE không phải chờ BE
+Chất lượng code
+ESLint, Prettier, Husky, Vitest
+Giữ code đồng nhất
+Cấu trúc thư mục (một app, tách theo module để ít xung đột Git):
+src/
+  app/            # router, providers, layout theo vai tro   (Nguoi A)
+  shared/
+    ui/           # Button, DataTable, StatusBadge, Timeline (Nguoi B)
+    api/          # axios, interceptor, types, query keys     (Nguoi C)
+    hooks/ utils/ # useAuth, formatMoney, quy doi don vi
+  features/
+    auth/ notifications/                                       (A)
+    portal-npp/   dms-npp/                                     (A)
+    nsx-admin/    reports/                                     (B)
+    sales-app/    crm/                                         (C)
+  mocks/          # handlers MSW theo module
+Quy tắc: mỗi người chỉ sửa thư mục features/ của mình. Thư mục shared/ sửa qua pull request và có
+người còn lại duyệt.
+2. Phân công nhiệm vụ
+ Người A
+Người B
+Người C
+Vai trò
+Portal NPP + DMS phía NPP +
+nền tảng đăng nhập
+Web điều hành NSX +
+dashboard + component dùng
+chung
+App Sales (PWA) + CRM phía NPP
++ AI trưng bày
+Đặc điểm khối
+lượng
+Nhiều màn hình nghiệp vụ
+Nhiều màn hình + nền tảng UI
+chung
+Khó nhất về kỹ thuật (offline,
+GPS, bản đồ)
+Module code
+auth, notifications, portal-npp,
+dms-npp
+nsx-admin, reports, shared/ui
+sales-app, crm, shared/api
+2.1. Người A – Portal NPP, DMS phía NPP, nền tảng
+ Nền tảng: đăng nhập/OTP, quên mật khẩu, layout theo vai trò, route guard theo quyền, trung tâm
+thông báo, hồ sơ cá nhân.
+ Portal NPP: trang chủ (gợi ý nhập, đơn đang xử lý, công nợ); catalog + giỏ hàng có hạn mức còn lại và
+nút "Đặt lại đơn gần nhất"; đơn của tôi + dòng thời gian trạng thái; xác nhận nhận hàng
+
+=== PAGE 2 ===
+SYNERA · Phân công Frontend
+Trang 2
+(thiếu/hỏng/hoàn, kèm ảnh); công nợ và đối soát; kế hoạch nhập hàng, báo cáo sell-out; trung tâm
+chính sách; đề xuất trade marketing; hiệu quả và chỉ tiêu.
+ DMS phía NPP: kho và tồn, nhập/xuất kho, kiểm kê, đơn bán cho cửa hàng, điều phối giao hàng.
+2.2. Người B – Web điều hành NSX, dashboard, component chung
+ Component dùng chung: DataTable (lọc, phân trang, xuất Excel), StatusBadge, Timeline trạng thái,
+thẻ công nợ, modal duyệt/từ chối, form import Excel.
+ Dashboard điều hành (Chart.js): đơn, NPP nợ, sắp hết hàng, sell-in.
+ Duyệt đơn: danh sách đơn chờ + màn hình duyệt 3 cột (danh sách, chi tiết, thẻ công nợ).
+ Quản lý: NPP và hạn mức; soạn/duyệt chính sách và khuyến mãi; công nợ; ngoại lệ đối soát; lịch chốt,
+khóa kỳ, phiếu điều chỉnh.
+ Báo cáo: báo cáo lớp 2 và màn hình đối chiếu hai lớp ("Tạm tính" cạnh "Đã chốt").
+ Khác: ticket, trade marketing và ngân sách, phản hồi thị trường, chỉ tiêu và xếp hạng NPP, quản trị
+người dùng/vai trò/nhật ký.
+2.3. Người C – App Sales (PWA), CRM phía NPP, AI trưng bày
+ App Sales (ưu tiên mobile, offline): màn hình "Hôm nay"; hồ sơ cửa hàng (chuẩn bị ghé); check-in
+GPS; lập đơn nhanh từ đơn gần nhất; đơn nháp offline với trạng thái "Chờ gửi"; lời hẹn và việc cần làm;
+đơn của tôi (xem giao thiếu); báo cáo cuối ngày; KPI cá nhân.
+ CRM web phía NPP: danh sách cửa hàng + bản đồ; hồ sơ cửa hàng 360° (tab đơn, tương tác, lịch hẹn,
+ticket, trưng bày); lead (kanban theo trạng thái); thiết kế tuyến và phân công; KPI nhân viên và bàn
+giao; chiến dịch chăm sóc.
+ AI trưng bày: chụp ảnh kệ, hiển thị kết quả SKU đạt/thiếu, màn hình duyệt ảnh khó chấm.
+Lưu ý cân bằng: nếu Người C quá tải, chuyển "Chiến dịch chăm sóc" và "Thiết kế tuyến" sang Người B.
+3. Lộ trình 10 tuần
+Tuần
+Người A
+Người B
+Người C
+1
+Khởi tạo repo, Auth, layout, route
+guard
+Design system (Table, Badge,
+Timeline, Modal)
+API client, types từ tài liệu mục 7/9,
+mock MSW
+2–3
+Catalog, giỏ hàng, đặt hàng, đơn
+của tôi
+Dashboard NSX, danh sách và
+duyệt đơn
+Hồ sơ cửa hàng, danh sách cửa
+hàng + bản đồ
+4–5
+Xác nhận nhận hàng, công nợ,
+kho/tồn
+Chính sách, công nợ, ngoại lệ,
+chốt kỳ
+App Sales: Hôm nay, check-in, lập
+đơn
+6
+Kế hoạch nhập, sell-out, chính
+sách
+Báo cáo lớp 2, đối chiếu hai lớp
+Offline + đồng bộ, đơn lặp
+7
+Đơn bán cửa hàng, giao hàng
+Ticket, trade marketing, phản hồi
+Lead, tuyến, lời hẹn, bàn giao
+8
+Hiệu quả/chỉ tiêu, thông báo
+Chỉ tiêu, xếp hạng, quản trị
+Báo cáo cuối ngày, AI trưng bày
+9
+Tích hợp API thật, sửa lỗi
+Tích hợp API thật, sửa lỗi
+Tích hợp API thật, sửa lỗi
+10
+Test chéo, responsive, demo thí
+điểm
+Test chéo, tối ưu hiệu năng
+Test chéo, kiểm thử offline
+4. Quy tắc làm việc nhóm
+ Git: nhánh main (ổn định), develop, và feature/<người>-<tên màn hình>. Mỗi PR nhỏ (một màn
+hình), người khác review trước khi merge.
+ Hợp đồng API trước khi code: thống nhất với nhóm backend một file OpenAPI (hoặc bảng API ở mục
+9 của tài liệu thiết kế). Sinh type TypeScript từ đó; FE code trên MSW trước.
+ Quy ước chung: component PascalCase, hook bắt đầu bằng use; tiền luôn qua formatMoney; số lượng
+luôn kèm đơn vị (thùng/lốc) để tránh nhầm; số lớp 1 gắn nhãn "Tạm tính, cập nhật lúc hh:mm".
+
+=== PAGE 3 ===
+SYNERA · Phân công Frontend
+Trang 3
+ Họp: đứng lớp 15 phút mỗi 2 ngày, demo cuối mỗi tuần, cập nhật bảng công việc (Trello/GitHub
+Projects) theo mã chức năng FR-xx.yy để khớp tài liệu.
+ Definition of Done cho mỗi màn hình: đủ 3 trạng thái (loading, rỗng, lỗi); hoạt động trên mobile;
+hiển thị đúng quyền theo vai trò; có dữ liệu mock.
+5. Rủi ro thường gặp
+ Xung đột shared/: giải quyết bằng quy tắc PR bắt buộc.
+ Phụ thuộc BE chậm: dùng MSW để không bị chặn.
+ Offline phức tạp: làm bản "lưu nháp và gửi lại" trước (tuần 6), tối ưu đồng bộ nâng cao sau.
+ Quá nhiều màn hình: ưu tiên MVP theo thứ tự: đặt hàng, duyệt đơn, công nợ, đối soát, hồ sơ cửa
+hàng, lập đơn Sales. AI trưng bày và chiến dịch chăm sóc làm cuối.

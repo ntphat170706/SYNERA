@@ -1,0 +1,21 @@
+
+ALTER TABLE app_user ADD CONSTRAINT fk_user_npp FOREIGN KEY(npp_id) REFERENCES organization(id);
+ALTER TABLE store ADD CONSTRAINT fk_store_npp FOREIGN KEY(npp_id) REFERENCES organization(id);
+ALTER TABLE store ADD CONSTRAINT fk_store_rep FOREIGN KEY(rep_id) REFERENCES app_user(id);
+ALTER TABLE warehouse ADD CONSTRAINT fk_warehouse_org FOREIGN KEY(org_id) REFERENCES organization(id);
+ALTER TABLE sku_uom ADD CONSTRAINT fk_uom_sku FOREIGN KEY(sku_id) REFERENCES sku(id);
+ALTER TABLE price_item ADD CONSTRAINT fk_price_sku FOREIGN KEY(sku_id) REFERENCES sku(id);
+ALTER TABLE sell_in_order ADD CONSTRAINT fk_sellin_npp FOREIGN KEY(npp_id) REFERENCES organization(id);
+ALTER TABLE sell_in_order_line ADD CONSTRAINT fk_sellin_line_order FOREIGN KEY(order_id) REFERENCES sell_in_order(id);
+ALTER TABLE sell_in_order_line ADD CONSTRAINT fk_sellin_line_sku FOREIGN KEY(sku_id) REFERENCES sku(id);
+ALTER TABLE sales_order ADD CONSTRAINT fk_sales_store FOREIGN KEY(store_id) REFERENCES store(id);
+ALTER TABLE sales_order ADD CONSTRAINT fk_sales_rep FOREIGN KEY(rep_id) REFERENCES app_user(id);
+ALTER TABLE sales_order_line ADD CONSTRAINT fk_sales_line_order FOREIGN KEY(order_id) REFERENCES sales_order(id);
+ALTER TABLE stock_balance ADD CONSTRAINT fk_stock_warehouse FOREIGN KEY(warehouse_id) REFERENCES warehouse(id);
+ALTER TABLE stock_balance ADD CONSTRAINT fk_stock_sku FOREIGN KEY(sku_id) REFERENCES sku(id);
+ALTER TABLE period_snapshot ADD CONSTRAINT fk_snapshot_period FOREIGN KEY(period_id) REFERENCES report_period(id);
+ALTER TABLE target ADD CONSTRAINT fk_target_period FOREIGN KEY(period_id) REFERENCES report_period(id);
+ALTER TABLE trade_request ADD CONSTRAINT fk_trade_budget FOREIGN KEY(budget_id) REFERENCES budget_allocation(id);
+ALTER TABLE appointment ADD CONSTRAINT fk_appointment_store FOREIGN KEY(store_id) REFERENCES store(id);
+ALTER TABLE visit ADD CONSTRAINT fk_visit_store FOREIGN KEY(store_id) REFERENCES store(id);
+ALTER TABLE refresh_token ADD CONSTRAINT fk_refresh_user FOREIGN KEY(user_id) REFERENCES app_user(id);

@@ -1,0 +1,15 @@
+.git
+.tools
+node_modules
+dist
+artifacts
+output
+tmp
+deploy/secrets
+deploy/backups
+**/.env
+**/.env.*
+!**/.env.example
+backend/target*
+backend/.data
+*.pdf

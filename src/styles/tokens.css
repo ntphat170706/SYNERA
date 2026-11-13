@@ -1,0 +1,72 @@
+.app.npp-portal:not(.dark) {
+  --canvas: #f7f7f8;
+  --surface-muted: #f7f7f8;
+  --shadow-panel: 0 3px 7px rgba(31, 41, 55, 0.055), 0 10px 24px rgba(31, 41, 55, 0.075);
+  --shadow-panel-hover: 0 5px 12px rgba(31, 41, 55, 0.075), 0 14px 30px rgba(31, 41, 55, 0.1);
+}
+.app.npp-portal.dark {
+  --stock-ink: #78d6bf;
+  --stock-soft: #183c38;
+  --care-ink: #cab4f0;
+  --care-soft: #342744;
+}
+:root {
+  --report-sales-head: #a65a0b;
+  --nsx-canvas: #f6f8fa;
+  --report-sales-soft: #fff4df;
+  --nav-gradient-light: #236fa8;
+  --nav-gradient-mid: #17517f;
+  --nav-gradient-deep: #122b49;
+  --overlay: rgba(15, 23, 42, 0.32);
+  --shadow-sheet: -12px 0 36px rgba(15, 23, 42, 0.13);
+  --stock-ink: #08786b;
+  --stock-soft: #e8f6f1;
+  --care-ink: #7050aa;
+  --care-soft: #f1ecfa;
+  --on-primary: #ffffff;
+  --shadow-panel: 0 4px 18px rgba(31, 41, 55, 0.075);
+  --shadow-panel-hover: 0 8px 24px rgba(31, 41, 55, 0.12);
+  --canvas: #f4f6f8;
+  --surface: #ffffff;
+  --surface-muted: #f3f5f7;
+  --nav: #122b49;
+  --nav-hover: #1b3a5d;
+  --nav-active: #1f5996;
+  --nav-text: #e6edf6;
+  --nav-muted: #aabbd0;
+  --primary: #1769c2;
+  --primary-hover: #1255a0;
+  --accent: #eaf3ff;
+  --text: #1f2937;
+  --text-muted: #526071;
+  --metadata: #5d6d80;
+  --border: #e0e5eb;
+  --border-strong: #bdc7d3;
+  --success: #237a4b;
+  --success-bg: #edf8f0;
+  --warning: #8a5d12;
+  --warning-bg: #fff6df;
+  --danger: #b42318;
+  --danger-bg: #fef0ed;
+  --radius: 5px;
+  --sidebar-width: 230px;
+  --sidebar-rail: 68px;
+  --header-height: 55px;
+  --content-max: 1600px;
+  --content-padding: 24px;
+  --gap: 20px;
+  --font-ui: 'Segoe UI', Arial, sans-serif;
+  /* Compatibility aliases for existing shared components. */
+  --green: var(--primary);
+  --green-dark: var(--primary-hover);
+  --muted: var(--text-muted);
+  --panel: var(--surface);
+  --page: var(--canvas);
+  --soft: var(--surface-muted);
+  --chart-primary: #1769c2;
+  --chart-secondary: #73b9f4;
+  --chart-pending: #e8bf65;
+  --chart-approved: #bbd5f1;
+  --chart-other: #bdc7d3;
+  --chart-fill: rgba(23, 105, 194, 0.08);
+}

@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "SYNERA Sales",
+    "slug": "synera-sales",
+    "version": "0.1.0",
+    "scheme": "synera-sales",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {
+      "predictiveBackGestureEnabled": true
+    },
+    "plugins": [
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Cho phép SYNERA lấy vị trí khi bạn check-in tại điểm bán."
+        }
+      ],
+      "expo-sqlite",
+      "@react-native-community/datetimepicker",
+      "expo-status-bar",
+      "expo-font",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Cho phép SYNERA chọn ảnh kệ hàng để kiểm tra trưng bày.",
+          "cameraPermission": "Cho phép SYNERA chụp ảnh kệ hàng tại điểm bán.",
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1e68dccf-0eb3-4ece-9068-16997a610125"
+      }
+    },
+    "owner": "ntp11111"
+  }
+}

@@ -1,0 +1,10 @@
+CREATE TRIGGER trade_settlement_no_update BEFORE UPDATE ON trade_settlement FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Settlement is append-only';
+CREATE TRIGGER trade_settlement_no_delete BEFORE DELETE ON trade_settlement FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Settlement is append-only';
+CREATE TRIGGER reward_payout_no_update BEFORE UPDATE ON reward_payout FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Reward payout is append-only';
+CREATE TRIGGER reward_payout_no_delete BEFORE DELETE ON reward_payout FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Reward payout is append-only';
+CREATE TRIGGER policy_ack_no_update BEFORE UPDATE ON policy_ack FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Policy acknowledgement is append-only';
+CREATE TRIGGER policy_ack_no_delete BEFORE DELETE ON policy_ack FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Policy acknowledgement is append-only';
+CREATE TRIGGER ticket_comment_no_update BEFORE UPDATE ON ticket_comment FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Ticket comment is append-only';
+CREATE TRIGGER ticket_comment_no_delete BEFORE DELETE ON ticket_comment FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Ticket comment is append-only';
+CREATE TRIGGER integration_callback_no_update BEFORE UPDATE ON integration_callback FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Callback receipt is append-only';
+CREATE TRIGGER integration_callback_no_delete BEFORE DELETE ON integration_callback FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Callback receipt is append-only';

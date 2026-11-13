@@ -1,0 +1,79 @@
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+spring:
+  mail:
+    host: ${SMTP_HOST:}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail.smtp.auth: ${SMTP_AUTH:true}
+      mail.smtp.starttls.enable: ${SMTP_STARTTLS:true}
+      mail.smtp.starttls.required: ${SMTP_STARTTLS:true}
+      mail.smtp.ssl.checkserveridentity: true
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 5000
+      mail.smtp.writetimeout: 5000
+  application:
+    name: synera-backend
+  profiles:
+    default: local
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.type.preferred_instant_jdbc_type: TIMESTAMP
+  flyway:
+    enabled: true
+    locations: classpath:db/migration,classpath:db/updates
+  jackson:
+    time-zone: UTC
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: when_authorized
+      probes:
+        enabled: true
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+synera:
+  ai:
+    mode: ${AI_MODE:manual}
+  jwt:
+    secret: ${JWT_SECRET:}
+    issuer: synera
+    access-minutes: 15
+    refresh-days: 7
+  cors-origins: ${CORS_ORIGINS:http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:4173,http://localhost:4173,http://127.0.0.1:8080,http://localhost:8080}
+  jobs-enabled: ${JOBS_ENABLED:true}
+  bootstrap:
+    enabled: false
+  storage:
+    endpoint: ${MINIO_ENDPOINT:}
+    public-endpoint: ${MINIO_PUBLIC_ENDPOINT:}
+    access-key: ${MINIO_ACCESS_KEY:}
+    secret-key: ${MINIO_SECRET_KEY:}
+    bucket: ${MINIO_BUCKET:synera}
+  integration:
+    ai-url: ${AI_URL:}
+    callback-secret: ${AI_CALLBACK_SECRET:}
+    otp-mode: ${OTP_MODE:disabled}
+    otp-from: ${SMTP_FROM:}
+  rules:
+    checkin-radius-metres: 100
+    receipt-remind-hours: 48
+    receipt-auto-hours: 96

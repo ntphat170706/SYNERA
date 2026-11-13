@@ -1,0 +1,12 @@
+CREATE TRIGGER credit_ledger_no_update BEFORE UPDATE ON credit_ledger FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'credit_ledger is append-only';
+CREATE TRIGGER credit_ledger_no_delete BEFORE DELETE ON credit_ledger FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'credit_ledger is append-only';
+CREATE TRIGGER stock_movement_no_update BEFORE UPDATE ON stock_movement FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'stock_movement is append-only';
+CREATE TRIGGER stock_movement_no_delete BEFORE DELETE ON stock_movement FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'stock_movement is append-only';
+CREATE TRIGGER audit_log_no_update BEFORE UPDATE ON audit_log FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'audit_log is append-only';
+CREATE TRIGGER audit_log_no_delete BEFORE DELETE ON audit_log FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'audit_log is append-only';
+CREATE TRIGGER order_status_history_no_update BEFORE UPDATE ON order_status_history FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'order_status_history is append-only';
+CREATE TRIGGER order_status_history_no_delete BEFORE DELETE ON order_status_history FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'order_status_history is append-only';
+CREATE TRIGGER ticket_event_no_update BEFORE UPDATE ON ticket_event FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'ticket_event is append-only';
+CREATE TRIGGER ticket_event_no_delete BEFORE DELETE ON ticket_event FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'ticket_event is append-only';
+CREATE TRIGGER period_snapshot_no_update BEFORE UPDATE ON period_snapshot FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'period_snapshot is append-only';
+CREATE TRIGGER period_snapshot_no_delete BEFORE DELETE ON period_snapshot FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'period_snapshot is append-only';

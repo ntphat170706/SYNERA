@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T17:32:36.368Z",
+  "title": "Design System: SYNERA Sales Mobile",
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Gray-White Canvas",
+        "tonalRamp": [
+          "oklch(15% 0.0006 286.38)",
+          "oklch(25% 0.0009 286.38)",
+          "oklch(35% 0.0012 286.38)",
+          "oklch(47% 0.0013 286.38)",
+          "oklch(59% 0.0013 286.38)",
+          "oklch(71% 0.0010 286.38)",
+          "oklch(83% 0.0007 286.38)",
+          "oklch(95% 0.0002 286.38)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "White Surface",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.88)",
+          "oklch(25% 0.0000 89.88)",
+          "oklch(35% 0.0000 89.88)",
+          "oklch(47% 0.0000 89.88)",
+          "oklch(59% 0.0000 89.88)",
+          "oklch(71% 0.0000 89.88)",
+          "oklch(83% 0.0000 89.88)",
+          "oklch(95% 0.0000 89.88)"
+        ]
+      },
+      "muted-surface": {
+        "role": "neutral",
+        "displayName": "Quiet Surface",
+        "tonalRamp": [
+          "oklch(15% 0.0016 247.86)",
+          "oklch(25% 0.0024 247.86)",
+          "oklch(35% 0.0031 247.86)",
+          "oklch(47% 0.0034 247.86)",
+          "oklch(59% 0.0033 247.86)",
+          "oklch(71% 0.0027 247.86)",
+          "oklch(83% 0.0017 247.86)",
+          "oklch(95% 0.0005 247.86)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0134 256.85)",
+          "oklch(25% 0.0209 256.85)",
+          "oklch(35% 0.0264 256.85)",
+          "oklch(47% 0.0295 256.85)",
+          "oklch(59% 0.0284 256.85)",
+          "oklch(71% 0.0234 256.85)",
+          "oklch(83% 0.0151 256.85)",
+          "oklch(95% 0.0046 256.85)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "tonalRamp": [
+          "oklch(15% 0.0147 253.43)",
+          "oklch(25% 0.0230 253.43)",
+          "oklch(35% 0.0289 253.43)",
+          "oklch(47% 0.0323 253.43)",
+          "oklch(59% 0.0312 253.43)",
+          "oklch(71% 0.0256 253.43)",
+          "oklch(83% 0.0165 253.43)",
+          "oklch(95% 0.0051 253.43)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Separator Gray",
+        "tonalRamp": [
+          "oklch(15% 0.0044 252.82)",
+          "oklch(25% 0.0069 252.82)",
+          "oklch(35% 0.0087 252.82)",
+          "oklch(47% 0.0097 252.82)",
+          "oklch(59% 0.0094 252.82)",
+          "oklch(71% 0.0077 252.82)",
+          "oklch(83% 0.0050 252.82)",
+          "oklch(95% 0.0015 252.82)"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Action Blue",
+        "tonalRamp": [
+          "oklch(15% 0.0717 254.79)",
+          "oklch(25% 0.1116 254.79)",
+          "oklch(35% 0.1407 254.79)",
+          "oklch(47% 0.1572 254.79)",
+          "oklch(59% 0.1516 254.79)",
+          "oklch(71% 0.1247 254.79)",
+          "oklch(83% 0.0804 254.79)",
+          "oklch(95% 0.0247 254.79)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Clear Blue Tint",
+        "tonalRamp": [
+          "oklch(15% 0.0085 255.53)",
+          "oklch(25% 0.0133 255.53)",
+          "oklch(35% 0.0167 255.53)",
+          "oklch(47% 0.0187 255.53)",
+          "oklch(59% 0.0180 255.53)",
+          "oklch(71% 0.0148 255.53)",
+          "oklch(83% 0.0096 255.53)",
+          "oklch(95% 0.0029 255.53)"
+        ]
+      },
+      "hero-blue": {
+        "role": "primary",
+        "displayName": "Greeting Blue",
+        "tonalRamp": [
+          "oklch(15% 0.0685 257.09)",
+          "oklch(25% 0.1068 257.09)",
+          "oklch(35% 0.1345 257.09)",
+          "oklch(47% 0.1503 257.09)",
+          "oklch(59% 0.1450 257.09)",
+          "oklch(71% 0.1193 257.09)",
+          "oklch(83% 0.0769 257.09)",
+          "oklch(95% 0.0236 257.09)"
+        ]
+      },
+      "hero-mid": {
+        "role": "primary",
+        "displayName": "Fade Blue",
+        "tonalRamp": [
+          "oklch(15% 0.0476 248.32)",
+          "oklch(25% 0.0741 248.32)",
+          "oklch(35% 0.0934 248.32)",
+          "oklch(47% 0.1044 248.32)",
+          "oklch(59% 0.1007 248.32)",
+          "oklch(71% 0.0828 248.32)",
+          "oklch(83% 0.0534 248.32)",
+          "oklch(95% 0.0164 248.32)"
+        ]
+      },
+      "metric-blue": {
+        "role": "primary",
+        "displayName": "Metric Blue",
+        "tonalRamp": [
+          "oklch(15% 0.0127 251.46)",
+          "oklch(25% 0.0198 251.46)",
+          "oklch(35% 0.0250 251.46)",
+          "oklch(47% 0.0279 251.46)",
+          "oklch(59% 0.0269 251.46)",
+          "oklch(71% 0.0222 251.46)",
+          "oklch(83% 0.0143 251.46)",
+          "oklch(95% 0.0044 251.46)"
+        ]
+      },
+      "route-blue": {
+        "role": "primary",
+        "displayName": "Route Blue",
+        "tonalRamp": [
+          "oklch(15% 0.0059 251.56)",
+          "oklch(25% 0.0092 251.56)",
+          "oklch(35% 0.0116 251.56)",
+          "oklch(47% 0.0130 251.56)",
+          "oklch(59% 0.0125 251.56)",
+          "oklch(71% 0.0103 251.56)",
+          "oklch(83% 0.0066 251.56)",
+          "oklch(95% 0.0020 251.56)"
+        ]
+      },
+      "danger": {
+        "role": "secondary",
+        "displayName": "Alert Red",
+        "tonalRamp": [
+          "oklch(15% 0.0772 29.51)",
+          "oklch(25% 0.1202 29.51)",
+          "oklch(35% 0.1515 29.51)",
+          "oklch(47% 0.1692 29.51)",
+          "oklch(59% 0.1632 29.51)",
+          "oklch(71% 0.1343 29.51)",
+          "oklch(83% 0.0865 29.51)",
+          "oklch(95% 0.0266 29.51)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "body": {
+        "displayName": "Body",
+        "purpose": "Ordinary reading text."
+      },
+      "title": {
+        "displayName": "Row Title",
+        "purpose": "List and action titles."
+      },
+      "headline": {
+        "displayName": "Section Heading",
+        "purpose": "Shared section title."
+      },
+      "label": {
+        "displayName": "Field Label",
+        "purpose": "Labels above fields."
+      },
+      "button": {
+        "displayName": "Button Label",
+        "purpose": "Shared primary and secondary actions."
+      },
+      "status": {
+        "displayName": "Status",
+        "purpose": "Text-only operating status."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Supporting context."
+      }
+    },
+    "shadows": [
+      {
+        "name": "section-lift",
+        "value": "0 3px 14px rgba(27,39,51,0.075)",
+        "purpose": "Shared section shadow wrapper."
+      },
+      {
+        "name": "active-visit-lift",
+        "value": "0 5px 20px rgba(23,105,194,0.15)",
+        "purpose": "Promoted current visit on Today."
+      }
+    ],
+    "motion": [
+      {
+        "name": "active-visit-entrance",
+        "value": "opacity 0.6 → 1; 420ms; Easing.out(Easing.cubic)",
+        "purpose": "One fade per visit identity; skipped with Reduce Motion; no repeating decorative pulse."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Existing filled action; pressed and disabled opacity reflect the native component.",
+      "html": "<button class=\"ds-primary\">Tạo đơn</button>",
+      "css": ".ds-primary{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:16px;font-weight:600;min-height:48px;padding:12px 18px;background:#1769c2;color:#fff;border:1px solid #1769c2;border-radius:8px;cursor:pointer}.ds-primary:hover{background:#1769c2}.ds-primary:focus-visible{outline:auto}.ds-primary:active{opacity:.8}.ds-primary:disabled{opacity:.55;cursor:default}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Existing outlined alternative with the same target and label hierarchy.",
+      "html": "<button class=\"ds-secondary\">Lịch sử đơn</button>",
+      "css": ".ds-secondary{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:16px;font-weight:600;min-height:48px;padding:12px 18px;background:#fff;color:#1769c2;border:1px solid #e0e5eb;border-radius:8px;cursor:pointer}.ds-secondary:hover{background:#fff}.ds-secondary:focus-visible{outline:auto}.ds-secondary:active{opacity:.8}.ds-secondary:disabled{opacity:.55;cursor:default}"
+    },
+    {
+      "name": "Labeled Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Shared field; no custom native focus or error styling is inferred.",
+      "html": "<label class=\"ds-field\"><span>Ghi chú</span><input aria-label=\"Ghi chú\" placeholder=\"Nhập ghi chú\"></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:8px;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:15px;font-weight:500;line-height:22px;color:#1f2937}.ds-field input{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:17px;font-weight:400;min-height:48px;padding:12px;background:#fff;color:#1f2937;border:1px solid #e0e5eb;border-radius:8px}.ds-field input::placeholder{color:#526071}.ds-field input:focus-visible{outline:auto}"
+    },
+    {
+      "name": "Search",
+      "kind": "input",
+      "refersTo": "search",
+      "description": "Quiet search track with a literal inline SVG analogue of the native outline icon.",
+      "html": "<label class=\"ds-search\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 5 5\"/></svg><input aria-label=\"Tìm kiếm\" placeholder=\"Tìm kiếm\"></label>",
+      "css": ".ds-search{display:flex;align-items:center;gap:8px;padding:0 12px;min-height:44px;border-radius:10px;background:#f3f5f7;color:#526071}.ds-search input{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:16px;color:#1f2937;background:transparent;border:0;min-width:0;flex:1;padding:10px 0}.ds-search input::placeholder{color:#526071}.ds-search input:focus-visible{outline:auto}"
+    },
+    {
+      "name": "Section",
+      "kind": "card",
+      "refersTo": "section",
+      "description": "Shared shadow wrapper with clipped content; body padding is supplied by its content pattern.",
+      "html": "<section class=\"ds-section\"><div class=\"ds-section-inner\"><div class=\"ds-section-example\">Thông tin điểm bán</div></div></section>",
+      "css": ".ds-section{border-radius:14px;background:#fff;box-shadow:0 3px 14px rgba(27,39,51,.075)}.ds-section-inner{border-radius:14px;overflow:hidden;background:#fff}.ds-section-example{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;padding:20px;color:#1f2937;font-size:17px;line-height:25px;font-weight:600}"
+    },
+    {
+      "name": "Segment",
+      "kind": "custom",
+      "refersTo": "segment-selected",
+      "description": "Selected and unselected items preserve the corrected minimum target; semantic state is shown without adding a JavaScript runtime.",
+      "html": "<div class=\"ds-segment\" role=\"tablist\" aria-label=\"Lọc lượt ghé\"><button role=\"tab\" aria-selected=\"true\">Tất cả</button><button role=\"tab\" aria-selected=\"false\">Chưa ghé</button><button role=\"tab\" aria-selected=\"false\">Đã ghé</button></div>",
+      "css": ".ds-segment{display:flex;padding:3px;border-radius:10px;background:#f3f5f7}.ds-segment button{flex:1;min-height:44px;padding:0 5px;border:0;border-radius:8px;background:transparent;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:14px;font-weight:600;color:#526071;cursor:pointer}.ds-segment button[aria-selected=true]{background:#fff;color:#1769c2}.ds-segment button:focus-visible{outline:auto}"
+    },
+    {
+      "name": "Status Label",
+      "kind": "custom",
+      "refersTo": "status",
+      "description": "Existing text status, without adding a chip background or pill shape.",
+      "html": "<span class=\"ds-status\">Chưa ghé</span>",
+      "css": ".ds-status{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:14px;line-height:21px;font-weight:600;color:#1769c2}"
+    },
+    {
+      "name": "Bottom Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Four native areas translated to standalone HTML. Browser focus uses its default; icons are inline SVG analogues.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Điều hướng chính\"><button aria-current=\"page\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><rect x=\"4\" y=\"5\" width=\"16\" height=\"16\" rx=\"2\"/><path d=\"M8 2v6m8-6v6M4 10h16\"/></svg><span>Hôm nay</span></button><button ><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M3 9 5 3h14l2 6v3H3zM5 12v9h14v-9M9 21v-6h6v6\"/></svg><span>Điểm bán</span></button><button ><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M5 2h14v20l-3-2-4 2-4-2-3 2zM8 7h8m-8 4h8m-8 4h5\"/></svg><span>Đơn hàng</span></button><button ><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"7\" r=\"4\"/><path d=\"M4 22v-3a8 8 0 0 1 16 0v3\"/></svg><span>Tài khoản</span></button></nav>",
+      "css": ".ds-nav{display:flex;min-height:70px;padding-top:6px;padding-bottom:8px;background:#fff;border-top:1px solid #e0e5eb}.ds-nav button{display:flex;flex:1;min-width:0;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:transparent;border:0;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:12px;line-height:16px;color:#526071;cursor:pointer}.ds-nav button[aria-current=page]{color:#1769c2}.ds-nav button:focus-visible{outline:auto}"
+    },
+    {
+      "name": "Active Visit",
+      "kind": "custom",
+      "refersTo": "active-visit",
+      "description": "Visual anatomy of the existing Today signature. The dash is a missing-data placeholder; this preview does not fabricate or run a visit clock.",
+      "html": "<section class=\"ds-visit\"><div class=\"ds-visit-band\"><strong>● &nbsp;Đang ghé thăm</strong><button>Tiếp tục <svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m9 5 7 7-7 7\"/></svg></button></div><div class=\"ds-visit-content\"><strong class=\"ds-visit-title\">Điểm bán</strong><div class=\"ds-visit-time\"><span>Thời gian ghé thăm</span><strong>—</strong></div></div></section>",
+      "css": ".ds-visit{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;border-radius:15px;overflow:hidden;box-shadow:0 5px 20px rgba(23,105,194,.15);animation:ds-visit-enter 420ms cubic-bezier(.333333,1,.666667,1) both}.ds-visit-band{display:flex;align-items:center;justify-content:space-between;min-height:50px;padding-left:17px;padding-right:9px;background:#1769c2;color:#fff;font-size:15px}.ds-visit-band button{display:flex;align-items:center;gap:4px;min-height:44px;padding:0 8px;border:0;background:transparent;color:#fff;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-weight:600;cursor:pointer}.ds-visit-band button:focus-visible{outline:auto}.ds-visit-content{padding:17px;background:#f0f7ff;color:#1f2937}.ds-visit-title{font-size:20px;line-height:28px}.ds-visit-time{display:flex;align-items:center;gap:7px;padding:7px 0;margin-top:12px;font-size:14px;color:#526071}.ds-visit-time strong{margin-left:auto;font-size:22px;color:#1769c2;font-variant-numeric:tabular-nums}@keyframes ds-visit-enter{from{opacity:.6}to{opacity:1}}@media(prefers-reduced-motion:reduce){.ds-visit{animation:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "SYNERA's light field workspace",
+    "overview": "A calm, bright workspace supports sales work at the point of sale. Gray-white canvas, white grouped surfaces, clear blue actions and darker/lighter blue functional panels carry the identity. The fixed Light Mode is a user requirement, including when the device uses dark appearance.\n\nKeep the original SYNERA name and logo. Use the supplied Quân Đào portrait for that local account; retain the existing initials fallback for other accounts. Photography identifies people and products. The approved broad blue greeting that fades into light content is a home-screen expression; its exact composition belongs in the sales-iOS surface brief.",
+    "keyCharacteristics": [
+      "Light neutral canvas with white and pale-blue operational groups.",
+      "System typography, readable amounts and clear action hierarchy.",
+      "Soft section shadows, thin separators and gently rounded controls.",
+      "Server-backed status and restrained motion."
+    ],
+    "rules": [
+      {
+        "name": "The Light Canvas Rule",
+        "body": "Preserve the bright overall canvas. Blue regions serve functional emphasis and the approved greeting rather than replacing the whole screen background.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "**Do** keep Light Mode fixed and the overall canvas gray-white.",
+      "**Do** reuse the original SYNERA logo and the supplied portrait for its intended account.",
+      "**Do** use blue fills to distinguish actions and operational groups while retaining light content.",
+      "**Do** preserve readable Vietnamese text, tabular operational numbers and safe-area spacing.",
+      "**Do** render real server values and real visit state, and respect Reduce Motion.",
+      "**Do** keep missing-data, loading, error and retry states explicit."
+    ],
+    "donts": [
+      "**Don't** activate the unused dark palette in response to device appearance.",
+      "**Don't** substitute invented portraits, logos, sales KPIs or elapsed visit values.",
+      "**Don't** add “tạm tính” or technical metadata explanations to the sample home metrics; keep source metadata intact.",
+      "**Don't** turn the home greeting or active-visit composition into a mandatory layout on unrelated screens.",
+      "**Don't** treat Chromium screenshots or opening the app on a phone as native visual/HIG acceptance."
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+[
+    {
+        "file":  "milk.png",
+        "source":  "https://product.hstatic.net/200000077081/product/frq_d4e4f25b0cda48da8e61eebeb38a54e2.png",
+        "sha256":  "28792d5192105a13eb4f3ff6a06722eaa912becd3ad0830bf73d67e4c0e94f0c",
+        "bytes":  206715,
+        "usage":  "illustrative catalog thumbnail; not verified SKU packaging",
+        "originalSha256":  "c4aac0cdf9ea14d424e53e852fdc477e24b0f2a20a50593be22246191f8cb161"
+    },
+    {
+        "file":  "tea.jpg",
+        "source":  "https://itoen.com/cdn/shop/products/Oi-Ocha-Green-1.jpg?width=400",
+        "sha256":  "405526cd91b41f16969eb2478bd030c2de7ba4f0536ba734c2bcff7f7c470efa",
+        "bytes":  17280,
+        "usage":  "illustrative catalog thumbnail; not verified SKU packaging",
+        "originalSha256":  "09231edb3af11723f6042c91c20e73803a59aa29ae71dcced32ed08b636d9cd2"
+    },
+    {
+        "file":  "water.png",
+        "source":  "https://img03.rl0.ru/afisha/e1200x1200i/daily.afisha.ru/uploads/images/9/7f/97f9bbab591e4ea3a8866b995de136b1.png",
+        "sha256":  "23e7827435530beb63eed7d74a7ee9b688ef66945dc815dc14603a557dcc5e92",
+        "bytes":  468542,
+        "usage":  "illustrative catalog thumbnail; not verified SKU packaging",
+        "originalSha256":  "5f048948f1f03527ec0fb785b3487f6fe044ea4cd8c14c0b77196a1920901287"
+    },
+    {
+        "file":  "almond.jpg",
+        "source":  "https://www.walnutcreekfoods.com/sites/default/files/2024-01/311881.jpg",
+        "sha256":  "d9034db098f4e697f5bac415b94edcd43c1d9924ff725623d7a9da71c4f52912",
+        "bytes":  245789,
+        "usage":  "illustrative catalog thumbnail; not verified SKU packaging",
+        "originalSha256":  "0a1427c9fc731ffb3d034a8afc6eeee3d70bdc26f04ac4024ac9ec758bb071b2"
+    },
+    {
+        "file":  "orange.jpg",
+        "source":  "https://product.hstatic.net/1000282430/product/orange-juice-100_-prima-1l_6d5cd3e63350459d8376a7571268e1b6.jpg",
+        "sha256":  "65e869d41f284ff17aa8ac2a242412105934b8ca3c276e6fa4ee7e035b865bb8",
+        "bytes":  29698,
+        "usage":  "illustrative catalog thumbnail; not verified SKU packaging",
+        "originalSha256":  "1cecff9c2c02d98b15b3e31174040892bb77323ed69ee1e8dda6cbedc6578d90"
+    },
+    {
+        "file":  "cookies.png",
+        "source":  "https://images.heb.com/is/image/HEBGrocery/002089040-1?hei=400\u0026wid=400\u0026fit=constrain",
+        "sha256":  "c4f6d30ee91731d4eb166e048c134cd9b90c87b66a91ffae81b046a79439c910",
+        "usage":  "illustrative catalog thumbnail; not verified SKU packaging",
+        "originalSha256":  "c4f6d30ee91731d4eb166e048c134cd9b90c87b66a91ffae81b046a79439c910"
+    }
+]

@@ -1,0 +1,320 @@
+{
+  "version": 1,
+  "platform": "React Native / Expo",
+  "tabs": [
+    "today",
+    "stores",
+    "orders",
+    "account"
+  ],
+  "screens": [
+    {
+      "id": "login",
+      "title": "Đăng nhập",
+      "state": "implemented-api",
+      "api": [
+        "POST /auth/login",
+        "POST /auth/otp/verify",
+        "POST /auth/refresh"
+      ],
+      "components": [
+        "SessionProvider",
+        "Login",
+        "TokenVault"
+      ],
+      "gaps": [
+        "S01"
+      ]
+    },
+    {
+      "id": "today",
+      "title": "Hôm nay",
+      "state": "implemented-api",
+      "api": [
+        "GET /visits/today",
+        "GET /stores",
+        "GET /sales-orders/summary",
+        "GET /auth/me"
+      ],
+      "components": [
+        "Today",
+        "ActiveVisit",
+        "VisitClock",
+        "ProfileAvatar"
+      ],
+      "gaps": [
+        "S02",
+        "S05"
+      ]
+    },
+    {
+      "id": "stores",
+      "title": "Điểm bán",
+      "state": "implemented-api",
+      "api": [
+        "GET /stores"
+      ],
+      "components": [
+        "Stores",
+        "ListRow"
+      ],
+      "gaps": [
+        "S28"
+      ]
+    },
+    {
+      "id": "store-detail",
+      "title": "Hồ sơ điểm bán",
+      "state": "partial-summary-actions",
+      "api": [
+        "GET /stores/{id}/360"
+      ],
+      "components": [
+        "StoreDetail",
+        "StoreSections"
+      ],
+      "gaps": [
+        "S05",
+        "S06",
+        "S28"
+      ]
+    },
+    {
+      "id": "orders",
+      "title": "Đơn hàng",
+      "state": "implemented-api",
+      "api": [
+        "GET /sales-orders"
+      ],
+      "components": [
+        "Orders",
+        "Status"
+      ],
+      "gaps": [
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "id": "order-detail",
+      "title": "Chi tiết đơn",
+      "state": "implemented-api-reorder",
+      "api": [
+        "GET /sales-orders/{id}"
+      ],
+      "components": [
+        "OrderDetail",
+        "FulfillmentTimeline"
+      ],
+      "gaps": [
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "id": "account",
+      "title": "Tài khoản",
+      "state": "implemented-api",
+      "api": [
+        "POST /auth/logout"
+      ],
+      "components": [
+        "Account",
+        "SessionProvider"
+      ],
+      "gaps": [
+        "S01"
+      ]
+    },
+    {
+      "id": "attendance",
+      "title": "Chấm công",
+      "state": "planned-contract-needed",
+      "api": [],
+      "components": [
+        "AttendanceCard",
+        "GPSAccuracyRow",
+        "EvidenceCapture"
+      ],
+      "gaps": [
+        "S03",
+        "S04"
+      ]
+    },
+    {
+      "id": "visit-session",
+      "title": "Phiên ghé",
+      "state": "partial-gps-note-only",
+      "api": [
+        "POST /visits/{id}/check-in",
+        "POST /visits/{id}/check-out"
+      ],
+      "components": [
+        "Activity"
+      ],
+      "gaps": [
+        "S07",
+        "S08",
+        "S09"
+      ]
+    },
+    {
+      "id": "stock-survey",
+      "title": "Kiểm tồn điểm bán",
+      "state": "implemented-api",
+      "api": [
+        "POST /stock-surveys"
+      ],
+      "components": [
+        "Activity"
+      ],
+      "gaps": [
+        "S10"
+      ]
+    },
+    {
+      "id": "display",
+      "title": "Trưng bày",
+      "state": "implemented-local-mock-provider",
+      "api": [
+        "GET /display-audits/criteria",
+        "POST /attachments/upload",
+        "POST /display-audits",
+        "GET /display-audits"
+      ],
+      "components": [
+        "DisplayAudit"
+      ],
+      "gaps": [
+        "S11"
+      ]
+    },
+    {
+      "id": "order-cart",
+      "title": "Lập đơn",
+      "state": "implemented-api-default-order",
+      "api": [
+        "GET /catalog/offerings",
+        "POST /pricing/quote",
+        "POST /sales-orders/sync"
+      ],
+      "components": [
+        "OrderComposer"
+      ],
+      "gaps": [
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ]
+    },
+    {
+      "id": "sync",
+      "title": "Hàng chờ gửi",
+      "state": "implemented-order-drafts",
+      "api": [
+        "POST /sales-orders/sync"
+      ],
+      "components": [
+        "Drafts",
+        "sendDraft",
+        "draftStorage.native"
+      ],
+      "gaps": [
+        "S23",
+        "S24"
+      ]
+    },
+    {
+      "id": "ticket",
+      "title": "Phản ánh",
+      "state": "partial-create-text-only",
+      "api": [
+        "POST /tickets",
+        "POST /tickets/{id}/comments"
+      ],
+      "components": [
+        "Activity"
+      ],
+      "gaps": [
+        "S19"
+      ]
+    },
+    {
+      "id": "follow-up",
+      "title": "Lời hẹn và việc cần làm",
+      "state": "partial-create-only",
+      "api": [
+        "POST /interactions",
+        "POST /appointments"
+      ],
+      "components": [
+        "Activity"
+      ],
+      "gaps": [
+        "S04",
+        "S20"
+      ]
+    },
+    {
+      "id": "store-request",
+      "title": "Yêu cầu điểm bán",
+      "state": "planned-contract-needed",
+      "api": [],
+      "components": [
+        "StoreChangeRequest",
+        "EvidenceCapture"
+      ],
+      "gaps": [
+        "S21",
+        "S22"
+      ]
+    },
+    {
+      "id": "daily-report",
+      "title": "Báo cáo ngày",
+      "state": "implemented-api",
+      "api": [
+        "POST /sales/daily-report"
+      ],
+      "components": [
+        "Activity"
+      ],
+      "gaps": [
+        "S25",
+        "S26"
+      ]
+    },
+    {
+      "id": "notifications",
+      "title": "Thông báo và công việc",
+      "state": "planned",
+      "api": [],
+      "components": [
+        "TaskInbox"
+      ],
+      "gaps": [
+        "S27"
+      ]
+    },
+    {
+      "id": "order-assistant",
+      "title": "AI order assistant",
+      "state": "implemented-catalog-parser",
+      "api": [
+        "GET /catalog/offerings"
+      ],
+      "components": [
+        "OrderAssistant",
+        "AiStorePicker",
+        "suggestOrder"
+      ],
+      "gaps": [
+        "S12",
+        "S14",
+        "S15"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "file": "layout-dashboard.svg",
+    "source": "https://raw.githubusercontent.com/tabler/tabler-icons/main/icons/outline/layout-dashboard.svg",
+    "sha256": "8210661405d0e6b7b5ea671a136c59e3e8fcc5e708a9fa332601bbf4a3d2b91a",
+    "license": "MIT"
+  },
+  {
+    "file": "shopping-cart.svg",
+    "source": "https://raw.githubusercontent.com/tabler/tabler-icons/main/icons/outline/shopping-cart.svg",
+    "sha256": "01e6dbbc101a0e84c59831992b97838cf932f3007d6fa0dbc8c0c954fcbec233",
+    "license": "MIT"
+  },
+  {
+    "file": "building-warehouse.svg",
+    "source": "https://raw.githubusercontent.com/tabler/tabler-icons/main/icons/outline/building-warehouse.svg",
+    "sha256": "c439f600fc613de665d6b31bc94e39212c459316552622f16624599886f27274",
+    "license": "MIT"
+  },
+  {
+    "file": "address-book.svg",
+    "source": "https://raw.githubusercontent.com/tabler/tabler-icons/main/icons/outline/address-book.svg",
+    "sha256": "94726720d22a9098a023f851e639e0d57a48744490cc4ddacace4fe636a145e2",
+    "license": "MIT"
+  },
+  {
+    "file": "receipt-2.svg",
+    "source": "https://raw.githubusercontent.com/tabler/tabler-icons/main/icons/outline/receipt-2.svg",
+    "sha256": "c4c71eb504f87486b0ae466e6734093f1f5f69aaf376a5f9b8ca65f7de64801b",
+    "license": "MIT"
+  },
+  {
+    "file": "chart-bar.svg",
+    "source": "https://raw.githubusercontent.com/tabler/tabler-icons/main/icons/outline/chart-bar.svg",
+    "sha256": "ca1d3717da5007a46a2cf7521f9df558fd6e159874696dd400626809ead41162",
+    "license": "MIT"
+  }
+]

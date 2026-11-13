@@ -1,0 +1,2691 @@
+{
+  "sourceBranch": "feat/npp-portal-20261112",
+  "sourceBaseCommit": "d72d98e946da921e7d182819a153c1cc8108e651",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "bytes": 167,
+      "sha256": "45edb8cd0fcf4e231d5c86b3053b8eca6c1dfba612ffeb73488e0006de45a2ce"
+    },
+    {
+      "path": ".easignore",
+      "bytes": 351,
+      "sha256": "8c9d690d88bb74c1073e15b72ae320ca38c3fe009df9e611cf3b0c61d26cba52"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "bytes": 3883,
+      "sha256": "d4162fb5d160653d5f4ca2d16182a5d8b44596cd169fcc1e445842b0e9bf6550"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 371,
+      "sha256": "7522a8a6a0716118c0de4a44aa412e095edb75e72de854ec67e5d02b6d6bc829"
+    },
+    {
+      "path": ".prettierignore",
+      "bytes": 147,
+      "sha256": "47d95e197de4c4be4251b7ee69f26b79255ba93b97c8b51b5deee621845b1348"
+    },
+    {
+      "path": ".prettierrc.json",
+      "bytes": 86,
+      "sha256": "4633df4ac84af22ba93522dbd28fc6b00bc177d99167d4010c315ca816a8c45d"
+    },
+    {
+      "path": ".vscode/settings.json",
+      "bytes": 124,
+      "sha256": "b8939b5968a25cbf20c3a7e2cf4fea2f367eefbc6976f8d8bb7c3862d2145237"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 4120,
+      "sha256": "da202d3ea9a8631aba1617ff69250f938361548e2ae4ebf50aed897a3cd05e9c"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "bytes": 11562,
+      "sha256": "2e1ebb4c3c6aa3c841c47a79fb1c7ecd0a5268339a0ed585b0aaa8a4dec38c66"
+    },
+    {
+      "path": "PRODUCT.md",
+      "bytes": 4509,
+      "sha256": "ca71bf4f2a60d1d1d41ddf023eae3c4c4f79405bfbb19aa97058d5b3a46951f0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3547,
+      "sha256": "2c8abfa3df6ef4ffeaeb99f9217a4f63681234b401b5d180e9ba3668e42ba5d1"
+    },
+    {
+      "path": "apps/sales-mobile/.eas/build/ios-unsigned.yml",
+      "bytes": 717,
+      "sha256": "2d5e19a4de9120889b315b7d41b3eb6fdc4562914a5fc4fdf943876d0d3b37d4"
+    },
+    {
+      "path": "apps/sales-mobile/.env.example",
+      "bytes": 153,
+      "sha256": "90db4ea789f9fdb7a96eb26981cff96ba3bbddf539d65bdb3308052d682f7632"
+    },
+    {
+      "path": "apps/sales-mobile/.gitignore",
+      "bytes": 568,
+      "sha256": "ef8f402411f83aaa0939f78a7c964b95c5c6b88f0ab3154c275b96b06061af7e"
+    },
+    {
+      "path": "apps/sales-mobile/.impeccable/design.json",
+      "bytes": 18588,
+      "sha256": "8eb585ac785411cc79795a99a9ce14f865b62108c8073d2a9e74dbf1365c5cee"
+    },
+    {
+      "path": "apps/sales-mobile/.impeccable/surface-briefs/sales-ios.md",
+      "bytes": 1751,
+      "sha256": "ba7bd281d8ef70a4ffb0e5136a5bb3fc1f9886aeb8095c692ea227f7de49a2fa"
+    },
+    {
+      "path": "apps/sales-mobile/AGENTS.md",
+      "bytes": 2590,
+      "sha256": "ac84129792c6a8545f1ed7ee8fd5b16963dda96cb247cca232b10e76bba0470f"
+    },
+    {
+      "path": "apps/sales-mobile/App.tsx",
+      "bytes": 2163,
+      "sha256": "296df264a3f91e4a8514f5158828f2743cf77e26703a7208c86a07172c729acd"
+    },
+    {
+      "path": "apps/sales-mobile/Build-IPA-iPhone.cmd",
+      "bytes": 472,
+      "sha256": "017fdb2bfb021389d42a454fd4b2353258668d91bfea21738d29124ce0f0c0f4"
+    },
+    {
+      "path": "apps/sales-mobile/DESIGN.md",
+      "bytes": 13688,
+      "sha256": "8543f3730a7927e7316e303282df029af787f199a5d48e5f9e03659c9f8ae83e"
+    },
+    {
+      "path": "apps/sales-mobile/Dang-nhap-Expo.cmd",
+      "bytes": 300,
+      "sha256": "2272027b414b2523f2c9b58d4c9bcff913649857d40be068a390119f35e7e7fd"
+    },
+    {
+      "path": "apps/sales-mobile/LICENSE",
+      "bytes": 1106,
+      "sha256": "fb3ca4a837f5779e83cef89b78253a8949cfb9429c340309f62d0465ec6610b4"
+    },
+    {
+      "path": "apps/sales-mobile/Mo-app-tren-iPhone.cmd",
+      "bytes": 205,
+      "sha256": "92628b3b622ff366844269f3c727195597a6e897e5828ba11f1cfe8c25c922ab"
+    },
+    {
+      "path": "apps/sales-mobile/PRODUCT.md",
+      "bytes": 3253,
+      "sha256": "67edddd74719fd7a55b0f7a3faa0f6dacbb41e9410eec45935947be829099747"
+    },
+    {
+      "path": "apps/sales-mobile/README.md",
+      "bytes": 6325,
+      "sha256": "ea10170f559215d44df162be9ea8368d53d912fa49ca3582b160bbe97046852f"
+    },
+    {
+      "path": "apps/sales-mobile/app.config.cjs",
+      "bytes": 820,
+      "sha256": "d1b832c8b6bf2752ce8ce7f8a1042f62e409dccdf9ca8a8e348ac8c85140ce93"
+    },
+    {
+      "path": "apps/sales-mobile/app.json",
+      "bytes": 1131,
+      "sha256": "7044154db97b5e76e62fcb00d799921823b68bafd9b685d46336237b5295b5ca"
+    },
+    {
+      "path": "apps/sales-mobile/assets/products/almond.jpg",
+      "bytes": 245789,
+      "sha256": "0a1427c9fc731ffb3d034a8afc6eeee3d70bdc26f04ac4024ac9ec758bb071b2"
+    },
+    {
+      "path": "apps/sales-mobile/assets/products/cookies.png",
+      "bytes": 9700,
+      "sha256": "c4f6d30ee91731d4eb166e048c134cd9b90c87b66a91ffae81b046a79439c910"
+    },
+    {
+      "path": "apps/sales-mobile/assets/products/milk.png",
+      "bytes": 206715,
+      "sha256": "c4aac0cdf9ea14d424e53e852fdc477e24b0f2a20a50593be22246191f8cb161"
+    },
+    {
+      "path": "apps/sales-mobile/assets/products/orange.jpg",
+      "bytes": 29698,
+      "sha256": "1cecff9c2c02d98b15b3e31174040892bb77323ed69ee1e8dda6cbedc6578d90"
+    },
+    {
+      "path": "apps/sales-mobile/assets/products/sources.json",
+      "bytes": 1927,
+      "sha256": "5e0e17ba766998b5028a23e924a7e80f6b19b91523914d23d0b773218bb8d7f3"
+    },
+    {
+      "path": "apps/sales-mobile/assets/products/tea.jpg",
+      "bytes": 17280,
+      "sha256": "09231edb3af11723f6042c91c20e73803a59aa29ae71dcced32ed08b636d9cd2"
+    },
+    {
+      "path": "apps/sales-mobile/assets/products/water.png",
+      "bytes": 468542,
+      "sha256": "5f048948f1f03527ec0fb785b3487f6fe044ea4cd8c14c0b77196a1920901287"
+    },
+    {
+      "path": "apps/sales-mobile/assets/quan-dao-avatar.jpg",
+      "bytes": 93988,
+      "sha256": "b3426b7d6e60ee4fdbde1b12ccef1a16e81f7be878c0d71b43717cac1b52a175"
+    },
+    {
+      "path": "apps/sales-mobile/assets/synera-logo.png",
+      "bytes": 452569,
+      "sha256": "e4e9806e32c8cabafa87f4bd960ab5643092d19d50b8d827f1bbecbcf15132c2"
+    },
+    {
+      "path": "apps/sales-mobile/eas.json",
+      "bytes": 757,
+      "sha256": "7cebdcb33998dad369b90b501834c3319cff104909dd6b168e879610c4395cd5"
+    },
+    {
+      "path": "apps/sales-mobile/index.ts",
+      "bytes": 307,
+      "sha256": "5c157f4d44972d9c84415e1e4bda595b3abcd8cf733f8a9cd20935bec3eccc42"
+    },
+    {
+      "path": "apps/sales-mobile/metro.config.cjs",
+      "bytes": 2228,
+      "sha256": "4e516420e4bc7cd641eba35ab300262e7153e7b1fa2910e5a734a7ae2aa2a769"
+    },
+    {
+      "path": "apps/sales-mobile/package-lock.json",
+      "bytes": 273652,
+      "sha256": "01e3b441986dd8a64c5c95ce68a4fd5c5ab4521595f325ba2320780a296190fe"
+    },
+    {
+      "path": "apps/sales-mobile/package.json",
+      "bytes": 1767,
+      "sha256": "b235f6f0d6387dd515c4b0561a683e40883c85a16acbee2668fe4f7d3a671ad4"
+    },
+    {
+      "path": "apps/sales-mobile/scripts/build-api.cjs",
+      "bytes": 955,
+      "sha256": "e83fe3b6f3883b0c7262ef4e75e4d521597232592370d40578bc9a15977c311d"
+    },
+    {
+      "path": "apps/sales-mobile/scripts/build-unsigned-ios.sh",
+      "bytes": 1151,
+      "sha256": "5a8aa67ec40ef8b778e36d6d939442e66b239f4c40e60e585d84a3575e44cdd8"
+    },
+    {
+      "path": "apps/sales-mobile/scripts/iphone.mjs",
+      "bytes": 4196,
+      "sha256": "60370e78c372afcbae57d148dd4112545c47c0b2fcd75f75757fc47b5794e86f"
+    },
+    {
+      "path": "apps/sales-mobile/scripts/mobile-gateway.cjs",
+      "bytes": 2099,
+      "sha256": "861e0ed34d5aeee7bd354eb8d355466dedf04032f161c654770f862b953a582e"
+    },
+    {
+      "path": "apps/sales-mobile/scripts/mobile-policy.cjs",
+      "bytes": 1120,
+      "sha256": "0b174aeaccb68d0c0367824f60724f5e4b22cf4d93a41fe9a5a563c99631eae6"
+    },
+    {
+      "path": "apps/sales-mobile/src/api/client.ts",
+      "bytes": 7374,
+      "sha256": "8ef3ceb8e1adcc4785f6beb54d1dfccfb92681537514ed815861ea190489c423"
+    },
+    {
+      "path": "apps/sales-mobile/src/auth/session.tsx",
+      "bytes": 1777,
+      "sha256": "a995b73cc62f3201f57a7a3f4f6c3b44c9a458d54d1f062afbc6fc44a988a76b"
+    },
+    {
+      "path": "apps/sales-mobile/src/components/LiveNotice.tsx",
+      "bytes": 3133,
+      "sha256": "e68362cba841fa2ca7e2ba3fecc01c2870fe73fe2c1cd7dfbe7922838d22875a"
+    },
+    {
+      "path": "apps/sales-mobile/src/components/ProfileAvatar.tsx",
+      "bytes": 1080,
+      "sha256": "8251c57df81241fa6e950b7fdd411ec9ddf5d337823d1774bffd6c4db842d231"
+    },
+    {
+      "path": "apps/sales-mobile/src/components/SchedulePicker.native.tsx",
+      "bytes": 576,
+      "sha256": "7e3a18f2d738c215274b6010d4f3157c02c0daae114d5e14c5200f19738e28f6"
+    },
+    {
+      "path": "apps/sales-mobile/src/components/SchedulePicker.tsx",
+      "bytes": 1033,
+      "sha256": "6099bcac915cd80647f45d5a88c77448f8a67d2ec9930a3af51a2f26fce6b314"
+    },
+    {
+      "path": "apps/sales-mobile/src/components/ui.tsx",
+      "bytes": 14011,
+      "sha256": "e8144b692b4087cbe23c4d23a0c8505b3f7a8bf4c6153d40a25cdf36b128afe1"
+    },
+    {
+      "path": "apps/sales-mobile/src/data/draftStorage.native.ts",
+      "bytes": 829,
+      "sha256": "f559e667833cbdf2bf1b66ad04688e052d7ae26ac0a9048295e5683f01bd33b5"
+    },
+    {
+      "path": "apps/sales-mobile/src/data/draftStorage.ts",
+      "bytes": 572,
+      "sha256": "433fd5c946b1c0dfd32d21168b4f38b70db453ac4b97039e81607c5d042967f4"
+    },
+    {
+      "path": "apps/sales-mobile/src/data/orders.ts",
+      "bytes": 1854,
+      "sha256": "7177232c768c55556a3e241c044ce4bb72bac64fa25187d579d836660be6d718"
+    },
+    {
+      "path": "apps/sales-mobile/src/domain/cart.ts",
+      "bytes": 1231,
+      "sha256": "1ac8b44248e65f0ccdfbf3fa7fa9d9c93faf4217b5eb5fafed3edc0e0bbe2891"
+    },
+    {
+      "path": "apps/sales-mobile/src/domain/contracts.ts",
+      "bytes": 3335,
+      "sha256": "aa2e8a72f17353e59fc7a564c4ab666aa67920560a4742ac39a0b2ded97618a9"
+    },
+    {
+      "path": "apps/sales-mobile/src/domain/draft.ts",
+      "bytes": 2338,
+      "sha256": "c964551e7b49d27cd8a0c163db33d6c731c3a8b317d50628eda7bab58bc41229"
+    },
+    {
+      "path": "apps/sales-mobile/src/domain/home.ts",
+      "bytes": 1412,
+      "sha256": "8d4976a438f9dd661bccc7767bc6eea84ca440cec2e1a2b5191935f4eba089a2"
+    },
+    {
+      "path": "apps/sales-mobile/src/domain/notifications.ts",
+      "bytes": 1488,
+      "sha256": "a01b0a46f6d026d39fdcc2d278988aadbadadfe8f0ab99f96344e4d0b4673cb9"
+    },
+    {
+      "path": "apps/sales-mobile/src/domain/orderAssistant.ts",
+      "bytes": 3002,
+      "sha256": "5deeb78c38996b71d66969c7278a229201f828b5d87a0cb35fadd069d04ae08f"
+    },
+    {
+      "path": "apps/sales-mobile/src/navigation.tsx",
+      "bytes": 5509,
+      "sha256": "840b49994ba176e37cf7fcc339d89789c7273b2c2d3c8aa7481e0642cf233301"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/Activity.tsx",
+      "bytes": 14391,
+      "sha256": "a489ab157fe4639a1f422321fff68478fb05fe34c6cadbb61aae365d5b06fbc3"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/DisplayAudit.tsx",
+      "bytes": 12677,
+      "sha256": "c5eca9727b1c4c4886aaa43121e08b04189fce8c61fb0de781d301a6dc6fd71a"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/FieldScreens.tsx",
+      "bytes": 29982,
+      "sha256": "78247812dd6572b931106f093d8e75e83e23cb8b7b34c7f4c9a471e3e9f8f131"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/Inbox.tsx",
+      "bytes": 8936,
+      "sha256": "b358d03ef31baa8fb7fcc668ef1f515000cbb15f3d1efaebd2175552d2c5bd28"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/Login.tsx",
+      "bytes": 5013,
+      "sha256": "cb785229aca389310c1d39e02d004365fdef006f974af05ff01c12ee325e712e"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/OrderAssistant.tsx",
+      "bytes": 11394,
+      "sha256": "51142384a3490e1011f72aa9e55140058838805415728459b780b90de2c5a342"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/OrderComposer.tsx",
+      "bytes": 22201,
+      "sha256": "9c66d3493a0fcef91e49c7601e9e07948114c5a7ff25731dba2ea056641b97ac"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/ReadScreens.tsx",
+      "bytes": 102,
+      "sha256": "e1688b43b9e1775323bb86f948aeb5bf1483e202a85748f4e9c32677b052ae79"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/ReplacementRequest.tsx",
+      "bytes": 4691,
+      "sha256": "372ca9e091186dd0d9195ca0124f57dfa0c7869808ac1dac849f14971792f764"
+    },
+    {
+      "path": "apps/sales-mobile/src/screens/Today.tsx",
+      "bytes": 19911,
+      "sha256": "e2f421c5b972a6117f7ac0d3d7d98f47b3967ae67f0cb9c8c225bda22722a7bd"
+    },
+    {
+      "path": "apps/sales-mobile/src/theme.ts",
+      "bytes": 1840,
+      "sha256": "b59fdc2f2e4e5a07833154eec3d285537140cff33d127bd384bcef2f3c8011f3"
+    },
+    {
+      "path": "apps/sales-mobile/tests/assistant.test.ts",
+      "bytes": 2095,
+      "sha256": "dbda3ef628a5dfc4365cce661026a1aa51979ca295aa0f6d92ceba4efa705dea"
+    },
+    {
+      "path": "apps/sales-mobile/tests/build-api.test.ts",
+      "bytes": 1146,
+      "sha256": "443a4f724e88d3a61e1e04c8b06d0d5977aca60e0564695a0b6b2f3d15a3fb4b"
+    },
+    {
+      "path": "apps/sales-mobile/tests/cart-draft.test.ts",
+      "bytes": 3834,
+      "sha256": "5728a8b24322b6806f6dee23e2e0ec96bc01b4dbb18adc79b19ffe04a4029bcf"
+    },
+    {
+      "path": "apps/sales-mobile/tests/client.test.ts",
+      "bytes": 7946,
+      "sha256": "9f52f42aa77a468feb82339f8021fe746cf859862a2d66dbd1712cf9b2be6b8c"
+    },
+    {
+      "path": "apps/sales-mobile/tests/gateway.test.ts",
+      "bytes": 3142,
+      "sha256": "63884bc4cf4503c394fcc1be8ee8f3eae2d8cedb7905151b46eb646b536aaefc"
+    },
+    {
+      "path": "apps/sales-mobile/tests/home.test.ts",
+      "bytes": 1190,
+      "sha256": "1b7eab6603e21d06d7ba2e1f0246bc9fab3bb979362912ec68d3d2113c93035f"
+    },
+    {
+      "path": "apps/sales-mobile/tests/mobile-policy.test.ts",
+      "bytes": 881,
+      "sha256": "19beac920616c1c554cb82a63e8cf7bdf7b15ee3247d7b0e3ff550e1beccfba7"
+    },
+    {
+      "path": "apps/sales-mobile/tests/notifications.test.ts",
+      "bytes": 483,
+      "sha256": "fa3a56cd81864bf900fb116f7aa0abdf02d9371658a0c3e3872c92aab9f9a627"
+    },
+    {
+      "path": "apps/sales-mobile/tests/outbox-contract.test.ts",
+      "bytes": 1613,
+      "sha256": "6a7ed81526dd577f2ada80b14ccc8066e48716c654f1df4d87ebe7c72b2400c4"
+    },
+    {
+      "path": "apps/sales-mobile/tests/storage.test.ts",
+      "bytes": 2643,
+      "sha256": "e71a11cf3057888e284752fc805502b22629fa9da9e323ab0d935bd0d50202e6"
+    },
+    {
+      "path": "apps/sales-mobile/tsconfig.json",
+      "bytes": 193,
+      "sha256": "11e9a04c19543cfa86df4bd0a21694833acb08bd98631b651325e3bb0e9a8b57"
+    },
+    {
+      "path": "artifacts/README.md",
+      "bytes": 1479,
+      "sha256": "298f61d31b1a6253fbe3f95b43c74acc0fa2b796e8f259b67523c7fb9eb094f9"
+    },
+    {
+      "path": "backend/.dockerignore",
+      "bytes": 45,
+      "sha256": "c040f8cfce8e6cc74bd4fb3a7df24e0b28eb7caba11add6f2fd75a2dabb23c45"
+    },
+    {
+      "path": "backend/ARCHITECTURE.md",
+      "bytes": 9485,
+      "sha256": "4fae3af849baaf9c9416799ef96c3c559706827a64d2202316a99be9979ade32"
+    },
+    {
+      "path": "backend/README.md",
+      "bytes": 5889,
+      "sha256": "ce09c59529a4e70840f31009cfb71c9528fdaeba3b769fe0b387893effc5a565"
+    },
+    {
+      "path": "backend/pom.xml",
+      "bytes": 4924,
+      "sha256": "85ce733f35a9ed8c26dfcb28ee7571555a88b99bd3ea754206039fd3a48310d2"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/SyneraApplication.java",
+      "bytes": 837,
+      "sha256": "3368cd81ef989d70db4924ef75089b88008c764a1193c48504e91565ad662ca6"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/CatalogFacade.java",
+      "bytes": 21749,
+      "sha256": "44f442a90e768c1cec414d13b69c5c35ae5cd1332d83d44214aea474905f4e3b"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/ReferenceFacade.java",
+      "bytes": 8232,
+      "sha256": "c6289133c162bd26b9c59e0b9c8ee26f762632fa79b884086e3190bb12e4eb64"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/api/CatalogController.java",
+      "bytes": 3315,
+      "sha256": "65f739d1007d82f5925c9f83fdaa9aafe62ed46bc4a5668a5752d9a2136ff7ab"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/api/ImportController.java",
+      "bytes": 11244,
+      "sha256": "87492fc6f8da826dc667eeb6cbb77a5009512a0651170970dc93219653d54c0f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/api/ReferenceController.java",
+      "bytes": 2949,
+      "sha256": "1f868bb58f63ae8798e31ac74320757ee04c463d1287a29889fc02c3ccc2e425"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/domain/Organization.java",
+      "bytes": 555,
+      "sha256": "2b62536f2cdbe484156a3db1ee2c518b574bfbf7981bfadafa3df48d766f9835"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/domain/Sku.java",
+      "bytes": 705,
+      "sha256": "7c545e3e2744bb1b970b4b2ff480acabfa66c9395a561ec46f4d5a090fb1c16c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/domain/SkuUom.java",
+      "bytes": 637,
+      "sha256": "8262605f99e44d1c27e0c4b2397dfd18e2f5fce61c37a5b7fdb965a4db8cc9c4"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/domain/StoreEntity.java",
+      "bytes": 946,
+      "sha256": "0e2d95e971618a7e2512f5ab29d3a3162c8a7e78a0870ec0fae6c7368cc465fb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/domain/Warehouse.java",
+      "bytes": 488,
+      "sha256": "cd6683c059c8ca29d91b2726b83af160a60c8bfd43c91e9cb2fb1240c2823c0c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/repo/OrganizationRepository.java",
+      "bytes": 647,
+      "sha256": "6320920fb09db2ff243ff1425412b50c6fbe454a3d4e89f6b18ace4b0cabe260"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/repo/SkuRepository.java",
+      "bytes": 571,
+      "sha256": "8f38c8afe817c7d3df15982f7991d90eb4955d50f10a0fa918cd4512812cb0b3"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/repo/SkuUomRepository.java",
+      "bytes": 678,
+      "sha256": "1e85410c4c9205ab5e6003974610d5cbd3238ecf4e4346ca6f9544a1c54fdb1f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/repo/StoreEntityRepository.java",
+      "bytes": 778,
+      "sha256": "cd6cfa0953d1c747b9594b517c1546fa2cfa9d849cb513fac8ee942584451fee"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/catalog/repo/WarehouseRepository.java",
+      "bytes": 622,
+      "sha256": "fdd1df7fed0ffaa53d3e43c27f3a919042094eb569bcdb1f6b64e600b5f119cb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/ClosingJobs.java",
+      "bytes": 4748,
+      "sha256": "ece84f514f1d19d00a47aea862f8af0b398d27b8c33728867dcd4bcad9532aa0"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/ClosingService.java",
+      "bytes": 9686,
+      "sha256": "17dcebd20416a5f111fc2bcd60924012eaf19a0df45f331238337021ed254983"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/OperationalFacade.java",
+      "bytes": 8874,
+      "sha256": "97737f0fab33dc565f17ec109c43128b1d2657ffc799e63c3af8a7f965af06e5"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/PeriodGuard.java",
+      "bytes": 2083,
+      "sha256": "ec53ea46219a4e1d392d2072ee592744493a37cda332819ee97867f5c32f8c1a"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/ReconciliationFacade.java",
+      "bytes": 2352,
+      "sha256": "31b00ef62ca74d1d6eb757a7c6ed6982c10b15adf82d6df5fd067d592ec7078f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/api/ClosingController.java",
+      "bytes": 4101,
+      "sha256": "bdf6e21264e90b6e990466138ba3dc18243958bb17b64064c7e5d88b997f2515"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/api/OperationalController.java",
+      "bytes": 1220,
+      "sha256": "a755df34904b06e7ab8eced532540798616f062b4efa93383bb21c49efcda8ad"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/domain/Adjustment.java",
+      "bytes": 832,
+      "sha256": "b1e08a226fc0468139249a308bbfe713e9566d533a37ce3902dc6abbb1e4f4a4"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/domain/PeriodSnapshot.java",
+      "bytes": 759,
+      "sha256": "486c6bb45de2e9ff6ab8279579965d08718031afd896a53f364a149895349f9f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/domain/ReconciliationItem.java",
+      "bytes": 754,
+      "sha256": "05014ff2f8cd3527b7b6630e9e64b0dc96c7818afaf5e883539000cda5941c9d"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/domain/ReportCalendar.java",
+      "bytes": 252,
+      "sha256": "c4d33d282c916aaf133684aa53ed8a8095d5c42ac65a4d2d54c36fb6c53a2b5e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/domain/ReportPeriod.java",
+      "bytes": 641,
+      "sha256": "16ce98de3d77ccd127ddb8afcd8a9322e73d1c19012e6c6fde61698d64b70be0"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/repo/AdjustmentRepository.java",
+      "bytes": 629,
+      "sha256": "3dad031a275793aea2698a3e81d17945baa6432f3196cb19523ee52cf32f34e0"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/repo/PeriodSnapshotRepository.java",
+      "bytes": 657,
+      "sha256": "77014c7ee7a1f483a1889a4bb7f552f50ecbc5a319804f3af33f61170387c84e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/repo/ReconciliationItemRepository.java",
+      "bytes": 762,
+      "sha256": "8e6e8b324a03c8321abd7d236ac2ec55cd2ce248dbb516f8414de5ac9c31725b"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/closing/repo/ReportPeriodRepository.java",
+      "bytes": 902,
+      "sha256": "1caf528d67a1c71b2fe5b4b4e02ab36778cde2a978fafdfe7bd9ddf5793eb206"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/ApiExceptionHandler.java",
+      "bytes": 3194,
+      "sha256": "a2cd7a8a4c3a6c81565d7b629ebfbdcf65540e397cb26d0eb1ff50f2e15dd8e8"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/ApiResponse.java",
+      "bytes": 511,
+      "sha256": "2adc4efe109d6b907fdb9dd624d7637adac1ec395bb2144919ac167f15717098"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/AuditService.java",
+      "bytes": 3247,
+      "sha256": "72b3c107677392838aac912692ea61ef469e2874107a46ae1a0e20444e7afd1f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/BaseEntity.java",
+      "bytes": 664,
+      "sha256": "6eb43406e84f1125342e8209cf3d1fffe00ac587f49da264ea76d04694ce8267"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/BusinessException.java",
+      "bytes": 875,
+      "sha256": "7784fca56bf1685df48ab7536596f76aaf3026ae5efd632147660d381c396a78"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/Dates.java",
+      "bytes": 349,
+      "sha256": "505cb499495dfb6c79c1fc16e991b2571dc3b4adfe31cdecddbc3260b3d8640a"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/DocumentRequests.java",
+      "bytes": 1487,
+      "sha256": "ead95f317d7433cd36c7d396910cbee9d9aa3502670d4a0a4a5686cd939c79b0"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/IdempotencyService.java",
+      "bytes": 2027,
+      "sha256": "18c5999200ba018b824ac953f3db64d7a584f49782cd838a0c14096543739b0f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/Jsons.java",
+      "bytes": 1791,
+      "sha256": "a3833c160e53d75e6eb0760d2666f9dab70410b0261a0cd8759ad614af1d5f2c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/PageSlice.java",
+      "bytes": 751,
+      "sha256": "d3e11940011d0b74f1344701b577d5ef3440dc52d4cc139356eab0c17f96ca96"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/RequestIdFilter.java",
+      "bytes": 854,
+      "sha256": "d2880132d36e7d9af958ac272bfbd610d37e87145b20fced53f438f4054bbf23"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/common/SqlRecords.java",
+      "bytes": 2486,
+      "sha256": "6f5bf2eecba4b24060b4d1b0006ec67d38cba469253170faebcc8b503ecab559"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/config/BootstrapConfig.java",
+      "bytes": 1913,
+      "sha256": "f439da85986418933fe3cb49fe5229f712dec5c82fddca16c2a7deddb78f4493"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/config/DatabaseMigration.java",
+      "bytes": 2403,
+      "sha256": "426bef78df3d5f1317961f4d3c76aba20eea84c5e27dd031843786e6943ccd99"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/config/InfrastructureConfig.java",
+      "bytes": 1644,
+      "sha256": "0292a848d4ee4f3f408464e218e0c3a0b50cf96020ca8030763989a86f48f148"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/config/LocalStopSignal.java",
+      "bytes": 841,
+      "sha256": "aa0ed84008d682da752a4d6256254b34846c4354bde30e796dff488b3071309c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/config/MailConfig.java",
+      "bytes": 1366,
+      "sha256": "6cc4a518d4c0d992d5812339c585b313094d3d5f1dd45629493c498e3067a322"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/config/OrganizationController.java",
+      "bytes": 2877,
+      "sha256": "a4ca1393f016ab0d3d1035735f2976c4d3bd3aa71a0ca12a99bb7d95ad4dce20"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/config/ProductionBootstrap.java",
+      "bytes": 2087,
+      "sha256": "9903790ba17649d71189bf05127b35b73c040e5c9fe43f6cf2ecbe4a35e5f596"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/config/PublicConfigController.java",
+      "bytes": 770,
+      "sha256": "0ac85735509e6e515bfdacf6853a99b501fe0cc16e3ca5b6671b2df003c862fb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/config/SecurityConfig.java",
+      "bytes": 8872,
+      "sha256": "e3e4d06afcc3a631c252ae874a88a005c21e6383357c6e1929c5a82d60bf566f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/CreditFacade.java",
+      "bytes": 12276,
+      "sha256": "f6fbe3d6be43aa115188c2f7b54241adf8c0e166a111e1622b10b533fa65ef77"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/api/CreditController.java",
+      "bytes": 4246,
+      "sha256": "3c253d48dfce710705b7341d5bf1fd565c47e567c7b3742164ab48d92bb2c99e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/domain/CreditAccount.java",
+      "bytes": 969,
+      "sha256": "77ca3e0e8e2d45c757bcbc433a4ce055fd4600d929dc5b5ee73d0e2f5d06a3cb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/domain/Invoice.java",
+      "bytes": 764,
+      "sha256": "60dc6f0aa7d153f5ec819d5b17c4d8704a4d06a57f2388b7d58a100f61e9fd72"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/domain/LedgerEntry.java",
+      "bytes": 956,
+      "sha256": "ca1afb37ec229c328116c845e8772a58cb1f9ae21a1caed078d590541b13d83c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/domain/Payment.java",
+      "bytes": 580,
+      "sha256": "5404ce3f6906a7049631b680e7e2ad9d22d4720b2c45c8cfc3243b3020966fe2"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/repo/CreditAccountRepository.java",
+      "bytes": 1060,
+      "sha256": "d9e9b96ba701d9697e622ef0d10bcae8e80793e584637278872561b6b13c2278"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/repo/InvoiceRepository.java",
+      "bytes": 664,
+      "sha256": "becadbd259aa98724c77d944d45080520249dfebbee149caefab6add77189e4d"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/repo/LedgerEntryRepository.java",
+      "bytes": 634,
+      "sha256": "b6720b5dd97edce5fca0a317bf437c51c79acc30f47ed404459fbead207a8d80"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/credit/repo/PaymentRepository.java",
+      "bytes": 606,
+      "sha256": "cf77766b69a7dd0c54ab45af62b398f1678489da35358b57cde0d4b78a82fd69"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/CrmFacade.java",
+      "bytes": 8681,
+      "sha256": "421798ce72669c54640dc62f98c8f85a7d3e8d41fb16fced035a004284c311bc"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/CrmOperationsFacade.java",
+      "bytes": 10694,
+      "sha256": "481bdd6097337afc45e8f291d2841c877d75495b14b4f3ab98a1df3860295c7d"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/StoreProfileFacade.java",
+      "bytes": 1694,
+      "sha256": "1f7aaaf13195ab630a84ff91dc45ec91c245f04148048fc80271c892456eafeb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/api/CrmController.java",
+      "bytes": 4597,
+      "sha256": "d977a4679f20b29e59182fa72e39b03b809a270f43327f423415ac93687fa1b8"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/api/CrmOperationsController.java",
+      "bytes": 3806,
+      "sha256": "2f2889c156e6d9bbfd6c34e88885e3f6eaacc187962073b8ebd608295c4db5bc"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/domain/Appointment.java",
+      "bytes": 781,
+      "sha256": "048e04cd3949259eedb3c380f06bd57fd9accb94e38115537791dcedc6de0604"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/domain/Campaign.java",
+      "bytes": 599,
+      "sha256": "5fc79e56444bae56358391d95713017a1b573f77c78d585a2d4ff2a52197c62e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/domain/Interaction.java",
+      "bytes": 673,
+      "sha256": "e12bca58250d3555e8f6285f322e2af1e440ea079efa498019f74bbed659995c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/domain/Lead.java",
+      "bytes": 885,
+      "sha256": "ca63cc22821b46bae3c48896f639b458b31542c5dda192bf50bc1717bbcf5556"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/repo/AppointmentRepository.java",
+      "bytes": 628,
+      "sha256": "85a975a301367a71b0faf9a23eb1849100794d0d8191ea9c5c82e2e37a3e726f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/repo/CampaignRepository.java",
+      "bytes": 607,
+      "sha256": "d97648e5254e50e0b5ac252521c48498c27d56eeedc85bd11693966609bd33ff"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/repo/InteractionRepository.java",
+      "bytes": 628,
+      "sha256": "9350210bb3a5387ab44fd81296f2984c0540a63a7925cabc9e60948a6eb0c800"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/crm/repo/LeadRepository.java",
+      "bytes": 566,
+      "sha256": "62033d1509326fcd795a1c813b51d8e300d8e08c95d632833436e6ff041fe880"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/DeliveryFacade.java",
+      "bytes": 8509,
+      "sha256": "1180650d2a5d4d7981714a36b0910b528a335ec820b9a993fac8304e8670ae27"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/ReturnFacade.java",
+      "bytes": 7654,
+      "sha256": "2b9dc58f413b1b42327188d35aaa3b5ccf62b68684c0a5fdc82d78f6be07a433"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/api/DeliveryController.java",
+      "bytes": 2495,
+      "sha256": "f6518b115423e2bd0fb713b84de5bfc9119a6ddc6f113b8c57dd4b2ddd254a5f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/api/ReturnController.java",
+      "bytes": 2138,
+      "sha256": "9c6d918a96401cb65ce1fb8614edc7bcfa9d479971d09b4bd615bdf131a04bd6"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/domain/DeliveryTrip.java",
+      "bytes": 527,
+      "sha256": "80ebbf1bc5e199fad1e45502aafd94a0029065746bdfed01a586416d98720a30"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/domain/ReturnLine.java",
+      "bytes": 737,
+      "sha256": "0339ac5ea530a7ab75a7f1db3e66a2e4767ec9a71f14795f010548392c3f2cce"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/domain/ReturnNote.java",
+      "bytes": 684,
+      "sha256": "ec95da625988267c7bd41d73ebcbfae180509fd646065b727c04decdb61b75da"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/repo/DeliveryTripRepository.java",
+      "bytes": 645,
+      "sha256": "3d9188c277250a31ebf917f711f479256a463feb7c9631100d7bb3093e949414"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/repo/ReturnLineRepository.java",
+      "bytes": 365,
+      "sha256": "b6a94d712db8aecfc81a7deb944c26e86d03d2e2d8954b3e86c1bd607409b895"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/delivery/repo/ReturnNoteRepository.java",
+      "bytes": 692,
+      "sha256": "aa71f17d5257c75fba1a342be427e74e23c086cfce53ee91289b814423f0a4bb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/demand/api/DemandController.java",
+      "bytes": 7729,
+      "sha256": "78c5e4d014a4694d48cba69508f7b72b3e33d146514920b81e9b327aa2e2c7ac"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/demand/domain/DemandPlan.java",
+      "bytes": 620,
+      "sha256": "ac0cb4f278b6f9274020476ca5c8ac2f9607165fb0893a8bde88ce05af368a55"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/demand/domain/SellOutDaily.java",
+      "bytes": 778,
+      "sha256": "d639b8f9620490a25da4be69ae8e38fe54514bd70074f7767613fe29492560b0"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/demand/repo/DemandPlanRepository.java",
+      "bytes": 627,
+      "sha256": "bb1b45a92100b33be4d7bec967940fe82353247b09822a711846616da7a37d80"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/demand/repo/SellOutDailyRepository.java",
+      "bytes": 641,
+      "sha256": "b3bf991228a6da3a3d89e5a7fe20f456db963289ffc166a24d24e19b6e299327"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/AiClient.java",
+      "bytes": 397,
+      "sha256": "383ebc93f735054be1ebbb3aa79e40020ba6d32c2e99d80cf1eb9579c9fbf813"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/AiFacade.java",
+      "bytes": 7109,
+      "sha256": "936450639a0edb512946a58b00bc8c72f8603916880dc89f06d63cfc17500d8b"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/AiJobs.java",
+      "bytes": 1397,
+      "sha256": "65389f9c7f0346f6be9e9dbd8cb4a21a039eec41d551a8a3d2e7200d062d3083"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/DisplayReadFacade.java",
+      "bytes": 1656,
+      "sha256": "fdff8868008ad06f25eee6f478aca5d0cecc1b6c1b361604f084403c146937e7"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/HttpAiClient.java",
+      "bytes": 3246,
+      "sha256": "540b178871658b2dd9fa9717dd2b333ff33db8b323c1d18938cde2d1cfbeec3f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/MockAiClient.java",
+      "bytes": 831,
+      "sha256": "8b5b1420fa66accd800d97248598a1988263e15ddcd65cd12f15c9358799ddbc"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/api/DisplayController.java",
+      "bytes": 7142,
+      "sha256": "1ebbc0b9f1fc2ee652410dab21a35165fc6b11d45fca2c50524bfeeacf66a155"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/domain/DisplayAudit.java",
+      "bytes": 1082,
+      "sha256": "95211a9bc4e5d9e207c35c9a2315ac6dddf3f56b42e391160b7ad3feddf73093"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/domain/DisplayCriteria.java",
+      "bytes": 525,
+      "sha256": "225d0c43fd52f4ab0b7d08adf4a8f30aae0d908f332e7fb0ef79950b940bc0d5"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/repo/DisplayAuditRepository.java",
+      "bytes": 643,
+      "sha256": "47ea729762647d8e65cc7976fca854497c5505d155a88c669cb2e61807af7095"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/display/repo/DisplayCriteriaRepository.java",
+      "bytes": 602,
+      "sha256": "556258329666b1a9c07bafaec72d857d61b38bc0e02f0174a30091bfec2559d8"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/ActorFacade.java",
+      "bytes": 4690,
+      "sha256": "b2471cbd64ca21a999810e23fefa0fc1ad7843dbd39b4ea1b656dee9801e50e4"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/AuthService.java",
+      "bytes": 8824,
+      "sha256": "82ad4a1c6f3b41666fd8e979b297c8f243ff8466ddc134ee894123a29ea5cd12"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/BootstrapUsers.java",
+      "bytes": 6023,
+      "sha256": "959c17aeb41cac6072eab33a17043bc587d9fe9b5f86954f0a055737039392fd"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/PasswordRecoveryFacade.java",
+      "bytes": 3563,
+      "sha256": "3e58f70cff12b920c8e30003d8b21d97f5835028f4d93bbc18ef6fa08065d42e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/Permissions.java",
+      "bytes": 3150,
+      "sha256": "d6793ee21ce81c00c7e59ce3802d4a937664235eb1b17f4a8dded7970054cf33"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/RoleFacade.java",
+      "bytes": 11218,
+      "sha256": "c1de563a4c0334aaa6b2fe916e301b356468aeeaaf51a3c833eaf88a72b7bd0b"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/SystemParametersFacade.java",
+      "bytes": 3920,
+      "sha256": "eef820628ff45d71a9c8aa4991db2c587401049f141725bc53794bdb24a72f66"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/SystemWorkFacade.java",
+      "bytes": 3333,
+      "sha256": "eaa82e16a8c181a96f37f4c8ed6273644fb457cc11e0b60a496a3effcd1158e1"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/TokenUserFacade.java",
+      "bytes": 1621,
+      "sha256": "33d0b621dd06e7a9869309daa58c1f467e089a830885da21bb8a409f8501d033"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/api/AuthController.java",
+      "bytes": 2661,
+      "sha256": "a81b7fabc71759466708a87b5374a68690729e8b8c0dc28ac5ebc2c76281eb98"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/api/BrowserSessionController.java",
+      "bytes": 4553,
+      "sha256": "7139e87b5e1aa7a650aec1547e6031ee834c9afa883ca09a504917ae7bf80d23"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/api/DirectoryController.java",
+      "bytes": 3238,
+      "sha256": "8b16e39889e3f327699d7552184fcede035f1f31a8cb19d04e8cc6b22dfe0a2d"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/api/RoleController.java",
+      "bytes": 3045,
+      "sha256": "56ac4f1d9ea3f5844b409835cd802c448b6fbf1e3fb73604961bda1a14788156"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/api/SystemParametersController.java",
+      "bytes": 1317,
+      "sha256": "6f51b2e72124304d6054b22f0eaa4fa5f7fda8b5353e7217278439c9b726b059"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/api/UserController.java",
+      "bytes": 8377,
+      "sha256": "bdde50a18f92ca4b206b40160981ef9e854626c9781d9311e0b35bb7538aa8e0"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/domain/AppUser.java",
+      "bytes": 959,
+      "sha256": "0951d9d1d3d29aade1556b9d2ad9e38f7eaa2f2f749fe11635a228a1b58329e7"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/domain/OtpChallenge.java",
+      "bytes": 561,
+      "sha256": "309fa96157d0e132aabdcc90499b6c24b8ab0b6c035ab8c784d8162928caa9cf"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/domain/PasswordResetToken.java",
+      "bytes": 525,
+      "sha256": "50ca31775ae292c27db88d88ede4c177b861d2f479e248e29b5521ca723c3ba3"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/domain/RefreshSession.java",
+      "bytes": 595,
+      "sha256": "741c6c9a8d22612e6439515a63455a233cde3e0a80a2310eae56a0c9ef6cc4aa"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/repo/AppUserRepository.java",
+      "bytes": 666,
+      "sha256": "784bfc480bd03b40cd3e89af9c1783e369020fec0b8b67e4067c451cf795bcca"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/repo/OtpChallengeRepository.java",
+      "bytes": 576,
+      "sha256": "4e9f143ecb781e051b494a94241993d5b27d0f369d74a53a230f96af33027ac9"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/repo/PasswordResetTokenRepository.java",
+      "bytes": 741,
+      "sha256": "4e0c5be432d86f40d65f82793a035b37aaf43f392d7c3d3551e0a34d1b5f4b23"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/iam/repo/RefreshSessionRepository.java",
+      "bytes": 1318,
+      "sha256": "e349ebbe825cc06f2565949b481702c5d71c2ba4d210e25f5ae9cb6c58fcaab1"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/integration/CallbackSignature.java",
+      "bytes": 1695,
+      "sha256": "96772933dc4cf4bd5a39371aaffa17ef24fc1976d825d9d4319d8cf7035220a9"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/integration/MalwareScanner.java",
+      "bytes": 1949,
+      "sha256": "b4635aea1e15b00293d01f321a8506a7168f567a7fb780e816bbbf78fec03096"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/integration/OtpDeliveryFacade.java",
+      "bytes": 2648,
+      "sha256": "7a774dc93f501ec0db1f42f82a0acda9e876fa8cb108efb953d615d805386945"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/integration/ReportMailFacade.java",
+      "bytes": 1514,
+      "sha256": "11dca036c26d770e8fae4f9d0c8b74f1052c41785072cefa34a8d8b1a15e1f2b"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/integration/StorageFacade.java",
+      "bytes": 12150,
+      "sha256": "809581f46a7478533f2cc40136695ed46da392f88327cb4625ce4319caf2d96c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/integration/api/AiCallbackController.java",
+      "bytes": 2525,
+      "sha256": "7b417b3326cba960e4c3f4d9ee007b83f825ae39131ee6a84d22bc732fa9bc25"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/integration/api/StorageController.java",
+      "bytes": 2546,
+      "sha256": "925ca7caa7aeec5d31367ca021035fc9c3d587f8d254ad430c133d3211d04582"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/integration/domain/Attachment.java",
+      "bytes": 883,
+      "sha256": "8b0370138a41cc88bc77f93cd0af1abcf6f76ee7871bf247dd26fe7a3186ca2c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/integration/repo/AttachmentRepository.java",
+      "bytes": 637,
+      "sha256": "493702c31c8078d555c8bf56654a299beea0068de07b83e4fc00a6918ada97a1"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/InventoryFacade.java",
+      "bytes": 14586,
+      "sha256": "13198e2f3e82cae30cd119f6efbe838e4ef4c94b4abc5f31056db5f7fb04a130"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/StocktakeFacade.java",
+      "bytes": 4962,
+      "sha256": "a56e60cfdd64455ef43929f6a0e1c007769b2c13aa3377b06b9aa3f5965c9ab5"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/api/InventoryController.java",
+      "bytes": 1727,
+      "sha256": "4af5c2e3b4badc78229574dbbb655c1003382e674b5f8a8268474ac1b79a5950"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/api/StocktakeController.java",
+      "bytes": 1752,
+      "sha256": "a1c8f0bac4b3b0d8d7742d475643a0e10cfe88a06065469690e60559f01d9b7e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/api/TransferController.java",
+      "bytes": 2432,
+      "sha256": "f444a0879f790b2a1ea6a04c3b01eea8559003d0a81eda8d53625d4016643ecf"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/domain/Allocation.java",
+      "bytes": 727,
+      "sha256": "13faa533c231689603a0bacb8fadaf6bcae474a2b14b67c7a85df8c26f87c292"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/domain/StockLot.java",
+      "bytes": 800,
+      "sha256": "789862b113909518f009878c752a914d1856d90171b08253ab55f42f252200cc"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/domain/StockMovement.java",
+      "bytes": 886,
+      "sha256": "c743f2a1d7e73a5e7ff6f7a93b228c4eb7f4b85dcad4b89f7839e3149efb617f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/domain/Stocktake.java",
+      "bytes": 491,
+      "sha256": "3fd314b42fb005a0efb747d57a2444d9d9006d6f36a4dcc58e854d2aa5f94a9a"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/domain/StocktakeLine.java",
+      "bytes": 697,
+      "sha256": "d3a0a8e729f0b2e6b0a2ae9fa782155b01ced2651ba6e821e41c271837a4249a"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/repo/AllocationRepository.java",
+      "bytes": 637,
+      "sha256": "96a494b686825401b1556a87e00a641fbb0b45b3b266dad61cc6192e452533d5"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/repo/StockLotRepository.java",
+      "bytes": 564,
+      "sha256": "5114cd93b6d7b871611578a7d59490020bb3255c013e9311b91552484d04d09e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/repo/StockMovementRepository.java",
+      "bytes": 594,
+      "sha256": "c922cd9f061a5f01d333c4ef72b36d155c3abdcdea8d5b2e46c84d7d290925a3"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/repo/StocktakeLineRepository.java",
+      "bytes": 326,
+      "sha256": "b45695f6c5809417bcc6d2ca5151931beab9509b073cd7cca698ed6370c93f00"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/inventory/repo/StocktakeRepository.java",
+      "bytes": 571,
+      "sha256": "50402da755c8c412392d3d889e0f6e2b99115303639705be5b4f92cd161f00f9"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/BackgroundJobs.java",
+      "bytes": 3760,
+      "sha256": "56cc8e8922062582303c682763153d7d58ec418e660f0af0649ea65a0d4d5dee"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/EventFacade.java",
+      "bytes": 1065,
+      "sha256": "86bc25d8a8f47b43845c40bd40a4108b61432a1579b9a5213d42725116822c4d"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/OutboxProcessor.java",
+      "bytes": 7121,
+      "sha256": "832e4422f773905fd42aa977139d4b0eacfa34a203579b486e79ea90424caefe"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/TaskFacade.java",
+      "bytes": 5343,
+      "sha256": "30b647ef809c3fd364981284e04adabf0c6f9935d0b95b25b2056ed6db64a8bc"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/WorkflowFacade.java",
+      "bytes": 8433,
+      "sha256": "63ce8a3c252f3b3f1f9eee56b5fa9f92ffadcaa90fb9efa852908d69be915aad"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/api/NotificationController.java",
+      "bytes": 4149,
+      "sha256": "842e4fa70b39de5589322c4f2cd32c6231c966163530134ccff8b809c3d97153"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/api/WorkflowAdminController.java",
+      "bytes": 1358,
+      "sha256": "6838c4532174bfe6136783ab312c3e83968e2ece25af459773f7ee050ba1d161"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/domain/ApprovalRequest.java",
+      "bytes": 979,
+      "sha256": "1b65ee45f307702172f386bc8a906e6dafca9eeee5438e79749e905677514ce8"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/domain/Notification.java",
+      "bytes": 646,
+      "sha256": "8891c4dd21f73fa7ea5fd3e3ffb1d91184e36bee69787427d35ec5674245ee56"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/domain/TaskEntity.java",
+      "bytes": 799,
+      "sha256": "e2661699ae2d1a0d7485f1d789beab42de704f06dc2a58e8f4b23c7e8d5ab6c5"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/domain/WorkflowDefinition.java",
+      "bytes": 666,
+      "sha256": "026e32ea9d288e35d0d0a436180d9161d77eb8b1dd67eae2084b6d0683e6fd0f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/repo/ApprovalRequestRepository.java",
+      "bytes": 367,
+      "sha256": "3f91dc44100ffa632b18b14bde1f220fe02ea51012535c612e0f606d5dac11c2"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/repo/NotificationRepository.java",
+      "bytes": 641,
+      "sha256": "38e83aafeb46429165b32623632c587db969633ff4d1ae802b497177b60f30ff"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/repo/TaskEntityRepository.java",
+      "bytes": 627,
+      "sha256": "f1b4a27908d3afdd15464b101c97181cca050b8eb3d362780f8dd9efe868de77"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/notify/repo/WorkflowDefinitionRepository.java",
+      "bytes": 626,
+      "sha256": "c7cf8b8617f21c8204b47b6d8186211b7a7aae484e1ec792a2828b12698ab6b1"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/performance/RewardFacade.java",
+      "bytes": 3575,
+      "sha256": "797f309ff7e1e66f80c2660497e529b79825167a0199324bc88fb8217fa83ccd"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/performance/api/PerformanceController.java",
+      "bytes": 4527,
+      "sha256": "bd42f34b735f41701d5255bac9c62836052e358547f4d31dfd1cab44a5b4486e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/performance/domain/Target.java",
+      "bytes": 696,
+      "sha256": "961ed129b15e6015e2f0a6e81ebafdc6f3374c2bff8bba9c0a6c6ae09370c91e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/performance/repo/TargetRepository.java",
+      "bytes": 609,
+      "sha256": "9544063821b235a39fb7c29e819242da24589230a91f379a20a5dba56cd124c3"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/OrderRequestParser.java",
+      "bytes": 3327,
+      "sha256": "992c46470b7f60db6073b7048f6a4b4797772d5a4b484658f99cbca99aa8c8c8"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/PolicyDocumentFacade.java",
+      "bytes": 5091,
+      "sha256": "9583a2477f918f1d3d0b6fefe54f786c87b51fb3b894b162268d2fe847952b7e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/PricingEngine.java",
+      "bytes": 5039,
+      "sha256": "4b4434c0dc56c94fcc40b34adbcad3c9127be91dc6bc669bfb24869c4e2ca414"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/PricingFacade.java",
+      "bytes": 22481,
+      "sha256": "b042178bf3ce5c5969952e42817d51a74669f62b6f3d680d7fe99be3619464b3"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/api/OrderAssistanceController.java",
+      "bytes": 962,
+      "sha256": "3aa3a0ddbd3bdda698deeb2f1052a56ba6488a569c4ad583e20c87d449a0e517"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/api/PolicyController.java",
+      "bytes": 5586,
+      "sha256": "d87c389f8840bb35829a361008b5571b552b0a0ca18ae2716bec5e0c58b2e227"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/api/PolicyDocumentController.java",
+      "bytes": 1888,
+      "sha256": "d7f19a7f1ab3bedeb70f0424dbbb2b16cfe102e634eafd1c6a10f63dd000fc7f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/domain/AppliedBenefit.java",
+      "bytes": 624,
+      "sha256": "8e539956a25c9cb54f2cf843ac7fdebbe8467621523c8e97632b8672dc34774c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/domain/PriceItem.java",
+      "bytes": 842,
+      "sha256": "9d576a554a231c627500d4f30361f49eaf9cc3cf0ca714c6d6b87c7cb42a7f77"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/domain/Promotion.java",
+      "bytes": 1778,
+      "sha256": "5713f8e482f3258da39dcb1480c710a4a5b783fdb4bbec4c12026457c8cbbc6a"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/repo/AppliedBenefitRepository.java",
+      "bytes": 358,
+      "sha256": "594e7af86d6501cb051a9375c35956791ce0ebb5c190983d7eb5c224a4251ccf"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/repo/PriceItemRepository.java",
+      "bytes": 620,
+      "sha256": "100b118145dd25dc16235b3df3357cb7a6242c3ce07afe90507da80b12d74f4a"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/policy/repo/PromotionRepository.java",
+      "bytes": 620,
+      "sha256": "695d211650f8c3ffd786cd799da7aaf079c2b5cf5396fda5fcbecd726604be43"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/report/ManufacturerFacade.java",
+      "bytes": 6812,
+      "sha256": "9c948f693be789295a60cf2c7beff4f96aff815233c097ea2995af9affef4c8e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/report/ReportExportFacade.java",
+      "bytes": 15494,
+      "sha256": "9c67ba8f2dde974fc793c68d3d17ea001fb507345372df34776ce23f6bff9c93"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/report/ReportFacade.java",
+      "bytes": 3222,
+      "sha256": "07d79f3db0191e38bf436318c3cae447f2c5184044e47d9c8be43837f4cbcb42"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/report/ReportJobs.java",
+      "bytes": 3784,
+      "sha256": "f793a6075e3822f304bf855eb5fc1195bdb5b4b2fd5e6e33f68a01b0210ad414"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/report/api/ManufacturerController.java",
+      "bytes": 1377,
+      "sha256": "2b6f21e8b5acfa088750841ef4d3f0b03f87acd02cda6c98102aa1b0119ae702"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/report/api/ReportController.java",
+      "bytes": 2930,
+      "sha256": "5b661dcb2bbc96e6409d53ff03ef7d8db17fd1a732b5d8491f7459387e110053"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/report/api/ReportExportController.java",
+      "bytes": 2716,
+      "sha256": "6bec1af479cf95fe965de11a6869044123038046b8ae9aa5cd0ec8d5926c1373"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/RouteFacade.java",
+      "bytes": 11938,
+      "sha256": "16c5d2ac3486266ef656981f5dc20ec5b8cf3e0d24dcc3f7c128242272be4660"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/api/RouteController.java",
+      "bytes": 4225,
+      "sha256": "5f090b5f6e5cdb61ebe02a229baac369d24ab4b120b3c5bdeafb0db27bce0f58"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/domain/Handover.java",
+      "bytes": 531,
+      "sha256": "2b6201662c517b4db905217bd7ababdd10694a6585c6f91017b908f2e31312d7"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/domain/RouteStop.java",
+      "bytes": 473,
+      "sha256": "c88e069e32aed9e23040b0bfa7c76757580c3ba3ea25cad546b3a25f83412c87"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/domain/SalesRoute.java",
+      "bytes": 415,
+      "sha256": "60c5f765ed3dd68ea16c4abf07a2c73cf55acc132a7e8fa1d17a55731d1f5c13"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/domain/Visit.java",
+      "bytes": 1050,
+      "sha256": "a1f98df8162a854a4ccdd2eab32493674d43b99767a424e94a20beec63856381"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/repo/HandoverRepository.java",
+      "bytes": 611,
+      "sha256": "a7c6dd22699b50d7faaba655418ab7895d47a6b39dcb8362cbb36e6f502bb7ba"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/repo/RouteStopRepository.java",
+      "bytes": 562,
+      "sha256": "b863825a3c5477a720fe4bb437a09fbd6385aa73099983141697fe6f2aa21bf4"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/repo/SalesRouteRepository.java",
+      "bytes": 625,
+      "sha256": "00c4d834eda71f9fe193fe008c21883955b2ce58d6bbb5209039477a984576bb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/route/repo/VisitRepository.java",
+      "bytes": 590,
+      "sha256": "391b7336ed0abf16199da1469b0f8db0a23131b129d1acef8da2dab32a847bbb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/ReplacementFacade.java",
+      "bytes": 13038,
+      "sha256": "f2c19d09c93de952ff12902f39f9961f57deeb31a485d9b8dfa9191978051694"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/SalesFacade.java",
+      "bytes": 19113,
+      "sha256": "76bd1869c791861db9aef596c2d6955536f470194a179b9ab1af0a0fb675b7ed"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/SalesSyncWorker.java",
+      "bytes": 3224,
+      "sha256": "ae4a475249a67dea3d401c44e8216d310dddb25029862755cf8c828ff3ea4732"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/api/ReplacementController.java",
+      "bytes": 2961,
+      "sha256": "e2124f9e803a6c6e45b71fc8408e3bed20985dfaf007cf005a31ff71f55c6d10"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/api/SalesController.java",
+      "bytes": 4740,
+      "sha256": "bb69c6c908bb35d32865bdf3e01bd96419828b91b40092730543e1d08f43f151"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/domain/DailyReport.java",
+      "bytes": 852,
+      "sha256": "f004d112c24210fcea6ef37069d128aaa4d3f314863fc17784abb0e26b60874d"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/domain/SalesLine.java",
+      "bytes": 1369,
+      "sha256": "7cd453c38844ff299ac1d397c8b055c6fa52215c4ee35ceeea02db99078fb5ba"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/domain/SalesOrder.java",
+      "bytes": 1386,
+      "sha256": "d92f4f361e88decb6e30d909bb3e16241e18c7ff9cf37e3459a0210ce562f04e"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/domain/SalesReplacement.java",
+      "bytes": 1255,
+      "sha256": "43a5a41bdb260aedab3577c4ff9ae8bbb4def6666cb11bf827ac8dcef04b798f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/domain/SalesReplacementLine.java",
+      "bytes": 839,
+      "sha256": "289f19cdcc2923820db2f5f5d14e1a3c5b390c3cc2df768fe2a0038a7a5e90cb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/repo/DailyReportRepository.java",
+      "bytes": 642,
+      "sha256": "bcb085a850f51491c16c3b3ca70b4e1ce5d512ba0eed43647d801f02955feb6d"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/repo/SalesLineRepository.java",
+      "bytes": 874,
+      "sha256": "7e9dc1c5528057c697c06b46374fc2e5c7ab4142d00fdc94205dcfdd62710a08"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/repo/SalesOrderRepository.java",
+      "bytes": 825,
+      "sha256": "0808a94f03db16085d4468af04df34d867060d30aba4f21cff3605333ff94027"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/repo/SalesReplacementLineRepository.java",
+      "bytes": 327,
+      "sha256": "83f11ae2a00b8159ddcb4e89897ad051327e23b5855547960b85cedc5448f2c2"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/salesorder/repo/SalesReplacementRepository.java",
+      "bytes": 407,
+      "sha256": "71be4557e7d8fdb4c90427d610e6e1b8955193ba7e377d515b19d86c014dce86"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/sellin/OrderStatus.java",
+      "bytes": 1795,
+      "sha256": "cf73ff040ebe69a7c6dd90e10a012b4003ed6a308bfd5e65d9f1c9df015e68c8"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/sellin/SellInFacade.java",
+      "bytes": 22268,
+      "sha256": "d992b9a9735aaacbac635e8cf38756535c8249dbf4ea933238f4707cd4599fde"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/sellin/api/SellInController.java",
+      "bytes": 6850,
+      "sha256": "3a35bb4209b89ae4529ee82944b78615af5c396f5b28e493a4802f2a82a61838"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/sellin/domain/OrderHistory.java",
+      "bytes": 644,
+      "sha256": "876cd7038a73dc0c6d7c6fb628e0437ce1c2cfc343b1c79dfbc89019de47a460"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/sellin/domain/SellInLine.java",
+      "bytes": 1632,
+      "sha256": "23850b0b907d774c90770aca074ceac9f31171318e543aea28168bbb9a2eaaaa"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/sellin/domain/SellInOrder.java",
+      "bytes": 1444,
+      "sha256": "3aa4ea283229440bb3559dd4feeab153272d0af9e0f1719e78ccb641441177ef"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/sellin/repo/OrderHistoryRepository.java",
+      "bytes": 645,
+      "sha256": "076e16baa56be80ac4764414aea20e1bc63872960c6336ff227a80d603bc8867"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/sellin/repo/SellInLineRepository.java",
+      "bytes": 874,
+      "sha256": "b6c223eeb0f333f78402f7e11124f7a6d062d4e7cec34198f71de9a21e4454cc"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/sellin/repo/SellInOrderRepository.java",
+      "bytes": 634,
+      "sha256": "fc8ac20aeefec443215650501da693a0edaabaf00682d7f63a38d20b4b080abb"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/ticket/TicketFacade.java",
+      "bytes": 10493,
+      "sha256": "b69e5f02e655da428536abcc325713944da4bf7651f54579decc18de79444fe0"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/ticket/api/TicketController.java",
+      "bytes": 3300,
+      "sha256": "97aa9d3c2dec57269fc068b4659337b4091ed7b26ee92c54abe1c0ce6444ba37"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/ticket/domain/TicketEntity.java",
+      "bytes": 1313,
+      "sha256": "0544a794b30814f8d17887b2c3b069b5c93bd657edd4b18a0e4dbf7ad8c57f4c"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/ticket/domain/TicketEvent.java",
+      "bytes": 599,
+      "sha256": "67369d0d7b0709fcc90f6e039ae331acaa3d237c3213e531498cda7466649145"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/ticket/repo/TicketEntityRepository.java",
+      "bytes": 704,
+      "sha256": "bbb504f50d5163151100527bf05f6ae1a83622c5c77f984bcadf3de472c90e77"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/ticket/repo/TicketEventRepository.java",
+      "bytes": 576,
+      "sha256": "cf3be769f30e7b39656665b958bd657f46d173383b6a14bdc04f7e5c9daf2b1f"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/trademkt/SettlementFacade.java",
+      "bytes": 4740,
+      "sha256": "6a4e7b92d552df2a17f0f6cdf0443f943aa349428b9c78a8307aa5133d7281d4"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/trademkt/api/SettlementController.java",
+      "bytes": 1780,
+      "sha256": "18354059ba67e67e65c3b3fef3cc57968ed5a53fc425eb7f8066d209862abe23"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/trademkt/api/TradeController.java",
+      "bytes": 10465,
+      "sha256": "298f08474e6d825fd212a38a7d16ed5f17b8294047dd29a021e0dd15e1bbe005"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/trademkt/domain/Budget.java",
+      "bytes": 736,
+      "sha256": "4ad7b779a572afb15f7490eb45a4cde50a8b9fe330c3c135bc06747274b6cf85"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/trademkt/domain/MarketFeedback.java",
+      "bytes": 662,
+      "sha256": "fbaa452eef2bf329a1aa037e7ee558cb24a328c557ed48ab21b4567838d4cc7d"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/trademkt/domain/TradeRequest.java",
+      "bytes": 875,
+      "sha256": "02b2b9786c088462d55da6f4b861c48d077c08bac0eb8ddc086b7cd95bcf59a5"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/trademkt/repo/BudgetRepository.java",
+      "bytes": 550,
+      "sha256": "5cc66f4ab3f5adfc1ebf211b542761082f9cc154a4b9e0fd76c9449806c39d20"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/trademkt/repo/MarketFeedbackRepository.java",
+      "bytes": 659,
+      "sha256": "847a7139e0e4bf53bbacb4d88a53a5c81dc55e872de961ccad5c65c622a17956"
+    },
+    {
+      "path": "backend/src/main/java/vn/synera/trademkt/repo/TradeRequestRepository.java",
+      "bytes": 645,
+      "sha256": "f6ed5e3b7f7f90c4df55ed60a9deded460c2c5bac10b1fea172f2259f655b065"
+    },
+    {
+      "path": "backend/src/main/resources/application-local-mysql.yml",
+      "bytes": 524,
+      "sha256": "f22a97990a59b767da911534fc6a1edcca3ac59723343e89bc1ca519299698a3"
+    },
+    {
+      "path": "backend/src/main/resources/application-local.yml",
+      "bytes": 871,
+      "sha256": "8c723d494b9a48c5fc131449692ff60073a341515b00d3a041d8b1472339e8b9"
+    },
+    {
+      "path": "backend/src/main/resources/application.yml",
+      "bytes": 2124,
+      "sha256": "7755826737c081ac3fa7dc9bfd3907239e6e5cd24ccb86df46d68b772d38dc1b"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V10__display_notify.sql",
+      "bytes": 3488,
+      "sha256": "348d06d26ff91a86dde465b5d0c505fb30b185c7b05f0eee1884fd5db91a3a26"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V11__constraints.sql",
+      "bytes": 2060,
+      "sha256": "06dfc1977aea1459854227961b042c899c538eee9134c85a495a203a11b36c81"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V12__applied_benefits.sql",
+      "bytes": 497,
+      "sha256": "9f0fc8678c9191e09a37f21006047b33c6431c98f31ae18ca0400e846850897c"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V13__approval_workflows.sql",
+      "bytes": 1098,
+      "sha256": "d82480cd5ccbb15f6453504e0fee68ca56d9d409aa9b6b47b81f13d94c6beaac"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V14__return_lines.sql",
+      "bytes": 548,
+      "sha256": "411c4f6ab599d974d9df607996ed809cdf503ea0b2a09b22437d3ff01eca6f4b"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V15__stocktakes.sql",
+      "bytes": 793,
+      "sha256": "f1c0f3da3029917c557af5421770c4a479c4e938fc7e644a942707215588d84b"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V16__operational_calendar.sql",
+      "bytes": 163,
+      "sha256": "838d3282c16ac781b82130d78f17af65993b2ff264b468cc9e6dd813a0b55609"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V17__password_recovery.sql",
+      "bytes": 412,
+      "sha256": "aced89883bb4c50a006ba89d8a2cf337e14ed2d1d70901cf7680983ea44bff33"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V18__report_calendar.sql",
+      "bytes": 100,
+      "sha256": "bf81192d09de190b48c75fdf5da6d6ec25a0ad80bf68c582aee65dd21dd692de"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V1__iam.sql",
+      "bytes": 2332,
+      "sha256": "b02a5d6f0cb0fd5a91802c4d00eeaedae28fda1d3ae1834a4c99227ebf7c266e"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V2__catalog.sql",
+      "bytes": 1931,
+      "sha256": "37aeb5b0b70818ab66dbaa45bf1a2763e9386b4aa9ad72f7ccbceba5b3ae43ab"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V3__policy.sql",
+      "bytes": 1009,
+      "sha256": "9a88a2e0f1523f2d2e8576301d8089bbb81e0af003cfb6e85e0b2bd86effca01"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V4__sellin_credit.sql",
+      "bytes": 3373,
+      "sha256": "e5eae6eeb59c4b5105022618451c6f1ef2a6a6926cee3eab9baf1d941a04de76"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V5__inventory_delivery.sql",
+      "bytes": 2048,
+      "sha256": "30d1db2875f4375b8fd5937b4f91763ddcf8530896dcecff984a6d016336cd93"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V6__closing.sql",
+      "bytes": 1695,
+      "sha256": "541989a21c50ebce4d77e634fc0618ab851d6d6c056eba1d65df057546e1b9d5"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V7__demand_ticket.sql",
+      "bytes": 3242,
+      "sha256": "fc50ee8e23262ecbeb5377aa9f28948bace9195d1ed4c2f06c6cc0d3db051fa8"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V8__crm_route.sql",
+      "bytes": 3326,
+      "sha256": "657f61b75b38f5696a3951e39f3f7d0dbf3402040fbbd8a9d459e6d280763878"
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V9__salesorder.sql",
+      "bytes": 1785,
+      "sha256": "85737c067c9716107391f0962d42ab17e65fe776da611c7222fe551abef504e9"
+    },
+    {
+      "path": "backend/src/main/resources/db/mysql-bootstrap/V101__mysql_initial_schema.sql",
+      "bytes": 30652,
+      "sha256": "c6afca1717d7c2be45f33b8f9f47c8a82568aeacdfc983dc447e0511b92c4dbc"
+    },
+    {
+      "path": "backend/src/main/resources/db/mysql-bootstrap/V102__append_only_guards.sql",
+      "bytes": 1938,
+      "sha256": "161fab8d191a661a86ce7685ddfc967f4e2ad292953ccef4d4e5b10a71b63f10"
+    },
+    {
+      "path": "backend/src/main/resources/db/mysql-updates/V110__immutable_extensions.sql",
+      "bytes": 1622,
+      "sha256": "620a1512e6b710abaf6a5c01197f25782070e430897425e461da0424b47b90f6"
+    },
+    {
+      "path": "backend/src/main/resources/db/mysql-updates/V113__remove_redundant_target_index.sql",
+      "bytes": 44,
+      "sha256": "ceebe0016a7d7868c2630c592df5224ea0b4ee1bb7939e70197d50c2fa67ef41"
+    },
+    {
+      "path": "backend/src/main/resources/db/mysql/V100__append_only_guards.sql",
+      "bytes": 1938,
+      "sha256": "161fab8d191a661a86ce7685ddfc967f4e2ad292953ccef4d4e5b10a71b63f10"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V103__business_extensions.sql",
+      "bytes": 7426,
+      "sha256": "4b857bd6332884097b88a2f81c4be9451df45f2d1bd2b7a6c91858fe3eeae1fb"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V104__scoped_workspaces.sql",
+      "bytes": 689,
+      "sha256": "dc79b10a4d55754ad75cd52b7f100ab5bac2af8283a71b4e10841485bfe782cd"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V105__ticket_assignment.sql",
+      "bytes": 228,
+      "sha256": "65f32e9c8326d6614d2c4b4895e2139690afee2e9a79c9ad9e38628d46737f11"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V106__settlement_controls.sql",
+      "bytes": 203,
+      "sha256": "1179562faeb7dfc26727f6be80eeb0810ab13373f2ca0f599b6ef3e6227d17c8"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V107__async_context.sql",
+      "bytes": 320,
+      "sha256": "556de5089dba36604738826c022e021b86a1ba159ddabf352ba76268e103970e"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V108__report_job_recovery.sql",
+      "bytes": 252,
+      "sha256": "9caa5bcf099c7357d4e9c7d6cf90663cd8e0f5de4cba0c4d3ce0554a41548c5c"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V109__ticket_document_channel.sql",
+      "bytes": 85,
+      "sha256": "a60d799938bd10eff0d878c58db360caaa5425b0a438c7491b10d6294be34835"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V111__sellin_workflow.sql",
+      "bytes": 283,
+      "sha256": "ea2d4f06af5fda237ff530014e5e5e95829332167b15d3139425e29231b32c3e"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V112__organization_graph_lock.sql",
+      "bytes": 116,
+      "sha256": "e70f807e042dc3aaa05c9421d4b1f99de2ce5403a0b6f3a8939669e4f7c329e1"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V114__promotion_combo_limits.sql",
+      "bytes": 181,
+      "sha256": "050672162e314e2828c3e096c86d5e4fbc2010718ee63206436163b76fa8bd23"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V115__credit_terms_and_scoped_feedback.sql",
+      "bytes": 250,
+      "sha256": "84e3663e3b06711ca3206c02e66663410acfb982beefbe4ddc5e7283c2dd03ac"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V116__daily_reports_per_workspace.sql",
+      "bytes": 719,
+      "sha256": "f9e6573f48026de3b917239f404bba4d5d2263a7ba89fe7ba1cd44685c89f92d"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V117__group_price_targets.sql",
+      "bytes": 310,
+      "sha256": "d8c1e697c765ea8c4bdff4b93cbc24b02689b7e7b74eea1b6e7fd276064c5302"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V118__store_profile_pages.sql",
+      "bytes": 341,
+      "sha256": "506269cea4b627c922eaf3e72e04e09e443fafc18b19fe96c950d19eb9ce9622"
+    },
+    {
+      "path": "backend/src/main/resources/db/updates/V119__sales_replacements.sql",
+      "bytes": 1593,
+      "sha256": "9545b39497db67068d3dafe061a9097d18f725cdf0c75d501b90bc5f6ac6afa2"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/ApiIntegrationTest.java",
+      "bytes": 70647,
+      "sha256": "d8e48ab3d866e5c019dd658b5023b42461c7a210835bfc33bfddd7eb5fdfd9a1"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/ContextTest.java",
+      "bytes": 300,
+      "sha256": "dd9fd9dca366abaf3523c63b9699b2d1db9cecbcda1036e1508e191dda1afe36"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/IntegrationSecurityTest.java",
+      "bytes": 3354,
+      "sha256": "003965fe8602ca84b4d0104effae562c491e0c665c6bf8ce2ea6100670740da6"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/JavaRuntimeTest.java",
+      "bytes": 650,
+      "sha256": "c5f787d82d855714f95a1b3c8a4930cdf6e7ed784e27c0e791d4a67c46ccd772"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/JsonsTest.java",
+      "bytes": 1065,
+      "sha256": "0c346d788736de8e40dabe8aa35ac3ae09e3b49d650913fbee35bc2a45b485be"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/LocalMySqlIntegrationTest.java",
+      "bytes": 1675,
+      "sha256": "5eaf936e28c5329999bfcc1355b499593d10ed3791f9d7b9dec648e5a3029a71"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/MailConfigTest.java",
+      "bytes": 2419,
+      "sha256": "4bd293d246979cc2b51a0f201b7b50b36700e68d3a623593d22105fff0eca9ff"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/ManufacturerIntegrationTest.java",
+      "bytes": 7159,
+      "sha256": "c5c0a032358fd1218d9bb6e2e91a4eb99f711ca851af544055c6804a6c34b72f"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/ManufacturerMySqlTest.java",
+      "bytes": 1424,
+      "sha256": "714eec377055883376e778e3cc963e1c55d927f9b153d86b22ef32e42565d357"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/ModuleArchitectureTest.java",
+      "bytes": 1137,
+      "sha256": "0856fcf06eec5bb36a98ae875df853ebf46b4194b99d3ca029b53b7d2cc39a8d"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/MySqlIntegrationTest.java",
+      "bytes": 1424,
+      "sha256": "5bbbc6ed42860c8006495b1faef7c680bb11041979d323e097fb8e1691e72c6d"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/OrderRequestParserTest.java",
+      "bytes": 1650,
+      "sha256": "0cb582ca8fedf9d63652a87049bb334242db37f337d4a3c5573ef20ea377dc79"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/PricingEngineTest.java",
+      "bytes": 6561,
+      "sha256": "747ace0e5661095774737cd6bb7fd17c3219b40184caaa3de64d835609bf688f"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/ProductionBootstrapTest.java",
+      "bytes": 3168,
+      "sha256": "370f088a837768dae7c0fb42a3b3d41422e9442fbe7764b253c62625df548923"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/SalesReplacementIntegrationTest.java",
+      "bytes": 20930,
+      "sha256": "4513a53f616c1f309a452022a55a4a6f61050024e6ba5cd7b250f2bce663c7ff"
+    },
+    {
+      "path": "backend/src/test/java/vn/synera/SalesReplacementMySqlTest.java",
+      "bytes": 1438,
+      "sha256": "02d255d180d6b73eef7c878f478b731bcdc96482bf9f74bd8fa45c87aa145809"
+    },
+    {
+      "path": "backend/src/test/resources/application-test.yml",
+      "bytes": 756,
+      "sha256": "4835a118001bcd01bbc33a42ff60cbd2f13abb28e9e256b43c085ff41c881815"
+    },
+    {
+      "path": "docs/API-INTEGRATION.md",
+      "bytes": 1889,
+      "sha256": "22b8759e5f6e71aab7d3456241c3f43e19c94670c1ee7cbd55209ecbb4207546"
+    },
+    {
+      "path": "docs/BACKEND-API.md",
+      "bytes": 11419,
+      "sha256": "11567266873f860e5fc2ed32317b6ee9a56876a3230e164a532b5c43de466f92"
+    },
+    {
+      "path": "docs/BACKEND-BUILD-SUPPLEMENT.md",
+      "bytes": 17472,
+      "sha256": "b873c36c53dd1b7ebe1c05791b35967d35fcdbf91a7ceca348fbfd290b9e4736"
+    },
+    {
+      "path": "docs/BACKEND-ENDPOINTS.md",
+      "bytes": 10836,
+      "sha256": "d94190a72f75988144f1cfbe16ec465fa8c2d2685713189592fec22dadeee5c0"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "bytes": 24378,
+      "sha256": "32e7eb5420a1a0e7832b4f5f8f6513cf1605908f295225f772442f6e1f8797d7"
+    },
+    {
+      "path": "docs/DESIGN-BRIEF.md",
+      "bytes": 6801,
+      "sha256": "a806ba012bf9cd61626259c73f9b0e8414d11c7593f290cdc5892a596c6a0ccc"
+    },
+    {
+      "path": "docs/DESIGN-SYSTEM.md",
+      "bytes": 27569,
+      "sha256": "ac647211849a23ec22f27fb44d1a0b09df5e0a609a128f277f531c2d64a8843a"
+    },
+    {
+      "path": "docs/IMPLEMENTATION-TRACKER.md",
+      "bytes": 1532,
+      "sha256": "4a786ec712b09a3688fea44c4988f472632b60337284a8b59f34c563820dcafe"
+    },
+    {
+      "path": "docs/MONGODB-MIGRATION-PLAN.md",
+      "bytes": 4241,
+      "sha256": "316cb8242c1d7aa3ea545418fae106af0a91c8fb3daae4bf386d70c33e8318d1"
+    },
+    {
+      "path": "docs/backend-requirements.txt",
+      "bytes": 39187,
+      "sha256": "bbd16ed0e754b9507a659e39d9c1c85da46db6ed9300c2bc01c8bd13e28ce4d7"
+    },
+    {
+      "path": "docs/npp-portal/01-doi-chieu.md",
+      "bytes": 10552,
+      "sha256": "e01cf0802f385a9ba5830c8153351c160a1e62ce226aed1303ed3a3c02cda50d"
+    },
+    {
+      "path": "docs/npp-portal/02-chuc-nang.md",
+      "bytes": 10788,
+      "sha256": "86dc8f9972287961a243f56d2d6cccfe3eaa3dda2bbf146345b3d31519d6e7fb"
+    },
+    {
+      "path": "docs/npp-portal/03-luong-va-fe.md",
+      "bytes": 8499,
+      "sha256": "65d27f70d156d4276042a581f374093a3c4aba6462df194a73e70319364ac2b2"
+    },
+    {
+      "path": "docs/npp-portal/04-backend-dong-bo.md",
+      "bytes": 7119,
+      "sha256": "cb628f7f653d7855bbd6480e23b86b201f7abf9623d8439f7a273f9f249b530e"
+    },
+    {
+      "path": "docs/npp-portal/05-kiem-tra.md",
+      "bytes": 6335,
+      "sha256": "0027255d37d599f2442b8fe66349d0a62b2b3d7e1560936acab2aeca9ccbb94e"
+    },
+    {
+      "path": "docs/npp-portal/06-giao-dien.md",
+      "bytes": 8688,
+      "sha256": "24dc0fb79997a998dcb8224bf8f6c8750fb9bd879ab1d2cb980be28c8cdb7f8c"
+    },
+    {
+      "path": "docs/npp-portal/07-tac-nghiep-npp.md",
+      "bytes": 5798,
+      "sha256": "6fbae4e43f0767a3bf2e48b5a9f9a00d7dce66075b38a28fe621aff3d2fd9f11"
+    },
+    {
+      "path": "docs/npp-portal/08-ho-so-va-thao-tac.md",
+      "bytes": 6835,
+      "sha256": "b8093332894c91fc31eda2bad51b88dcd720b752bb7ab3905d48e0ff44f3c93d"
+    },
+    {
+      "path": "docs/npp-portal/09-tinh-gon-tac-nghiep.md",
+      "bytes": 11741,
+      "sha256": "2d50c6bfd1675bc005ea6dc1546c90b85d158b85fd521ed2451053e0a52d57c1"
+    },
+    {
+      "path": "docs/npp-portal/10-dinh-vi-crm5-dms.md",
+      "bytes": 14713,
+      "sha256": "bc187c6834042ea82f4659cad267fd512f08438e581616d7a80c1b8fcc630dd8"
+    },
+    {
+      "path": "docs/npp-portal/11-gop-y-va-ket-qua-tren-don.md",
+      "bytes": 7002,
+      "sha256": "61414fe443aefa204e8644efeae90ac26b14576de196a1e3c1e65a21be7ceeca"
+    },
+    {
+      "path": "docs/npp-portal/12-cau-noi-va-dong-viec-sau-ban.md",
+      "bytes": 6028,
+      "sha256": "74be4caeab81499c1f148d23675a3bc31a2dc62d9b2fe116ce7a570d1a9d25d4"
+    },
+    {
+      "path": "docs/npp-portal/14-don-hang-va-thong-bao.md",
+      "bytes": 3603,
+      "sha256": "3ee3ba70350c95efc04ce4d147886df62f3d6b00fec9633f5de852c7c4534b93"
+    },
+    {
+      "path": "docs/npp-portal/README.md",
+      "bytes": 3080,
+      "sha256": "de6805c26b16092126212b04c0a4b8339418d9ca71576b8e25f423e6104aef8a"
+    },
+    {
+      "path": "docs/nsx-portal/01-nguon-va-man-hinh.md",
+      "bytes": 5857,
+      "sha256": "7b2d5fee7153cd779ab40cad1bbe6779fdf13237118da2df5748dbfc81b0f951"
+    },
+    {
+      "path": "docs/nsx-portal/02-kiem-tra.md",
+      "bytes": 3547,
+      "sha256": "97763ab0eed4896c6d18c0265b4c7d92ca81a645d7fccf0b6d5b5cdca3c6c365"
+    },
+    {
+      "path": "docs/requirements-0.txt",
+      "bytes": 109402,
+      "sha256": "e3f42e4a851d0757a8e3ef70ceacb9176c0aa632218aba97281211541aed897c"
+    },
+    {
+      "path": "docs/requirements-1.txt",
+      "bytes": 7879,
+      "sha256": "f3adea043865db31477d6c5786e3f7b323e724f6b7f7b901d777702a1bd2dddb"
+    },
+    {
+      "path": "docs/sales-mobile/01-doi-chieu-nguon.md",
+      "bytes": 13095,
+      "sha256": "3f7adcb3683655ee8de84781a1936998567a6d1b885d7325d934463abff7793f"
+    },
+    {
+      "path": "docs/sales-mobile/02-luong-va-man-hinh.md",
+      "bytes": 8599,
+      "sha256": "26b516fdc5f8c1103471ae39d3a804fd5702a1fbd6c034f2c0f9e2bf6dd2c112"
+    },
+    {
+      "path": "docs/sales-mobile/03-kien-truc-api.md",
+      "bytes": 11519,
+      "sha256": "e7b421e7f2799d9e3c4ae967550418991d48790a615545949f98654ad0757023"
+    },
+    {
+      "path": "docs/sales-mobile/04-backlog-va-nghiem-thu.md",
+      "bytes": 6694,
+      "sha256": "0418351eab87ed8500b3bba0ab3d7be5b858e17140ca23a6d287c57b840fc036"
+    },
+    {
+      "path": "docs/sales-mobile/05-kiem-tra.md",
+      "bytes": 9430,
+      "sha256": "385267d4ebcd065b7c10369eda795708ef9eae495216480492cc2af666d0974e"
+    },
+    {
+      "path": "docs/sales-mobile/06-nguon-thiet-ke-va-tuong-thich.md",
+      "bytes": 8006,
+      "sha256": "991b34da06408508a1148aa36b31237ffa506738b7ad6ea4e3ade412e9287bc9"
+    },
+    {
+      "path": "docs/sales-mobile/07-app-theo-mockup.md",
+      "bytes": 4593,
+      "sha256": "9b9d2505199b9fcd099e5025a078ba2c4c6f4fec7749b7fc422434421f201f34"
+    },
+    {
+      "path": "docs/sales-mobile/08-trang-chu-va-lo-trinh.md",
+      "bytes": 4147,
+      "sha256": "0ae9f9e719043ecb25ec9207463ae107c961696973badedbfce6e13e11c982d9"
+    },
+    {
+      "path": "docs/sales-mobile/09-tro-ly-va-trung-bay.md",
+      "bytes": 4048,
+      "sha256": "3601d651b45d749aea5e3e045804053cd7796641baa750756c31ad751cefa447"
+    },
+    {
+      "path": "docs/sales-mobile/10-build-ipa.md",
+      "bytes": 5308,
+      "sha256": "5f8b008e2dbb0a3bc72b5edb116eda8d3f66cadb9ff41a5254592434076b0a64"
+    },
+    {
+      "path": "docs/sales-mobile/11-ket-noi-internet.md",
+      "bytes": 4148,
+      "sha256": "5d6a98e3d1f0fc3100c3fc8b8d593aec15cb8a88aba9980cf30d892b64c076a7"
+    },
+    {
+      "path": "docs/sales-mobile/13-ipa-v3.md",
+      "bytes": 3008,
+      "sha256": "ce875af987285683335f53c761a5661a6898be5478818ec5509381d101124a9b"
+    },
+    {
+      "path": "docs/sales-mobile/14-ipa-v4-va-thong-bao.md",
+      "bytes": 1786,
+      "sha256": "fb0501c43e05c27ba386a39315b961a5943682188c208d8c093bcbbb0b0f49fb"
+    },
+    {
+      "path": "docs/sales-mobile/README.md",
+      "bytes": 6613,
+      "sha256": "adaf870c365f1b4c87ca5ee08274cdf6a38466bae23fe10147b2b48bd1540a6e"
+    },
+    {
+      "path": "docs/sales-mobile/screen-catalog.json",
+      "bytes": 6336,
+      "sha256": "8ec92fba23edab67c93643b894b31b880de0951938590b1e28607ed753d035c1"
+    },
+    {
+      "path": "index.html",
+      "bytes": 668,
+      "sha256": "85691162ab89839acc5c028e61f6e1666d7722122265739692a07627525669cf"
+    },
+    {
+      "path": "package.json",
+      "bytes": 1123,
+      "sha256": "d2540cdda397f4fe304c569418193bf0c2238294d112f61401310cd2b148ea93"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 60022,
+      "sha256": "a2459290a0c45a76c86fc5e4caffbcf96ac03bbd4630a42417422055f913012f"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "bytes": 31,
+      "sha256": "28404ea10ef114d2b3ff91d120fc5d8113b417860d74d54b223d8858e1668a0f"
+    },
+    {
+      "path": "public/assets/brand/synera-logo.png",
+      "bytes": 452569,
+      "sha256": "e4e9806e32c8cabafa87f4bd960ab5643092d19d50b8d827f1bbecbcf15132c2"
+    },
+    {
+      "path": "public/assets/icons/tabler/LICENSE",
+      "bytes": 1073,
+      "sha256": "b740a1d46122672da62833e97f7e7c8a13fa85cbc7445b584b297cc00dde93db"
+    },
+    {
+      "path": "public/assets/icons/tabler/address-book.svg",
+      "bytes": 605,
+      "sha256": "94726720d22a9098a023f851e639e0d57a48744490cc4ddacace4fe636a145e2"
+    },
+    {
+      "path": "public/assets/icons/tabler/building-warehouse.svg",
+      "bytes": 500,
+      "sha256": "c439f600fc613de665d6b31bc94e39212c459316552622f16624599886f27274"
+    },
+    {
+      "path": "public/assets/icons/tabler/chart-bar.svg",
+      "bytes": 694,
+      "sha256": "ca1d3717da5007a46a2cf7521f9df558fd6e159874696dd400626809ead41162"
+    },
+    {
+      "path": "public/assets/icons/tabler/layout-dashboard.svg",
+      "bytes": 699,
+      "sha256": "8210661405d0e6b7b5ea671a136c59e3e8fcc5e708a9fa332601bbf4a3d2b91a"
+    },
+    {
+      "path": "public/assets/icons/tabler/receipt-2.svg",
+      "bytes": 546,
+      "sha256": "c4c71eb504f87486b0ae466e6734093f1f5f69aaf376a5f9b8ca65f7de64801b"
+    },
+    {
+      "path": "public/assets/icons/tabler/shopping-cart.svg",
+      "bytes": 539,
+      "sha256": "01e6dbbc101a0e84c59831992b97838cf932f3007d6fa0dbc8c0c954fcbec233"
+    },
+    {
+      "path": "public/assets/icons/tabler/sources.json",
+      "bytes": 1555,
+      "sha256": "df1e1cb594c12fcbc728c88bdcab84f76f23741206cd78adee7be1d202c69be1"
+    },
+    {
+      "path": "public/assets/landing/background-lp.mp4",
+      "bytes": 26529659,
+      "sha256": "d9d98adfc642e148e805c6a2315e6c0121eb3f65c107639c01df1c708295fafe"
+    },
+    {
+      "path": "public/assets/npp-products/almond.jpg",
+      "bytes": 245972,
+      "sha256": "d9034db098f4e697f5bac415b94edcd43c1d9924ff725623d7a9da71c4f52912"
+    },
+    {
+      "path": "public/assets/npp-products/cookies.png",
+      "bytes": 9700,
+      "sha256": "c4f6d30ee91731d4eb166e048c134cd9b90c87b66a91ffae81b046a79439c910"
+    },
+    {
+      "path": "public/assets/npp-products/cookies.png.json",
+      "bytes": 235,
+      "sha256": "6c59386193646c682fd12337affc49b857586bbe0e7841646578dc180caefae9"
+    },
+    {
+      "path": "public/assets/npp-products/milk.png",
+      "bytes": 206924,
+      "sha256": "28792d5192105a13eb4f3ff6a06722eaa912becd3ad0830bf73d67e4c0e94f0c"
+    },
+    {
+      "path": "public/assets/npp-products/orange.jpg",
+      "bytes": 29920,
+      "sha256": "65e869d41f284ff17aa8ac2a242412105934b8ca3c276e6fa4ee7e035b865bb8"
+    },
+    {
+      "path": "public/assets/npp-products/sources.json",
+      "bytes": 2682,
+      "sha256": "1ef273bf78c6cc9e9c278daf593213ea04656e7cb05ffee8ce6732aa445a7b3d"
+    },
+    {
+      "path": "public/assets/npp-products/tea.jpg",
+      "bytes": 17457,
+      "sha256": "405526cd91b41f16969eb2478bd030c2de7ba4f0536ba734c2bcff7f7c470efa"
+    },
+    {
+      "path": "public/assets/npp-products/water.png",
+      "bytes": 468774,
+      "sha256": "23e7827435530beb63eed7d74a7ee9b688ef66945dc815dc14603a557dcc5e92"
+    },
+    {
+      "path": "public/icon.svg",
+      "bytes": 603601,
+      "sha256": "5e1ad57a5e540ffaab5113464037fa20ba4741ee6ff371e7d9e05f5da07db6ae"
+    },
+    {
+      "path": "public/manifest.webmanifest",
+      "bytes": 316,
+      "sha256": "5db4c83417cdd12d4e1318ab523b54c3a5b53c17c64def4b3594239bf8e66ee7"
+    },
+    {
+      "path": "public/sw.js",
+      "bytes": 1745,
+      "sha256": "bdfd2c443411ea9c9531c78fb5d66c04b12b82bee60a8fd29370ce33e42837de"
+    },
+    {
+      "path": "scripts/backend.cmd",
+      "bytes": 457,
+      "sha256": "6e82dbf9d69ea105dfbf709a1b0ee7083fb1c458fee5b92e0284201c8724a749"
+    },
+    {
+      "path": "scripts/backend.ps1",
+      "bytes": 752,
+      "sha256": "ca589f739b2568d9fa8d35bc968e5b6b88ffd736874cd57ef9253edf6ad9d326"
+    },
+    {
+      "path": "scripts/bootstrap-backend.py",
+      "bytes": 2004,
+      "sha256": "b6c9128225dc7b2ca0114fcbc25e6bfa3ebe4f6553a25ab7c95b77ca2240b4e6"
+    },
+    {
+      "path": "scripts/bootstrap-mysql.py",
+      "bytes": 1334,
+      "sha256": "52da22420be2b5c86fd19e6af39686f25003ee9ddd41fb359abaa043909c883f"
+    },
+    {
+      "path": "scripts/browser-session.mjs",
+      "bytes": 2093,
+      "sha256": "d8058afb06cd6bd95aa9ab068febc5a772ca20fcccdb240ee6e7e426b24df4b5"
+    },
+    {
+      "path": "scripts/build-backend-guide.py",
+      "bytes": 4643,
+      "sha256": "40ab5eb8184259c212b256031f97b954fced40797fd002144e983575387f7643"
+    },
+    {
+      "path": "scripts/build.mjs",
+      "bytes": 1655,
+      "sha256": "4502d2b50937e6701bf9bb7e38e00ba08798a581f1ee29e079b61bc2e3b9999a"
+    },
+    {
+      "path": "scripts/check-architecture.mjs",
+      "bytes": 3619,
+      "sha256": "cf62ca24716cfadc9cbfb26c1f83b3839ae693d41f907dc691d214d93e21bd12"
+    },
+    {
+      "path": "scripts/design-check.mjs",
+      "bytes": 8875,
+      "sha256": "7561ad18a3e87a8cd7c74951f12442d166267011fbd7512ab7ae7e6a910a79b5"
+    },
+    {
+      "path": "scripts/e2e.mjs",
+      "bytes": 11521,
+      "sha256": "6529b7c7d64c68da1ca3f90a5bd0519d81fbc45bf8acd8c49822472335a71769"
+    },
+    {
+      "path": "scripts/export-openapi.py",
+      "bytes": 1203,
+      "sha256": "5f8f489acc2214c75bfd66f55fd2a866eedbdd7246c9f56916d28ef3b03b24fc"
+    },
+    {
+      "path": "scripts/format-backend.py",
+      "bytes": 1202,
+      "sha256": "2751a6ab97685add50c2aa1aad98aea05e102c85972023dbc017c99bbb481872"
+    },
+    {
+      "path": "scripts/inspect.mjs",
+      "bytes": 1185,
+      "sha256": "8d0d88663f4dfd229a065880f25e6e0655e362411332f3c8b98dcc5e029475e4"
+    },
+    {
+      "path": "scripts/local-mysql.py",
+      "bytes": 3010,
+      "sha256": "84435c2899d02f21449d5b10c5c92dbecc1139b46a2e7f16b35af0c5be21e503"
+    },
+    {
+      "path": "scripts/migrate-local-mysql-lts.py",
+      "bytes": 4737,
+      "sha256": "06119be144fd11860ac2cdbc2b8fa4730dc682164986de57f2253a2358bf88ac"
+    },
+    {
+      "path": "scripts/record-verification.py",
+      "bytes": 4118,
+      "sha256": "eb7f7a61de5e1e40ee1073659a34713a0090835660ee54e58f9265ac3ecfd1d3"
+    },
+    {
+      "path": "scripts/require-mysql-tests.py",
+      "bytes": 668,
+      "sha256": "7bed7bfc52b8e47d2f2d1ce34b6a87ea7e43e1c1e401df99280a8863bf269a43"
+    },
+    {
+      "path": "scripts/run-local.py",
+      "bytes": 7071,
+      "sha256": "60a5b6c6f410d83647997afc77a8cd701948a1c06073946aac78b42cdc410af1"
+    },
+    {
+      "path": "scripts/smoke-backend.py",
+      "bytes": 2476,
+      "sha256": "bb54ac0a9cbdd0396b7ec65949a9a3b07436d2c0ba1a7c0b80a1bdf648bd0291"
+    },
+    {
+      "path": "scripts/start-backend.cmd",
+      "bytes": 1013,
+      "sha256": "2e5cfea24c453c3f1475b5d457ddcfbe8b4fad4d2c41160c96dbb1d16c9a0845"
+    },
+    {
+      "path": "src/app/App.tsx",
+      "bytes": 20655,
+      "sha256": "5c60efd5c4296bb751456f17f2ab0df72360171a48f74eeb17728feff0ca3d8d"
+    },
+    {
+      "path": "src/app/Sidebar.tsx",
+      "bytes": 7292,
+      "sha256": "e63601cf754354ff93dceeae9ed613d14f0071cbdf44953db368d1d07db44a91"
+    },
+    {
+      "path": "src/app/WorkspacePanel.tsx",
+      "bytes": 4428,
+      "sha256": "abefc4f9b169961cc556b9f8cadcd169bb758770089a056d0f6c114a84efc8ff"
+    },
+    {
+      "path": "src/app/navigation.ts",
+      "bytes": 6350,
+      "sha256": "edb5a69f25c91ec3f71e53b66f16864285ecd9bfa9d8e5d7cf803772f391902a"
+    },
+    {
+      "path": "src/features/auth/Login.tsx",
+      "bytes": 8309,
+      "sha256": "98224e4de0179d015986ab5804e450734056d62df996d81ea3190a7d03de5b24"
+    },
+    {
+      "path": "src/features/catalog/References.tsx",
+      "bytes": 11372,
+      "sha256": "a27514c887e5a1dc8dbfd5c9a4361553e7333dd9a461e0b846f6911cdd4e1f9c"
+    },
+    {
+      "path": "src/features/crm/CRM.tsx",
+      "bytes": 14994,
+      "sha256": "e58c58a11fb4c852d3f5681f80d01d7ffb8b4c507b32b2c1e5e2a3445a1a6770"
+    },
+    {
+      "path": "src/features/crm/Engagement.tsx",
+      "bytes": 6043,
+      "sha256": "8d865b212a2ef779da3f6b2dc0c6430ff34864e64420d3039ad2d58a9c1e81d1"
+    },
+    {
+      "path": "src/features/crm/StoreCreate.tsx",
+      "bytes": 6098,
+      "sha256": "f273e85e8f9e7846f4c37403b6b6099b8ba80b733f973ea4be47e7237f538041"
+    },
+    {
+      "path": "src/features/crm/StoreSections.tsx",
+      "bytes": 5107,
+      "sha256": "d7990df9be6c179d76a3c7b02c06eeb782587ba0423aa51b9211442aa04d2c68"
+    },
+    {
+      "path": "src/features/delivery/Delivery.tsx",
+      "bytes": 6892,
+      "sha256": "1c886626b24a79fd1dc191d993c2cee9e7430e72e717155d553f7fdfe1eda6e6"
+    },
+    {
+      "path": "src/features/demand/Demand.tsx",
+      "bytes": 5674,
+      "sha256": "128bc85a49bab673c4f1df2b53ce6c2bc53200b6e721dafdaab24749d20dab3c"
+    },
+    {
+      "path": "src/features/display/Display.tsx",
+      "bytes": 8829,
+      "sha256": "0b7dab657c266678b249678d9101699ac96e05dcbdbe96a05b43e277e403f0bc"
+    },
+    {
+      "path": "src/features/finance/Finance.tsx",
+      "bytes": 26060,
+      "sha256": "4da0a0e54ab65c317b2566e872fb55f34ea1965df8f1f3a52859943ef42577f5"
+    },
+    {
+      "path": "src/features/landing/Landing.tsx",
+      "bytes": 17818,
+      "sha256": "57608ff336901fe217d428ba269b0f672c4a72a2909a3dda430baddc1a48dfe3"
+    },
+    {
+      "path": "src/features/management/Management.tsx",
+      "bytes": 40423,
+      "sha256": "253531eebd03a7be48ac1d342c0cd3126abf92a83d8777b8db63e9a60c30191d"
+    },
+    {
+      "path": "src/features/orders/FulfillmentSummary.tsx",
+      "bytes": 4418,
+      "sha256": "373c4e0722bd76d85c7fbf851b7191f7714fd7f1a23160a9b81410d5a1c6b4da"
+    },
+    {
+      "path": "src/features/orders/Orders.tsx",
+      "bytes": 19780,
+      "sha256": "2e999920a5e97932cee8e719b1efd59fd068613495a0552a5c7157d1e03bbc69"
+    },
+    {
+      "path": "src/features/policies/Documents.tsx",
+      "bytes": 4553,
+      "sha256": "905b5eb2a9f5e1e494d3e1af0e444dd5839934b294f9ac63b7f65c2a8c5dd3d4"
+    },
+    {
+      "path": "src/features/portal-npp/Catalog.tsx",
+      "bytes": 18628,
+      "sha256": "ce1e765f7e05a872efa3f34f5ec8fcbb5b2ce532dd454084bf9ec5654eac5f22"
+    },
+    {
+      "path": "src/features/portal-npp/Overview.tsx",
+      "bytes": 15012,
+      "sha256": "ca5258d704982bb2c0e48d6cf6837b67924590b669073fc6d43f58da50bc3550"
+    },
+    {
+      "path": "src/features/portal-npp/Workflow.tsx",
+      "bytes": 13044,
+      "sha256": "9fd406d4bb2595cac7afa9d907b7b3600ede4bdb859347117eaae6d7f5bddd0c"
+    },
+    {
+      "path": "src/features/portal-nsx/ControlRoom.tsx",
+      "bytes": 8277,
+      "sha256": "cf241ff7bc002afba137eabb35258ff0069d6b6fe27a3ce4250a26944f9e0a51"
+    },
+    {
+      "path": "src/features/portal-nsx/Network.tsx",
+      "bytes": 42994,
+      "sha256": "08f19b6b83f0ea71c084287cc6151415285df491e8da5fdec99a326a31650ceb"
+    },
+    {
+      "path": "src/features/portal-nsx/RecordParts.tsx",
+      "bytes": 6322,
+      "sha256": "ef88616305dd31a475697563b3e726513c6e07f84c7cd4d0024c7dae290e0c04"
+    },
+    {
+      "path": "src/features/portal-nsx/Reports.tsx",
+      "bytes": 10328,
+      "sha256": "2f51aebaf6c000656038aa5a41d4c54ea061f21ac00d45d0cabe9ba6b55f1038"
+    },
+    {
+      "path": "src/features/portal-nsx/model.ts",
+      "bytes": 2363,
+      "sha256": "1ffc935e7ba5c021e5e431ff72d6c407c6fd69a57a5d47eb7c884b3a35e168e2"
+    },
+    {
+      "path": "src/features/portal-nsx/routeReport.test.ts",
+      "bytes": 1557,
+      "sha256": "fec9de93904bfdc89222f2d98c4d80f31931d4e499f2c0631a2a6cc75895d8bc"
+    },
+    {
+      "path": "src/features/portal-nsx/routeReport.ts",
+      "bytes": 3556,
+      "sha256": "b0563ca73e2c46416e91aa9730ade8a969a9a50fd10545a67edfee69560faf10"
+    },
+    {
+      "path": "src/features/reports/Dashboard.tsx",
+      "bytes": 11829,
+      "sha256": "882d161ed2109bd9b871208bc9ecb466316ece3ec37792068e72d864da37769f"
+    },
+    {
+      "path": "src/features/reports/Exports.tsx",
+      "bytes": 5830,
+      "sha256": "5f42fb8aa16faafb426483ce5654daca9be5808be289f22ad17b0409e9236fc9"
+    },
+    {
+      "path": "src/features/sales-app/Sales.tsx",
+      "bytes": 8200,
+      "sha256": "3961f8b96495db46a5fbe712f453c01767f56cecba3cee465119269d2e74a8d5"
+    },
+    {
+      "path": "src/features/tickets/Case.tsx",
+      "bytes": 3982,
+      "sha256": "5b858aba3d24011cbfd0f9e09bf5e0a0fa9e6ef1bc9fe112963db41f1a075a30"
+    },
+    {
+      "path": "src/features/trade/Trade.tsx",
+      "bytes": 12127,
+      "sha256": "acbcd8ea972d23c8f1c6997516590b0f4422143902e6ded863597cc9d8e74231"
+    },
+    {
+      "path": "src/main.tsx",
+      "bytes": 613,
+      "sha256": "9351bb44f37b4cb1eb557ab11583af831aee0a9ac22bbc5b48375c5288de8202"
+    },
+    {
+      "path": "src/mocks/data.ts",
+      "bytes": 8660,
+      "sha256": "14f87cb7843db80e5dffcd5c5cdfa3d25240fa3a97630bbe44c1949705f20fd0"
+    },
+    {
+      "path": "src/shared/ApiUI.tsx",
+      "bytes": 10838,
+      "sha256": "c20def6771e40f3eab0e3b47e13a41d2e44bb54c4d67808277288811f7f7751f"
+    },
+    {
+      "path": "src/shared/Brand.tsx",
+      "bytes": 756,
+      "sha256": "431de62a9cf7c82a74fcfcc7c62c3e670a1af40f4ab7f6f9c2a54419962c7da0"
+    },
+    {
+      "path": "src/shared/NavIcons.tsx",
+      "bytes": 737,
+      "sha256": "799cf8b29ffb830ed7333bb520a21d8b3aa25f61b84b29491a920726e3b0b0a0"
+    },
+    {
+      "path": "src/shared/api.test.ts",
+      "bytes": 2837,
+      "sha256": "d68d3342b4e71f3520fb3ca07e0379534075a9305f5b8f0c2eee8bdd85a55ac9"
+    },
+    {
+      "path": "src/shared/api.ts",
+      "bytes": 8076,
+      "sha256": "52f40d5863bd65f07ee96d075366c426baa309d8f059357cf5d9161e8ada4848"
+    },
+    {
+      "path": "src/shared/chartTheme.ts",
+      "bytes": 652,
+      "sha256": "ef156dcdb84154677e86ba0aa0e88c60e97e6e59e10106d5a264f5407f07243a"
+    },
+    {
+      "path": "src/shared/hooks/useApi.ts",
+      "bytes": 2732,
+      "sha256": "752436739cff218d130bae23d442e63aa956e974ec28b77127d8a3b885048c6a"
+    },
+    {
+      "path": "src/shared/hooks/useDrawer.ts",
+      "bytes": 1787,
+      "sha256": "8b930d9f4ba97a1171825f09c1eeeb364f3156c19a46461b3ba7cc00764ab985"
+    },
+    {
+      "path": "src/shared/notifications.test.ts",
+      "bytes": 908,
+      "sha256": "031ef26d48227807a4d54b9ef13515dceaa4eb10b2bdc43bce09cb03f22bd27d"
+    },
+    {
+      "path": "src/shared/notifications.ts",
+      "bytes": 2614,
+      "sha256": "781eb22d087db1306069b09adf55423b46f648501fd4ad8d7694f3e5ed8a085e"
+    },
+    {
+      "path": "src/shared/nppOperations.test.ts",
+      "bytes": 1522,
+      "sha256": "b49f1e64cee5b515fa29cb59c843466754a766bb5e6e6bc34e63ec374649ea6a"
+    },
+    {
+      "path": "src/shared/nppOperations.ts",
+      "bytes": 713,
+      "sha256": "6dbefc2899b2a4eb2aa46f4a5955e264ccfef0b3f3e6c5f7630f0b60e44217bf"
+    },
+    {
+      "path": "src/shared/offline.ts",
+      "bytes": 2617,
+      "sha256": "5b1f5e452dc349c83fafc75fb9115503dd4da8434c07f651388047c51a330378"
+    },
+    {
+      "path": "src/shared/productMedia.ts",
+      "bytes": 807,
+      "sha256": "6e26c0ba29c949441d898f87f98d9fb3f4cd08c16d5051ff81d87c2a04a1b064"
+    },
+    {
+      "path": "src/shared/selectors.test.ts",
+      "bytes": 1309,
+      "sha256": "8b1f77a4ecc89b2061512c21b5001e16dc4b0884adf1977459cfcdef4243f005"
+    },
+    {
+      "path": "src/shared/selectors.ts",
+      "bytes": 2355,
+      "sha256": "242ea0e2e5d525f148b04b6e45054ab3cb77850545fb602c9885b1295f1e7fa3"
+    },
+    {
+      "path": "src/shared/store.tsx",
+      "bytes": 8926,
+      "sha256": "840ffe7ae00743df9ba0a2b5a9e1c122411376ebb6c92ea0940adee97954a6fc"
+    },
+    {
+      "path": "src/shared/types.ts",
+      "bytes": 2103,
+      "sha256": "7900e1d8a872d98f6e068a26f05531c8775392ba0bfe42b4b7b8580140be7063"
+    },
+    {
+      "path": "src/shared/ui.tsx",
+      "bytes": 9990,
+      "sha256": "94e726b0a64270e59c19c7f2bfa3319fb47d76c6f3aef31881b3fde6229b22f7"
+    },
+    {
+      "path": "src/shared/utils.test.ts",
+      "bytes": 1983,
+      "sha256": "dbbe4dad088d6e78f4045a610bd1854417b4f14d382c8df9f827f9260bf9fca2"
+    },
+    {
+      "path": "src/shared/utils.ts",
+      "bytes": 4596,
+      "sha256": "c22e8552a86a5bfd224c2cdd2ab676e023d1fc22515c5c5951f056610fab6748"
+    },
+    {
+      "path": "src/styles/admin.css",
+      "bytes": 157548,
+      "sha256": "00e97efc6ce382facb4e65dcb701e45b24938fc87a8be946243f4509f2c850c4"
+    },
+    {
+      "path": "src/styles/auth.css",
+      "bytes": 4214,
+      "sha256": "189c03907fcf7550a97fe07d6fbf0bf9760cb110d2de97557a085bbd17b2c096"
+    },
+    {
+      "path": "src/styles/landing.css",
+      "bytes": 14731,
+      "sha256": "3ffd3c7f53484d356e4b3d350d1536670e439364dd47864ef4ecd32a88582fb1"
+    },
+    {
+      "path": "src/styles/tokens.css",
+      "bytes": 2045,
+      "sha256": "786fca63d7ec6c1af12991338d364f2037487cf679baf707ba62288af244840b"
+    },
+    {
+      "path": "src/vite-env.d.ts",
+      "bytes": 39,
+      "sha256": "424faf9241dd699dda995b367ed36665732da1e6ec1f33b2fd40394488ecac92"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 350,
+      "sha256": "5778caaf22aefb73cba5d2e9e4e7b6d3a2a530faa43f9283fb32e978c37cb6a2"
+    },
+    {
+      "path": "vite.config.ts",
+      "bytes": 454,
+      "sha256": "3b8955bee13024e43b265cd844652dd0fe3f7bb8d730ed7172eae3b09d415943"
+    }
+  ]
+}

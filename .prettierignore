@@ -1,0 +1,10 @@
+node_modules
+dist
+.tools
+.pnpm-store
+artifacts
+public/assets
+public/icon.svg
+docs/requirements-*.txt
+docs/DESIGN-BRIEF.md
+pnpm-lock.yaml

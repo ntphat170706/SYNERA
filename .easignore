@@ -1,0 +1,25 @@
+# EAS reads this at the Git repository root. Upload only the isolated mobile app.
+/*
+!/apps
+/apps/*
+!/apps/sales-mobile
+!/apps/sales-mobile/**
+
+**/node_modules/
+**/.expo/
+**/dist/
+**/web-build/
+**/output/
+**/ios/
+**/android/
+**/.env
+**/.env.*
+!**/.env.example
+**/*.ipa
+**/*.p12
+**/*.p8
+**/*.key
+**/*.pem
+**/*.mobileprovision
+**/*.log
+**/*.tsbuildinfo

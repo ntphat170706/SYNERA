@@ -1,0 +1,24 @@
+build:
+  name: SYNERA unsigned iPhone IPA for Sideloadly
+  steps:
+    - eas/checkout
+    - eas/use_npm_token
+    - eas/install_node_modules
+    - eas/resolve_build_config
+    - eas/prebuild
+    - run:
+        name: Install iOS pods
+        working_directory: ios
+        command: pod install
+    - run:
+        name: Compile arm64 Release and package unsigned IPA
+        id: build_unsigned
+        outputs: [ipa_path]
+        command: |
+          bash scripts/build-unsigned-ios.sh
+          set-output ipa_path "$PWD/output/SYNERA-Sales-unsigned.ipa"
+    - eas/upload_artifact:
+        name: SYNERA unsigned IPA
+        inputs:
+          type: application-archive
+          path: ${ steps.build_unsigned.ipa_path }

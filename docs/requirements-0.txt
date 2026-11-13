@@ -1,0 +1,2541 @@
+=== PAGE 1 ===
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ
+thống
+Nề n t ả ng kế t nố i qu ả n lý phân phố i (DMS) và qu ả n lý quan hệ  khách hàng (CRM) cho Nhà
+s ả n xuấ t – Nhà phân phố i – Sales
+Phiên b ả n 1.0 · Tháng 11/2026 · C ơ  s ở : tài liệ u "Ý t ưở ng và định h ướ ng SYNERA" (SUZ2026),
+"Ch ứ c năng tham kh ả o cho SYNERA" và mô hình DMS 2in1.
+1. Gi ớ i thiệu
+1.1. Mục đích tài liệu
+Tài liệ u mô t ả  phân tích và thiế t kế  chi tiế t website/hệ  thố ng SYNERA: tác nhân, phân hệ
+ch ứ c năng, luồ ng nghiệ p vụ, trạng thái d ữ  liệ u, thiế t kế  c ơ  s ở  d ữ  liệ u, kiế n trúc, API, giao
+diệ n, yêu cầ u phi ch ứ c năng và lộ  trình tri ể n khai. Tài liệ u là c ơ  s ở  cho giai đoạn lậ p trình,
+ki ể m th ử  và thí đi ể m.
+1.2. Phạm vi
+SYNERA phục vụ hoạt độ ng phân phố i hàng hóa v ớ i ba tầ ng quan hệ  và mộ t nhóm ng ườ i
+dùng nộ i bộ :
+NSX → NPP (sell-in): đặ t hàng, hạn m ứ c công n ợ , chính sách giá/khuyế n mãi, giao nhậ n,
+đố i soát, báo cáo hai l ớ p.
+NPP → NSX: kế  hoạch nhậ p hàng, sell-out, khiế u nại/đ ổ i tr ả , đố i soát công n ợ , đề  xuấ t
+trade marketing, ph ả n hồ i thị tr ườ ng, theo dõi ch ỉ  tiêu.
+NPP → Đại lý/c ử a hàng: CRM c ử a hàng (lead, hồ  s ơ  360°), tuyế n bán hàng, nhân viên
+thị tr ườ ng, đ ơ n hàng, giao hàng, khiế u nại, phân nhóm c ử a hàng.
+Sales/nhân viên thị tr ườ ng: ứ ng dụng đi tuyế n, lên đ ơ n (k ể  c ả  offline), lịch hẹn, nhắ c
+việ c, báo cáo cuố i ngày, ki ể m tra tr ư ng bày bằ ng AI.
+Ngoài phạm vi giai đoạn 1: kế  toán/ERP đầ y đ ủ , thanh toán tr ự c tuyế n, vậ n t ả i bên th ứ  ba
+(ch ỉ  cung cấ p đi ể m tích h ợ p).
+1.3. Thuật ng ữ
+Thuậ t ng ữ Ý nghĩa
+NSX Nhà s ả n xuấ t
+NPP Nhà phân phố i
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 1 of 50
+=== PAGE 2 ===
+2. T ổ ng quan hệ thống
+2.1. Vấn đề và mục tiêu
+Đ ơ n hàng, công n ợ , chính sách và báo cáo đang đi qua Zalo, điệ n thoại, Excel nên d ữ  liệ u bị
+nhậ p lại, khó truy vế t và chậ m. SYNERA h ướ ng t ớ i mộ t nguồ n d ữ  liệ u thố ng nhấ t, mọi bên
+cùng xem mộ t trạng thái đ ơ n hàng.
+Mục tiêu hệ  thố ng
+Số  hóa toàn bộ  luồ ng đ ơ n hàng NSX–NPP–c ử a hàng, có trạng thái và lịch s ử  truy vế t.
+Ki ể m soát công n ợ  ngay lúc đặ t đ ơ n, không ch ờ  sau khi giao.
+Áp chính sách giá/chiế t khấ u/khuyế n mãi tậ p trung và t ự  độ ng.
+Phân biệ t sell-in thậ t và nhậ p dồ n nh ờ  đố i chiế u sell-in, sell-out, tồ n.
+Gắ n CRM v ớ i DMS trên hồ  s ơ  c ử a hàng dùng chung, hai phầ n kích hoạt công việ c cho
+nhau.
+Gi ả m nhậ p liệ u lặ p cho sales; báo cáo t ự  t ổ ng h ợ p t ừ  d ữ  liệ u gố c.
+Thuậ t ng ữ Ý nghĩa
+DMS Distribution Management System – qu ả n lý luồ ng
+hàng và vậ n hành phân phố i
+CRM Qu ả n lý quan hệ  khách hàng (hồ  s ơ , t ươ ng tác, lịch
+hẹn, chăm sóc, khiế u nại)
+Sell-in NSX bán vào NPP
+Sell-out NPP bán ra đại lý/c ử a hàng
+SKU Mã hàng hóa tố i thi ể u (gồ m đ ơ n vị tính: thùng, lố c,
+chai…)
+L ớ p 1 / L ớ p 2 Báo cáo vậ n hành real-time (tạm tính) / báo cáo
+qu ả n trị đã chố t
+DSO Số  ngày thu tiề n bình quân
+POSM Vậ t ph ẩ m tr ư ng bày tại đi ể m bán
+Ticket Phiế u yêu cầ u hỗ  tr ợ  (khiế u nại, đ ổ i tr ả , đố i soát…)
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 2 of 50
+=== PAGE 3 ===
+2.2. Nguyên tắc thiết kế cốt lõi
+1. Mộ t hệ  thố ng, hai miề n nghiệ p vụ: DMS qu ả n lý luồ ng hàng; CRM qu ả n lý quan hệ .
+Chung d ữ  liệ u c ử a hàng/NPP/đ ơ n hàng, giao tiế p bằ ng s ự  kiệ n (event) – không ph ả i hai
+phầ n mề m đặ t chung giao diệ n.
+2. D ữ  liệ u là s ả n ph ẩ m phụ c ủ a công việ c: ng ườ i dùng không nhậ p thêm; báo cáo sinh t ừ
+s ự  kiệ n.
+3. Hai l ớ p số  liệ u không trộ n nhau: l ớ p 1 tạm tính, l ớ p 2 đã chố t và khóa.
+4. Portal ph ả i dễ  h ơ n Zalo: đặ t lại đ ơ n cũ mộ t chạm, thấ y n ợ  và tồ n ngay.
+5. Phân quyề n theo phạm vi d ữ  liệ u: NPP ch ỉ  thấ y d ữ  liệ u c ủ a mình; NSX theo vùng/kênh.
+6. M ở  dầ n: cho phép nhậ p Excel/kế t nố i ERP, kế  toán sẵ n có, không ép đ ổ i toàn bộ  hệ
+thố ng.
+7. Có th ờ i hạn và ng ườ i phụ trách cho mọi yêu cầ u (ticket, đề  xuấ t, ngoại lệ ).
+2.3. Các ứ ng dụng/kênh truy cập
+Website đ ượ c thiế t kế  mộ t lõi dịch vụ phục vụ các giao diệ n trên bằ ng cùng bộ  API.
+Ứ ng dụng Ng ườ i dùng chính Nề n t ả ng Ch ứ c năng chính
+Web điề u hành NSX Lãnh đạo, qu ả n lý
+kênh/vùng, kế  toán,
+trade marketing, CSKH
+NSX
+Web Cấ u hình chính sách,
+duyệ t đ ơ n, công n ợ , đố i
+soát, chố t kỳ,
+dashboard, x ử  lý ticket/
+đề  xuấ t
+Portal NPP Ch ủ  NPP, kế  toán/điề u
+phố i NPP
+Web
+(responsive)
+Đặ t hàng, công n ợ , kế
+hoạch nhậ p, sell-out,
+ticket, chính sách, trade
+marketing, hiệ u qu ả
+h ợ p tác
+Web qu ả n lý NPP
+(DMS + CRM)
+Qu ả n lý NPP, th ủ  kho,
+giám sát
+Web Kho, đ ơ n bán cho c ử a
+hàng, tuyế n, nhân s ự ,
+CRM c ử a hàng, báo cáo
+App Sales
+(mobile/PWA)
+Nhân viên thị tr ườ ng,
+ng ườ i đi thay
+Mobile
+web/PWA
+Lịch hôm nay, hồ  s ơ  c ử a
+hàng, lên đ ơ n (offline),
+check-in GPS, chụp ả nh
+tr ư ng bày AI, báo cáo
+cuố i ngày
+C ổ ng đặ t hàng c ử a
+hàng (tùy chọn)
+C ử a hàng/đại lý Web T ự  đặ t hàng, xem trạng
+thái, tạo khiế u nại
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 3 of 50
+=== PAGE 4 ===
+2.4. S ơ  đồ ng ữ  c ả nh (m ứ c 0)
+ NSX (Web điều hành) <──sell-in, chính sách, công n ợ , duyệt──> SYNERA <──kế 
+hoạch nhập, sell-out, ticket──> NPP (Portal)
+                                                               │
+                              NPP (Web DMS+CRM) <──tuyến, đ ơ n, khiếu nại──> 
+C ử a hàng/Đại lý
+                                                               │
+                                              Sales (App) ─ GPS, ả nh, đ ơ n ─┘
+       Hệ thống ngoài: ERP/kế toán · Excel import/export · SMS/Zalo OA/Email 
+· Dịch vụ AI nhận diện ả nh · B ả n đồ
+3. Tác nhân và phân quyền
+3.1. Danh sách tác nhân
+Mã Tác nhân Đ ơ n vị Mô t ả
+A01 Qu ả n trị hệ  thố ng SYNERA/NSX Cấ u hình t ổ  ch ứ c, tài kho ả n, vai trò,
+tham số  hệ  thố ng
+A02 Lãnh đạo NSX NSX Xem t ổ ng quan, dùng số  đã chố t đ ể
+quyế t định, th ưở ng, kế  hoạch s ả n xuấ t
+A03 Qu ả n lý kênh/vùng NSX NSX Duyệ t đ ơ n, theo dõi NPP, x ử  lý ngoại lệ
+vùng, xác nhậ n số  vùng
+A04 Kế  toán NSX NSX Hạn m ứ c, công n ợ , đố i soát, chố t kỳ,
+phiế u điề u ch ỉ nh
+A05 Trade marketing NSX NSX Ch ươ ng trình khuyế n mãi, duyệ t đề
+xuấ t hỗ  tr ợ , phân b ổ  ngân sách
+A06 CSKH/Chấ t l ượ ng NSX NSX X ử  lý khiế u nại, đ ổ i tr ả , ph ả n hồ i s ả n
+ph ẩ m
+A07 Ch ủ /qu ả n lý NPP NPP Đặ t hàng, xem công n ợ , kế  hoạch nhậ p,
+đề  xuấ t, báo cáo
+A08 Kế  toán NPP NPP Công n ợ , thanh toán, đố i soát phía NPP
+A09 Th ủ  kho NPP NPP Nhậ p/xuấ t kho, ki ể m kê, xác nhậ n nhậ n
+hàng
+A10 Giám sát/qu ả n lý bán
+hàng NPP
+NPP Phân tuyế n, giao việ c, KPI, bàn giao l ượ t
+ghé
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 4 of 50
+=== PAGE 5 ===
+3.2. Mô hình phân quyền
+RBAC (vai trò) kế t h ợ p phạm vi d ữ  liệ u (data scope): t ổ  ch ứ c → NSX / NPP cụ th ể  /
+vùng / tuyế n / c ử a hàng.
+Mộ t ng ườ i có th ể  gi ữ  nhiề u vai trò; quyề n = h ợ p các vai trò, gi ớ i hạn b ở i phạm vi.
+Mọi thao tác nhạy c ả m (duyệ t đ ơ n, s ử a số  đã chố t, đ ổ i hạn m ứ c, đ ổ i chính sách) ghi
+nhậ t ký ki ể m toán.
+3.3. Ma trận quyền theo phân hệ (R=xem, C=tạo, U=s ử a, A=duyệt, –=không)
+Mã Tác nhân Đ ơ n vị Mô t ả
+A11 Sales/nhân viên thị
+tr ườ ng
+NPP Đi tuyế n, lên đ ơ n, chăm sóc, nhắ c việ c
+A12 Nhân viên giao hàng NPP Nhậ n phiế u giao, cậ p nhậ t th ự c giao, đ ổ i
+tr ả
+A13 C ử a hàng/đại lý Đi ể m bán Đặ t hàng, xem đ ơ n, khiế u nại (tùy chọn)
+A14 Hệ  thố ng (scheduler) – Job chố t/đố i soát đêm, nhắ c việ c, c ả nh
+báo, t ự  xác nhậ n
+A15 AI Service – Nhậ n diệ n s ả n ph ẩ m trên ả nh kệ , chấ m
+đi ể m tr ư ng bày
+Phân hệ Qu ả n
+trị
+Lãnh
+đạo
+NSX
+QL
+vùng
+NSX
+Kế
+toán
+NSX
+Trade
+mkt
+CSKH
+NSX
+Ch ủ
+NPP
+Kế
+toán
+NPP
+Th ủ
+kho
+GS
+NPP
+Sales Giao
+hàng
+Qu ả n trị &
+phân quyề n
+CRUD – – – – – – – – – – –
+Danh mục
+SKU/giá
+CRU R R R R – R (c ủ a
+NPP)
+– R R R –
+Chính
+sách/khuyế n
+mãi
+R R R R CRUA – R R – R R –
+Đ ơ n sell-in R R RA R – – CRU R R – – –
+Hạn m ứ c/công
+n ợ
+R R R CRUA – – R R – – – –
+Kho NPP – – – – – – R – CRU R – –
+Đ ơ n bán cho
+c ử a hàng
+– – – – – – R R R RA CRU RU
+CRM c ử a hàng – R R – – – R – – CRUA CRU R
+Tuyế n & KPI – R R – – – R – – CRUA R (c ủ a
+mình)
+–
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 5 of 50
+=== PAGE 6 ===
+4. Danh mục phân hệ ch ứ c năng
+Hệ  thố ng gồ m 20 phân hệ , nhóm theo miề n nghiệ p vụ. Mỗ i ch ứ c năng có mã FR-xx.yy đ ể
+truy vế t v ớ i luồ ng, b ả ng d ữ  liệ u và API.
+Phân hệ Qu ả n
+trị
+Lãnh
+đạo
+NSX
+QL
+vùng
+NSX
+Kế
+toán
+NSX
+Trade
+mkt
+CSKH
+NSX
+Ch ủ
+NPP
+Kế
+toán
+NPP
+Th ủ
+kho
+GS
+NPP
+Sales Giao
+hàng
+Ticket/khiế u
+nại
+– R R – – CRUA CRU R – CRU CRU CRU
+Đố i soát & chố t
+kỳ
+– R RU CRUA – – RU
+(phầ n
+NPP)
+RU – – – –
+Báo
+cáo/Dashboard
+R R R
+(vùng)
+R R R R
+(NPP)
+R – R R (cá
+nhân)
+–
+Nhóm Mã Phân hệ Miề n
+Nề n t ả ng M01 Qu ả n trị hệ  thố ng, t ổ  ch ứ c & phân quyề n Chung
+M02 Danh mục dùng chung (s ả n ph ẩ m, SKU, đ ơ n vị,
+khu v ự c, NPP, c ử a hàng)
+Chung
+M03 Chính sách giá, chiế t khấ u, khuyế n mãi DMS
+M04 Thông báo, nhắ c việ c, workflow & SLA Chung
+Sell-in (NSX–
+NPP)
+M05 Đặ t hàng sell-in (Portal NPP) & duyệ t đ ơ n DMS
+M06 Hạn m ứ c & công n ợ DMS
+M07 Kho, tồ n & xuấ t nhậ p DMS
+M08 Giao nhậ n, xác nhậ n nhậ n hàng, đ ổ i tr ả DMS
+M09 Đố i soát & báo cáo hai l ớ p (chố t kỳ) DMS
+NPP → NSX M10 Demand Planning & Sell-out Reporting DMS
+M11 Ticket khiế u nại – đ ổ i tr ả DMS+CRM
+M12 Trade Marketing Request CRM
+M13 Market Feedback CRM
+M14 Distributor Performance Dashboard & ch ỉ  tiêu DMS
+NPP → C ử a hàng M15 CRM c ử a hàng (lead, hồ  s ơ  360°, t ươ ng tác, lịch
+hẹn, phân nhóm)
+CRM
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 6 of 50
+=== PAGE 7 ===
+Phân hệ  m ở  rộ ng (giai đoạn sau, mô hình CRM 5in1): CloudWORK (giao việ c/d ự  án/KPI),
+CloudCHECKIN (nhân s ự , chấ m công), CloudEVENT (s ự  kiệ n/hộ i nghị khách hàng), G-
+Connect (cộ ng đồ ng đố i tác, danh thiế p điệ n t ử ) – xem mục 4.21.
+4.1. M01 – Qu ả n trị hệ thống, t ổ  ch ứ c & phân quyền
+Nhóm Mã Phân hệ Miề n
+M16 Tuyế n, nhân viên thị tr ườ ng, KPI & bàn giao DMS+CRM
+M17 Đ ơ n bán cho c ử a hàng (sell-out th ự c), giao hàng
+c ử a hàng
+DMS
+Sales M18 App Sales: lịch hôm nay, đ ơ n lặ p, offline, báo cáo
+cuố i ngày
+DMS+CRM
+M19 AI ki ể m tra tr ư ng bày AI
+Phân tích M20 Báo cáo & dashboard t ổ ng h ợ p Chung
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+01.01
+Qu ả n lý t ổ  ch ứ c đa cấ p Cây t ổ  ch ứ c: NSX → vùng/kênh → NPP → chi
+nhánh/kho → tuyế n. Mỗ i nút có mã, trạng
+thái, ng ườ i phụ trách.
+A01
+FR-
+01.02
+Qu ả n lý ng ườ i dùng Tạo/khóa/m ở  tài kho ả n, gán vai trò và phạm
+vi d ữ  liệ u, buộ c đ ổ i mậ t kh ẩ u lầ n đầ u, m ờ i
+qua email/SĐT.
+A01,
+A07
+FR-
+01.03
+Qu ả n lý vai trò &
+quyề n
+Vai trò mặ c định (mục 3.1) và vai trò tùy
+ch ỉ nh; quyề n theo ch ứ c năng + hành độ ng
+(xem/tạo/s ử a/duyệ t/xuấ t).
+A01
+FR-
+01.04
+Xác th ự c Đăng nhậ p email/SĐT + mậ t kh ẩ u, 2FA OTP
+cho vai trò nhạy c ả m (duyệ t, kế  toán), quên
+mậ t kh ẩ u, khóa sau N lầ n sai, phiên hế t hạn.
+Tấ t c ả
+FR-
+01.05
+Nhậ t ký ki ể m toán Ghi ai – khi nào – làm gì – giá trị tr ướ c/sau cho
+thao tác nhạy c ả m; tra c ứ u và xuấ t.
+A01,
+A04
+FR-
+01.06
+Tham số  hệ  thố ng Cấ u hình ng ưỡ ng (hạn xác nhậ n nhậ n hàng
+48h, ng ưỡ ng chênh lệ ch 5%, SLA ticket), lịch
+chố t kỳ, mẫ u thông báo, múi gi ờ , tiề n tệ .
+A01
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 7 of 50
+=== PAGE 8 ===
+4.2. M02 – Danh mục dùng chung
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+01.07
+Nhậ p/xuấ t d ữ  liệ u
+hàng loạt
+Import Excel (SKU, c ử a hàng, NPP, tồ n đầ u
+kỳ) có ki ể m tra lỗ i t ừ ng dòng; export báo cáo
+Excel/PDF.
+A01,
+A07
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+02.01
+S ả n ph ẩ m & SKU Ngành hàng, nhãn hiệ u, SKU, mã vạch,
+thuộ c tính (lô, hạn dùng), trạng thái bán; có
+th ể  bán theo nhiề u đ ơ n vị.
+A01,
+A03
+FR-
+02.02
+Đ ơ n vị tính & quy đ ổ i Quy đ ổ i chu ẩ n (1 thùng = 6 lố c = 24 chai).
+Mọi số  liệ u l ư u theo đ ơ n vị c ơ  s ở , hi ể n thị
+theo đ ơ n vị ng ườ i dùng chọn; chố ng nhầ m
+lố c/thùng.
+A01
+FR-
+02.03
+Khu v ự c & địa bàn T ỉ nh/quậ n/ph ườ ng, vùng bán hàng; gán địa
+bàn cho NPP và tuyế n.
+A01,
+A03
+FR-
+02.04
+Hồ  s ơ  NPP Mã, pháp nhân, MST, địa ch ỉ , kho, ng ườ i liên
+hệ , địa bàn phụ trách, nhóm NPP, hạn m ứ c,
+điề u kho ả n thanh toán.
+A01,
+A03
+FR-
+02.05
+Hồ  s ơ  c ử a hàng/đại lý
+(master)
+Hồ  s ơ  dùng chung DMS–CRM: tên, loại
+hình, quy mô, địa ch ỉ  + tọa độ , NPP phụ
+trách, tuyế n, nhóm giá, trạng thái. Chố ng
+trùng (theo SĐT, tọa độ , tên).
+A10,
+A11
+FR-
+02.06
+Nhóm c ử a hàng Nhóm theo loại hình/quy mô/doanh số ;
+dùng cho b ả ng giá, khuyế n mãi, chăm sóc.
+A10
+FR-
+02.07
+Danh mục lý do Lý do t ừ  chố i đ ơ n, hoàn hàng, h ư  h ỏ ng,
+khiế u nại, điề u ch ỉ nh sau chố t.
+A01
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 8 of 50
+=== PAGE 9 ===
+4.3. M03 – Chính sách giá, chiết khấu & khuyến mãi
+4.4. M04 – Thông báo, nhắc việc, workflow & SLA
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+03.01
+B ả ng giá Giá theo SKU – nhóm NPP/nhóm
+c ử a hàng – th ờ i gian hiệ u l ự c; giá
+NSX→NPP và giá NPP→c ử a hàng
+tách b ả ng. Có phiên b ả n và ngày
+hiệ u l ự c.
+A05,
+A03
+FR-
+03.02
+Chiế t khấ u Theo số  l ượ ng/giá trị đ ơ n/doanh số
+tích lũy; chiế t khấ u th ươ ng mại,
+chiế t khấ u thanh toán s ớ m.
+A05
+FR-
+03.03
+Ch ươ ng trình khuyế n mãi Loại: gi ả m giá, tặ ng hàng, voucher,
+quà, combo. Điề u kiệ n: NPP/nhóm
+c ử a hàng, SKU, th ờ i gian, ngân
+sách, gi ớ i hạn l ượ t.
+A05
+FR-
+03.04
+Quy trình duyệ t chính sách Soạn nháp → trình duyệ t → phát
+hành → hế t hạn. Ch ỉ  b ả n đã phát
+hành m ớ i đ ượ c áp dụng.
+A05,
+A02
+FR-
+03.05
+Độ ng c ơ  áp chính sách Khi lậ p đ ơ n, t ự  chọn đúng giá và ư u
+đãi theo NPP/c ử a hàng, x ử  lý xung
+độ t (theo độ  ư u tiên), hi ể n thị rõ
+dòng ư u đãi áp dụng.
+Hệ
+thố ng
+FR-
+03.06
+Trung tâm chính sách (Policy &
+Promotion Center)
+NPP xem chính sách, điề u kiệ n
+th ưở ng, hạn áp dụng; xác nhậ n đã
+tiế p nhậ n; theo dõi tiế n độ  th ự c
+hiệ n.
+A07
+FR-
+03.07
+Đánh giá hiệ u qu ả  ch ươ ng trình So doanh số  tr ướ c/sau, chi phí
+khuyế n mãi th ự c tế  so v ớ i ngân
+sách.
+A05
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+04.01
+Trung tâm thông báo Thông báo trong ứ ng dụng, email, SMS/Zalo
+OA, push (PWA); ng ườ i dùng chọn kênh theo
+loại s ự  kiệ n.
+Tấ t c ả
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 9 of 50
+=== PAGE 10 ===
+4.5. M05 – Đặt hàng sell-in & duyệt đ ơ n
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+04.02
+Nhắ c việ c theo hạn L ờ i hẹn, việ c đế n hạn, đ ơ n quá hạn xác nhậ n;
+nhắ c tr ướ c hạn và khi quá hạn, c ả  khi đố i tác
+đang ki ể m tra.
+A11, A10
+FR-
+04.03
+Engine workflow Định nghĩa b ướ c duyệ t, ng ườ i x ử  lý, hạn x ử
+lý, leo thang khi quá SLA. Dùng chung cho
+đ ơ n, ticket, đề  xuấ t, điề u ch ỉ nh.
+A01
+FR-
+04.04
+Giao việ c Công việ c gắ n v ớ i đố i t ượ ng (đ ơ n, c ử a hàng,
+ticket); ng ườ i giao, ng ườ i nhậ n, hạn, trạng
+thái, bình luậ n.
+A10, A11
+FR-
+04.05
+Bình luậ n & tệ p đính
+kèm
+Trên đ ơ n, ticket, đề  xuấ t: nhắ c tên, đính kèm
+ả nh/PDF; l ư u lịch s ử .
+Tấ t c ả
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+05.01
+Catalog & gi ỏ  hàng NPP NPP xem SKU v ớ i đúng giá, ư u đãi, tồ n
+sẵ n có c ủ a NSX; tìm theo
+tên/mã/ngành hàng; thêm vào gi ỏ .
+A07
+FR-
+05.02
+Đặ t lại đ ơ n cũ mộ t chạm Chọn đ ơ n gầ n nhấ t/đ ơ n mẫ u, s ử a số
+l ượ ng, ki ể m tra lại giá và đ ơ n vị hiệ n
+hành.
+A07
+FR-
+05.03
+G ợ i ý b ổ  sung hàng D ự a tồ n NPP, tố c độ  tiêu thụ, sell-out
+gầ n đây, chu kỳ đặ t: g ợ i ý SKU và số
+l ượ ng cầ n nhậ p.
+Hệ
+thố ng
+FR-
+05.04
+G ử i đ ơ n & ki ể m tra t ự  độ ng Ki ể m tra SKU còn bán, tố i thi ể u/bộ i số
+đặ t, tồ n NSX, giá/ ư u đãi, hạn m ứ c công
+n ợ (FR-06.03).
+Hệ
+thố ng
+FR-
+05.05
+Duyệ t/t ừ  chố i/yêu cầ u b ổ
+sung
+Đ ơ n bị gi ữ  vì v ượ t ng ưỡ ng đ ượ c đ ẩ y
+cho ng ườ i có th ẩ m quyề n; ghi ng ườ i
+duyệ t, th ờ i đi ể m, lý do.
+A03,
+A04
+FR-
+05.06
+S ử a/h ủ y đ ơ n NPP s ử a/h ủ y khi ch ư a duyệ t; sau
+duyệ t cầ n NSX đồ ng ý; mọi thay đ ổ i có
+lịch s ử .
+A07,
+A03
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 10 of 50
+=== PAGE 11 ===
+4.6. M06 – Hạn m ứ c & công n ợ
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+05.07
+Theo dõi trạng thái đ ơ n Dòng th ờ i gian: M ớ i → Ch ờ  duyệ t → Đã
+duyệ t → Đã xuấ t kho → Đang giao →
+Đã nhậ n. Thông báo khi đ ổ i trạng thái.
+A07,
+A03
+FR-
+05.08
+Xác nhậ n số  l ượ ng đáp ứ ng
+(t ừ ng dòng)
+NSX/NPP ghi riêng: số  đặ t – số  xác
+nhậ n – số  th ự c xuấ t – số  th ự c nhậ n;
+ngày giao d ự  kiế n.
+A03,
+A09
+FR-
+05.09
+Gom đ ơ n đa kênh Đ ơ n t ừ  website, hotline, sàn TMĐT
+đ ượ c gom về  SYNERA và chuy ể n đúng
+NPP/ng ườ i phụ trách theo địa bàn.
+Hệ
+thố ng
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+06.01
+Thiế t lậ p hạn m ứ c & điề u
+kho ả n
+Hạn m ứ c, số  ngày n ợ , ng ưỡ ng c ả nh báo
+(ví dụ 80%), tạm khóa đặ t hàng theo NPP.
+A04
+FR-
+06.02
+S ổ  công n ợ Hóa đ ơ n, thanh toán, khấ u tr ừ  khuyế n
+mãi/hoàn hàng, số  d ư ; tu ổ i n ợ  (aging).
+A04,
+A08
+FR-
+06.03
+Ki ể m tra hạn m ứ c khi đặ t
+đ ơ n
+Tính: n ợ  hiệ n tại + đ ơ n đang x ử  lý + đ ơ n
+m ớ i ≤ hạn m ứ c và không có n ợ  quá hạn
+v ượ t ng ưỡ ng. Vi phạm → đ ơ n chuy ể n
+"Ch ờ  duyệ t – v ượ t hạn m ứ c".
+Hệ
+thố ng
+FR-
+06.04
+Ghi nhậ n thanh toán Nhậ p/đồ ng bộ  phiế u thu, phân b ổ  vào
+hóa đ ơ n, đính kèm ch ứ ng t ừ ; NPP có th ể
+báo đã chuy ể n kho ả n đ ể  kế  toán xác
+nhậ n.
+A04,
+A08
+FR-
+06.05
+Đố i soát công n ợ  hai bên NPP xem công n ợ , hóa đ ơ n, lịch s ử  thanh
+toán, kho ả n khấ u tr ừ ; xác nhậ n hoặ c
+ph ả n hồ i chênh lệ ch trên cùng màn hình.
+A08,
+A04
+FR-
+06.06
+C ả nh báo công n ợ NPP n ợ  quá hạn, sắ p hế t hạn m ứ c, DSO
+tăng; g ử i cho kế  toán và qu ả n lý vùng.
+Hệ
+thố ng
+FR-
+06.07
+Tích h ợ p ERP/kế  toán Nhậ p Excel hoặ c API đ ể  đố i chiế u hóa
+đ ơ n/thanh toán v ớ i hệ  thố ng kế  toán sẵ n
+có (kế t nố i dầ n).
+A04
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 11 of 50
+=== PAGE 12 ===
+4.7. M07 – Kho, tồn & xuất nhập
+4.8. M08 – Giao nhận, xác nhận nhận hàng & đ ổ i tr ả
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-07.01 Qu ả n lý kho Nhiề u kho cho NSX và NPP; vị trí; trạng thái. A09
+FR-
+07.02
+Nhậ p kho Nhậ p t ừ  đ ơ n sell-in (đố i chiế u số  xác nhậ n
+nhậ n), nhậ p hoàn, nhậ p điề u ch ỉ nh; theo lô và
+hạn dùng.
+A09
+FR-
+07.03
+Xuấ t kho Xuấ t theo đ ơ n đã duyệ t, theo FEFO (hế t hạn
+tr ướ c xuấ t tr ướ c); ghi số  th ự c xuấ t, lô, hạn
+dùng.
+A09
+FR-
+07.04
+Tồ n kho th ờ i gian
+th ự c
+Tồ n th ự c, tồ n đã gi ữ  (đ ơ n đang x ử  lý), tồ n kh ả
+dụng, theo kho/SKU/lô.
+A09,
+A07
+FR-
+07.05
+Ki ể m kê & điề u
+ch ỉ nh
+Phiế u ki ể m kê, chênh lệ ch, duyệ t điề u ch ỉ nh. A09,
+A07
+FR-
+07.06
+C ả nh báo tồ n Sắ p hế t hàng (d ướ i m ứ c an toàn), tồ n đọng,
+cậ n hạn; NSX thấ y NPP nào sắ p hế t đ ể  ch ủ
+độ ng.
+Hệ
+thố ng
+FR-
+07.07
+Chuy ể n kho Phiế u chuy ể n gi ữ a kho; trạng thái đang
+chuy ể n/đã nhậ n.
+A09
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+08.01
+Điề u phố i giao hàng Lậ p chuyế n giao, gán xe/nhân viên
+giao, th ứ  t ự  đi ể m giao; cậ p nhậ t trạng
+thái vậ n chuy ể n; đi ể m tích h ợ p đ ơ n vị
+vậ n t ả i.
+A09,
+A12
+FR-
+08.02
+Xác nhậ n nhậ n hàng
+(NPP/c ử a hàng)
+Ghi th ự c nhậ n, thiế u, h ỏ ng, hoàn theo
+t ừ ng dòng (kèm ả nh); ch ữ  ký/mã OTP
+nhậ n hàng tùy chọn.
+A07,
+A13
+FR-
+08.03
+T ự  xác nhậ n quá hạn Đã giao nh ư ng ch ư a xác nhậ n quá 48h
+→ nhắ c; quá hạn quy định → t ự  xác
+nhậ n theo th ự c giao.
+Hệ
+thố ng
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 12 of 50
+=== PAGE 13 ===
+4.9. M09 – Đối soát & báo cáo hai l ớ p (chốt kỳ)
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+08.04
+X ử  lý giao thiế u Sinh việ c theo dõi gắ n đúng đ ơ n/dòng
+thiế u; NPP cậ p nhậ t ph ươ ng án giao bù
+(giao bù/hoàn tiề n/h ủ y); sales nhậ n
+thông báo đ ể  báo khách.
+A09, A11
+FR-
+08.05
+Đ ổ i tr ả  & hoàn hàng Phiế u hoàn có lý do, SKU, lô, số  l ượ ng,
+ả nh; duyệ t; cậ p nhậ t tồ n, công n ợ  và
+sell-in/sell-out.
+A03,
+A06
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-
+09.01
+Báo cáo vậ n hành l ớ p
+1
+Số  liệ u th ờ i gian th ự c, mọi con số  gắ n
+nhãn "Tạm tính, cậ p nhậ t lúc hh:mm";
+không dùng cho th ưở ng/thanh toán/báo
+cáo chính th ứ c.
+A02, A03
+FR-
+09.02
+Job đố i soát cuố i
+ngày
+Chạy đêm: làm sạch (loại đ ơ n h ủ y, tr ừ
+hoàn, gộ p trùng, chu ẩ n hóa mã), kh ớ p 3
+bên (đ ơ n đặ t – xuấ t kho – NPP xác nhậ n
+nhậ n), đố i chiế u công n ợ .
+Hệ  thố ng
+FR-
+09.03
+Danh sách ngoại lệ Đ ơ n lệ ch đ ượ c liệ t kê, gán ng ườ i x ử  lý, hạn
+x ử  lý, kế t qu ả  x ử  lý.
+A03, A04,
+A07
+FR-
+09.04
+Lịch chố t kỳ Ngày (T+1, 6h sáng) → Tuầ n (sáng th ứ  Hai)
+→ Tháng (ngày làm việ c th ứ  3–5) → Quý.
+Cấ u hình đ ượ c, thố ng nhấ t v ớ i NSX.
+A04
+FR-
+09.05
+Khóa số  & phiế u điề u
+ch ỉ nh
+Số  đã chố t không s ử a tr ự c tiế p; muố n s ử a
+tạo phiế u điề u ch ỉ nh (lý do, ng ườ i duyệ t)
+và hi ể n thị ở  kỳ phát sinh; mọi thay đ ổ i có
+lịch s ử .
+A04
+FR-
+09.06
+Báo cáo l ớ p 2 Phát hành báo cáo chính th ứ c theo ng ườ i
+nhậ n (vùng, kênh, lãnh đạo, tài chính,
+trade marketing); nguồ n duy nhấ t cho
+th ưở ng, thanh toán, d ự  báo s ả n xuấ t.
+A02–A05
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 13 of 50
+=== PAGE 14 ===
+4.10. M10 – Demand Planning & Sell-out Reporting
+4.11. M11 – Ticket khiếu nại – đ ổ i tr ả  (Complaint & Return Ticket)
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-
+09.07
+Đố i chiế u hai l ớ p Hi ể n thị cạnh nhau "Tạm tính hôm nay" và
+"Đã chố t gầ n nhấ t"; báo cáo chênh lệ ch t ự
+độ ng (ví dụ 100 → 90 thùng, lý do hoàn 10);
+v ượ t ng ưỡ ng (ví dụ 5%) thì c ả nh báo.
+Hệ  thố ng
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+10.01
+Kế  hoạch nhậ p hàng (Demand
+Planning)
+NPP g ử i kế  hoạch theo SKU, số  l ượ ng,
+th ờ i gian d ự  kiế n; hệ  thố ng t ổ ng h ợ p
+t ừ  đ ơ n, sell-out, tồ n đ ể  NSX tham
+kh ả o lậ p kế  hoạch cung ứ ng.
+A07,
+A03
+FR-
+10.02
+Sell-out Reporting Doanh số  bán ra, tồ n kho, tố c độ  tiêu
+thụ theo SKU/khu v ự c. Ư u tiên t ự  lấ y
+t ừ  đ ơ n bán c ử a hàng trong DMS; ch ỉ
+yêu cầ u NPP b ổ  sung phầ n ch ư a có
+(nhậ p Excel v ớ i NPP dùng phầ n mề m
+riêng).
+A07
+FR-
+10.03
+Đố i chiế u sell-in – sell-out –
+tồ n
+Tính sell-through; NPP nhậ p nhiề u
+nh ư ng bán ra ít bị đánh dấ u đ ể  xem
+xét (phát hiệ n nhậ p dồ n).
+A03,
+A02
+FR-
+10.04
+Ph ả n hồ i kế  hoạch NSX chấ p nhậ n/điề u ch ỉ nh, ghi chú;
+NPP theo dõi trạng thái.
+A03
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-
+11.01
+Tạo ticket Gắ n mã đ ơ n, SKU, lô, số  l ượ ng, ả nh/video;
+phân loại: giao hàng, chấ t l ượ ng, thanh
+toán, đ ổ i tr ả , sai quy cách, cậ n hạn.
+Nguồ n: NPP→NSX, c ử a hàng→NPP, sales
+tạo hộ .
+A07, A11,
+A13
+FR-
+11.02
+Phân loại & phân
+công
+T ự  định tuyế n theo loại (chấ t l ượ ng →
+CSKH/QA, công n ợ  → kế  toán, giao hàng →
+điề u phố i); gán ng ườ i x ử  lý và hạn SLA.
+Hệ  thố ng,
+A06
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 14 of 50
+=== PAGE 15 ===
+4.12. M12 – Trade Marketing Request (đề xuất hỗ tr ợ  kinh doanh)
+4.13. M13 – Market Feedback (ph ả n hồi thị tr ườ ng & s ả n ph ẩ m)
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-
+11.03
+X ử  lý & cậ p nhậ t
+trạng thái
+M ớ i → Đã tiế p nhậ n → Đang x ử  lý → Ch ờ
+b ổ  sung → Đã gi ả i quyế t → Đóng/M ở  lại;
+ghi ph ươ ng án (đ ổ i, hoàn tiề n, bù hàng, t ừ
+chố i).
+A06, A10
+FR-
+11.04
+Liên kế t nghiệ p vụ Khi chố t ph ươ ng án, t ự  sinh phiế u hoàn/
+đ ổ i (FR-08.05), điề u ch ỉ nh công n ợ  hoặ c
+phiế u giao bù.
+Hệ  thố ng
+FR-
+11.05
+Leo thang & nhắ c hạn Quá hạn SLA → nhắ c ng ườ i x ử  lý, báo qu ả n
+lý.
+Hệ  thố ng
+FR-
+11.06
+Đánh giá hài lòng Sau khi đóng, ng ườ i tạo chấ m đi ể m; t ổ ng
+h ợ p theo loại vấ n đề , NPP, SKU.
+A13, A07
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+12.01
+Tạo đề  xuấ t NPP đề  xuấ t POSM, vậ t ph ẩ m tr ư ng bày,
+kích cầ u, ngân sách, đào tạo theo khu
+v ự c/s ả n ph ẩ m/số  l ượ ng/mục tiêu.
+A07
+FR-
+12.02
+Xét duyệ t Trade marketing xem xét: duyệ t/t ừ  chố i/yêu
+cầ u b ổ  sung; phê duyệ t nhiề u cấ p theo giá
+trị.
+A05,
+A02
+FR-
+12.03
+Phân b ổ  ngân sách Ngân sách theo vùng/NPP/ch ươ ng trình;
+còn lại, đã dùng, cam kế t.
+A05
+FR-
+12.04
+Theo dõi th ự c hiệ n &
+kế t qu ả
+NPP báo cáo th ự c hiệ n ( ả nh, số  liệ u); NSX
+đo kế t qu ả  so v ớ i mục tiêu.
+A07,
+A05
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+13.01
+Ghi nhậ n ph ả n hồ i Theo s ả n ph ẩ m, nhóm vấ n đề  (chấ t l ượ ng,
+bao bì, giá bán, quy cách), khu v ự c, m ứ c độ
+ả nh h ưở ng; có th ể  xuấ t phát t ừ  ghi nhậ n
+c ủ a sales ở  c ử a hàng.
+A07, A11
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 15 of 50
+=== PAGE 16 ===
+4.14. M14 – Distributor Performance Dashboard & ch ỉ  tiêu
+4.15. M15 – CRM c ử a hàng
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+13.02
+T ổ ng h ợ p xu h ướ ng Gom theo SKU/nhóm vấ n đề /khu v ự c/th ờ i
+gian; t ừ  khóa lặ p lại; xế p hạng theo m ứ c
+ả nh h ưở ng.
+A02,
+A06
+FR-
+13.03
+Chuy ể n hóa thành hành
+độ ng
+T ừ  ph ả n hồ i tạo ticket chấ t l ượ ng hoặ c đề
+xuấ t c ả i tiế n; theo dõi ph ươ ng án ph ả n hồ i
+lại NPP.
+A06
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+14.01
+Thiế t lậ p ch ỉ  tiêu & điề u kiệ n
+th ưở ng
+Ch ỉ  tiêu theo NPP/SKU/kỳ; công th ứ c
+th ưở ng, mố c, điề u kiệ n chiế t khấ u.
+A03,
+A05
+FR-
+14.02
+Dashboard hiệ u qu ả  NPP Doanh số  đã đạt, còn thiế u, % hoàn
+thành, th ưở ng d ự  kiế n, hỗ  tr ợ  đã nhậ n.
+Số  đố i chiế u v ớ i d ữ  liệ u đã chố t (l ớ p 2).
+A07
+FR-
+14.03
+Xế p hạng NPP Theo sell-in, sell-through, DSO, độ  ph ủ ,
+t ỷ  lệ  khiế u nại.
+A02,
+A03
+FR-
+14.04
+C ả nh báo ch ỉ  tiêu NPP có nguy c ơ  không đạt, ch ư a đặ t
+hàng theo chu kỳ th ườ ng lệ .
+Hệ
+thố ng
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+15.01
+Qu ả n lý lead c ử a hàng
+m ớ i
+Thu thậ p lead (nhậ p tay, b ả n đồ , import),
+phân loại theo khu v ự c/loại hình/quy mô,
+giao nhân viên. Trạng thái: Ch ư a tiế p cậ n →
+Đã liên hệ  → Đang t ư  vấ n → Đã mua / T ừ
+chố i.
+A10, A11
+FR-
+15.02
+B ả n đồ  khu v ự c Hi ể n thị c ử a hàng/lead/tuyế n trên b ả n đồ ,
+lọc theo trạng thái, nhóm, nhân viên.
+A10
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 16 of 50
+=== PAGE 17 ===
+4.16. M16 – Tuyến, nhân viên thị tr ườ ng, KPI & bàn giao
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+15.03
+Hồ  s ơ  c ử a hàng 360° Thông tin chung, lịch s ử  đ ơ n (t ừ  DMS),
+t ươ ng tác, lịch hẹn, ticket, ả nh tr ư ng bày,
+tồ n ghi nhậ n, nhóm, đi ể m tiề m năng, ng ườ i
+phụ trách.
+A10, A11
+FR-
+15.04
+Ghi nhậ n t ươ ng tác Cuộ c gọi, ghé thăm, tin nhắ n, báo giá; ghi
+chú, ả nh, kế t qu ả .
+A11
+FR-
+15.05
+L ờ i hẹn & lịch chăm sóc L ư u l ờ i hẹn trong hồ  s ơ  cùng ng ườ i phụ
+trách và hạn ph ả n hồ i; hệ  thố ng nhắ c đế n
+hạn.
+A11
+FR-
+15.06
+Báo giá & c ơ  hộ i Soạn báo giá t ừ  b ả ng giá/khuyế n mãi hiệ n
+hành, theo dõi c ơ  hộ i, chuy ể n báo giá thành
+đ ơ n.
+A11
+FR-
+15.07
+Phân nhóm & đi ể m tiề m
+năng
+Theo doanh số , tầ n suấ t mua, tiề m năng,
+m ứ c gắ n kế t; cậ p nhậ t t ự  độ ng.
+Hệ
+thố ng
+FR-
+15.08
+C ả nh báo nguy c ơ
+ng ừ ng mua
+C ử a hàng lâu ch ư a đặ t hoặ c gi ả m tầ n suấ t
+→ tạo việ c chăm sóc, g ợ i ý khuyế n mãi/s ả n
+ph ẩ m.
+Hệ
+thố ng
+FR-
+15.09
+Chiế n dịch chăm sóc G ử i thông báo khuyế n mãi, nhắ c mua lại
+theo nhóm c ử a hàng; đo hiệ u qu ả  chiế n
+dịch.
+A10,
+A05
+FR-
+15.10
+Khiế u nại c ủ a c ử a hàng Tạo ticket (FR-11) gắ n c ử a hàng/đ ơ n; phân
+loại và theo dõi, đo hài lòng.
+A11, A10
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-
+16.01
+Thiế t kế  tuyế n Tạo tuyế n, gán c ử a hàng, th ứ  t ự  ghé, tầ n
+suấ t (tuầ n/chẵ n-l ẻ ), nhân viên phụ
+trách.
+A10
+FR-
+16.02
+Lịch đi tuyế n Sinh l ượ t ghé theo kế  hoạch hằ ng ngày;
+qu ả n lý thêm/b ớ t/đ ổ i l ượ t.
+A10, Hệ
+thố ng
+FR-
+16.03
+Check-in/check-out GPS Xác th ự c vị trí trong bán kính cho phép,
+gi ờ  vào/ra, ả nh; c ả nh báo ghé ngoài vị
+trí.
+A11
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 17 of 50
+=== PAGE 18 ===
+4.17. M17 – Đ ơ n bán cho c ử a hàng (sell-out) & giao hàng
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-
+16.04
+Ghi nhậ n kế t qu ả  l ượ t
+ghé
+Có/không phát sinh đ ơ n, tồ n tại đi ể m
+bán, nhu cầ u, tr ư ng bày, ph ả n hồ i.
+A11
+FR-
+16.05
+KPI nhân viên L ượ t ghé, c ử a hàng phát sinh đ ơ n,
+doanh số , t ỷ  lệ  chuy ể n đ ổ i, c ử a hàng
+m ớ i; so v ớ i mục tiêu.
+A10, A11
+FR-
+16.06
+Chuy ể n tuyế n & bàn giao Qu ả n lý chuy ể n l ượ t ghé/việ c đang d ở
+cho ng ườ i đi thay; ng ườ i nhậ n xem đ ơ n
+liên quan, l ờ i hẹn và đầ u mố i NPP. Hỗ
+tr ợ  NSX điề u sales hỗ  tr ợ  NPP.
+A10, A03
+FR-
+16.07
+Phân công sales NSX hỗ
+tr ợ  NPP
+NSX qu ả n lý l ự c l ượ ng sales c ủ a mình,
+đ ơ n do sales NSX lấ y đ ượ c chuy ể n đ ể
+NPP th ự c hiệ n.
+A03, A10
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-
+17.01
+Tạo đ ơ n bán T ừ  app sales, web NPP, c ổ ng c ử a hàng,
+điệ n thoại; ki ể m tra tồ n, giá, khuyế n
+mãi, hạn m ứ c công n ợ  c ử a hàng (nế u
+bậ t).
+A11, A10,
+A13
+FR-
+17.02
+Xác nhậ n đ ơ n & gi ữ  tồ n NPP xác nhậ n số  có th ể  đáp ứ ng và
+ngày giao; gi ữ  tồ n kh ả  dụng.
+A10, A09
+FR-
+17.03
+Xuấ t kho & giao Phiế u xuấ t, chuyế n giao, th ự c giao, thu
+tiề n khi giao (nế u có).
+A09, A12
+FR-
+17.04
+Đ ổ i tr ả  c ử a hàng Phiế u hoàn t ừ  c ử a hàng, cậ p nhậ t tồ n
+NPP và lịch s ử  mua.
+A12, A10
+FR-
+17.05
+Đồ ng bộ  CRM Khi đ ơ n đ ổ i trạng thái, t ự  ghi vào hồ  s ơ
+c ử a hàng; giao thiế u/khiế u nại sinh việ c
+theo dõi.
+Hệ  thố ng
+FR-
+17.06
+C ổ ng đặ t hàng c ử a hàng
+(tùy chọn)
+C ử a hàng t ự  đặ t, xem trạng thái, tạo
+khiế u nại.
+A13
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 18 of 50
+=== PAGE 19 ===
+4.18. M18 – App Sales (mobile/PWA)
+4.19. M19 – AI ki ể m tra tr ư ng bày
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+18.01
+Màn hình "Hôm nay" Gi ờ  hẹn, l ượ t ghé, việ c sắ p đế n hạn, đ ườ ng
+dẫ n đế n hồ  s ơ  c ử a hàng, đ ơ n đang ch ờ  x ử  lý.
+A11
+FR-
+18.02
+Chu ẩ n bị tr ướ c khi ghé M ở  hồ  s ơ : đ ơ n gầ n nhấ t, việ c còn d ở , g ợ i ý
+"nên h ỏ i gì", g ợ i ý đ ơ n nháp.
+A11
+FR-
+18.03
+Đ ơ n nhanh t ừ  đ ơ n gầ n
+nhấ t
+Lấ y mặ t hàng t ừ  đ ơ n gầ n nhấ t, s ử a số  l ượ ng,
+hi ể n thị rõ đ ơ n vị (lố c/thùng) và giá hiệ n
+hành, tr ướ c khi g ử i.
+A11
+FR-
+18.04
+Chế  độ  offline L ư u đ ơ n nháp trên thiế t bị, trạng thái "ch ờ
+g ử i"; khi có mạng, ki ể m tra lại giá/tồ n và
+dùng mã idempotency đ ể  nhậ n ra lầ n g ử i lại
+c ủ a cùng mộ t đ ơ n, tránh g ử i trùng.
+A11
+FR-
+18.05
+Theo dõi đ ơ n & thông
+báo
+Xem trạng thái đ ơ n đã g ử i, số  l ượ ng NPP xác
+nhậ n, ngày giao; nhậ n thông báo đ ổ i trạng
+thái hoặ c quá hạn xác nhậ n.
+A11
+FR-
+18.06
+X ử  lý giao thiế u Thấ y chính xác mặ t hàng thiế u, việ c đang ở
+b ướ c nào, ph ươ ng án giao bù đ ể  báo khách.
+A11
+FR-
+18.07
+Ghi tồ n & nhu cầ u đi ể m
+bán
+Kh ả o sát tồ n khi ghé, ghi nhu cầ u, c ả nh báo
+sắ p hế t hàng.
+A11
+FR-
+18.08
+Báo cáo cuố i ngày t ự
+độ ng
+T ổ ng h ợ p l ượ t ghé, đ ơ n, ph ả n ánh t ừ  d ữ  liệ u
+đã ghi; sales ki ể m tra và b ổ  sung phầ n thiế u;
+qu ả n lý có th ể  m ở  lại d ữ  liệ u gố c.
+A11, A10
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-
+19.01
+Cấ u hình tiêu chí tr ư ng
+bày
+Th ể  lệ , SKU bắ t buộ c, số  mặ t tố i thi ể u, vị
+trí, đi ể m; phiên b ả n đã duyệ t.
+A05, A03
+FR-
+19.02
+Chụp ả nh kệ  & h ướ ng
+dẫ n chụp
+App g ợ i ý góc chụp, ki ể m tra độ  sáng/m ờ
+tr ướ c khi g ử i.
+A11
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 19 of 50
+=== PAGE 20 ===
+4.20. M20 – Báo cáo & dashboard t ổ ng h ợ p
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác nhân
+FR-
+19.03
+Nhậ n diệ n & chấ m đi ể m AI nhậ n diệ n s ả n ph ẩ m, đế m số  mặ t quay
+ra ngoài, đề  xuấ t đi ể m theo tiêu chí; ch ỉ
+ra mục thiế u (ví dụ ch ư a thấ y s ả n ph ẩ m
+B).
+AI
+Service
+FR-
+19.04
+S ử a & chụp lại Sales b ổ  sung lên kệ  và chụp lại ngay tại
+đi ể m bán; l ư u các lầ n chụp.
+A11
+FR-
+19.05
+Chuy ể n ng ườ i duyệ t Ả nh khó chấ m (độ  tin cậ y thấ p) chuy ể n
+ng ườ i phụ trách; kế t qu ả  ghi ng ườ i duyệ t,
+l ư u ả nh gố c đ ể  truy vế t.
+A10, A05
+FR-
+19.06
+Đố i chiế u điề u kiệ n ư u
+đãi
+Nế u ư u đãi còn phụ thuộ c l ượ ng mua, đố i
+chiế u số  đã giao và hàng tr ả  tr ướ c khi
+duyệ t th ưở ng tr ư ng bày.
+Hệ  thố ng
+Mã Ch ứ c năng Mô t ả  chi tiế t Tác
+nhân
+FR-
+20.01
+Dashboard điề u hành
+NSX
+Đ ơ n m ớ i/ch ờ  duyệ t/đang giao, th ờ i gian x ử
+lý trung bình, đ ơ n bị gi ữ  vì v ượ t hạn m ứ c,
+NPP n ợ  quá hạn, NPP sắ p hế t hàng, NPP
+ch ư a đặ t theo chu kỳ, sell-in lũy kế  theo
+NPP/vùng/SKU.
+A02,
+A03
+FR-
+20.02
+Dashboard NPP Doanh số  sell-in/out, tồ n, công n ợ , tiế n độ
+ch ỉ  tiêu, đ ơ n đang x ử  lý.
+A07
+FR-
+20.03
+Báo cáo bán hàng NPP Theo c ử a hàng, khu v ự c, nhân viên, nhóm
+hàng; độ  ph ủ ; c ử a hàng gi ả m mua.
+A10
+FR-
+20.04
+Báo cáo tuân th ủ  & vậ n
+hành
+Th ờ i gian x ử  lý đ ơ n, số  đ ơ n sai, số  ngày n ợ ,
+t ỷ  lệ  giao đ ủ , SLA ticket (dùng đo tr ướ c/sau
+thí đi ể m).
+A02
+FR-
+20.05
+Bộ  lọc, drill-down, xuấ t
+file
+Lọc theo th ờ i gian/vùng/NPP/SKU; t ừ  số
+t ổ ng m ở  danh sách đ ơ n gố c; xuấ t
+Excel/PDF.
+Tấ t c ả
+FR-
+20.06
+Lịch g ử i báo cáo G ử i báo cáo định kỳ qua email theo ng ườ i
+nhậ n.
+A01
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 20 of 50
+=== PAGE 21 ===
+4.21. Phân hệ m ở  rộng (giai đoạn sau – mô hình CRM 5in1)
+Ghi chú: theo mô hình DMS 2in1, phạm vi chi tiế t CRM 5in1, th ứ  t ự  tri ể n khai và MVP ch ư a
+đ ượ c chố t; vậ n chuy ể n ch ỉ  hỗ  tr ợ  th ự c hiệ n đ ơ n; app riêng cho đi ể m bán là tùy chọn.
+5. Luồng nghiệp vụ chi tiết
+Mỗ i luồ ng đ ượ c mô t ả  theo khung: tác nhân · kích hoạt · tiề n điề u kiệ n · các b ướ c chính ·
+luồ ng ngoại lệ  · kế t qu ả /d ữ  liệ u sinh ra. Mã luồ ng BF-xx dùng đ ể  truy vế t v ớ i ch ứ c năng
+(FR), trạng thái (mục 6) và API (mục 9).
+Mã Thành phầ n Ch ứ c năng d ự  kiế n Ghi chú
+EX-
+01
+CloudX (Marketing – Bán
+hàng – CSKH)
+Đã bao hàm ở  M15, M17, M11 Lõi c ủ a hành trình
+khách hàng
+EX-
+02
+CloudWORK Giao việ c, d ự  án, tiế n độ , lịch, KPI
+cho sales/giám sát/giao nhậ n
+M ở  rộ ng t ừ  FR-
+04.04, FR-16.05
+EX-
+03
+CloudCHECKIN Hồ  s ơ  nhân s ự , ca làm, chấ m
+công, ngh ỉ  phép cho nhân viên
+thị tr ườ ng/kho/giao hàng
+Dùng chung
+check-in GPS
+EX-
+04
+CloudEVENT Trang đăng ký, qu ả n lý ng ườ i
+tham d ự , check-in QR, kh ả o sát
+(hộ i nghị khách hàng, ra mắ t s ả n
+ph ẩ m, đào tạo c ử a hàng)
+Độ c lậ p, cắ m vào
+hồ  s ơ  c ử a hàng
+EX-
+05
+G-Connect Hồ  s ơ /danh thiế p điệ n t ử , hộ i
+nhóm, kế t nố i NPP – c ử a hàng –
+đố i tác
+Phạm vi chi tiế t
+làm rõ sau
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 21 of 50
+=== PAGE 22 ===
+5.0. B ứ c tranh t ổ ng th ể : hai l ớ p d ữ  liệu
+NPP đặt hàng trên Portal
+        │
+        ▼
+┌──────────────────────────────────────────────┐
+│ L Ớ P 1 – VẬN HÀNH (real-time, tạm tính)        │
+│ Đ ơ n m ớ i → Ki ể m tra hạn m ứ c → Duyệt → Xuất kho │
+│ → Giao → NPP xác nhận nhận hàng               │
+└──────────────────────────────────────────────┘
+        │ cuối ngày: gom – làm sạch – kh ớ p 3 bên – ngoại lệ
+        ▼
+┌──────────────────────────────────────────────┐
+│ L Ớ P 2 – QU Ả N TRỊ (có độ trễ, đã chốt, khóa)   │
+│ Chốt ngày (T+1) → tuần → tháng → quý → khóa    │
+│ → Phát hành báo cáo chính th ứ c                │
+└──────────────────────────────────────────────┘
+5.1. BF-01 – Đặt hàng sell-in và x ử  lý đ ơ n NSX–NPP
+Tác nhân: A07 (NPP), A03/A04 (NSX), A09 (kho), Hệ  thố ng. Kích hoạt: NPP chọn "Tạo đ ơ n"
+hoặ c nhậ n g ợ i ý b ổ  sung. Tiề n điề u kiệ n: NPP đã đăng nhậ p, có b ả ng giá hiệ u l ự c, hạn m ứ c
+đ ượ c thiế t lậ p.
+B ướ c Tác nhân Hành độ ng Hệ  thố ng th ự c hiệ n D ữ  liệ u ghi nhậ n
+1 NPP M ở  Portal, xem
+catalog
+Hi ể n thị giá đúng nhóm NPP,
+ư u đãi, tồ n NSX, g ợ i ý nhậ p
+(FR-05.03)
+Nhậ t ký xem
+2 NPP Chọn SKU/số
+l ượ ng hoặ c đặ t lại
+đ ơ n cũ mộ t chạm
+Ki ể m tra bộ i số  đặ t, đ ơ n vị, áp
+giá và khuyế n mãi (FR-03.05)
+Dòng đ ơ n nháp
+3 NPP G ử i đ ơ n Ki ể m tra SKU, tồ n, tố i thi ể u;
+chạy ki ể m tra hạn m ứ c (BF-
+02)
+Đ ơ n, giá, ư u đãi,
+giá trị
+4a Hệ  thố ng (đ ủ  hạn m ứ c) Chuy ể n trạng thái "Đã g ử i –
+ch ờ  x ử  lý" hoặ c t ự  duyệ t nế u
+đạt quy tắ c
+Trạng thái, th ờ i
+đi ể m
+4b Hệ  thố ng (v ượ t hạn m ứ c/n ợ
+quá hạn)
+Gi ữ  đ ơ n, tạo yêu cầ u duyệ t
+cho qu ả n lý NSX/kế  toán
+Công n ợ  hiệ n
+tại, hạn m ứ c
+còn lại, lý do gi ữ
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 22 of 50
+=== PAGE 23 ===
+Ngoại lệ : SKU ng ừ ng bán/hế t hàng → NPP đ ượ c thông báo và đề  xuấ t thay thế ; NPP h ủ y khi
+ch ư a duyệ t; NSX t ừ  chố i → trạng thái "Bị t ừ  chố i" kèm lý do; NSX không ph ả n hồ i quá SLA
+→ nhắ c và leo thang. Kế t qu ả : đ ơ n đầ y đ ủ  trạng thái, d ữ  liệ u sell-in l ớ p 1, tồ n NPP cậ p nhậ t.
+5.2. BF-02 – Ki ể m tra hạn m ứ c công n ợ  khi đặt đ ơ n
+Kích hoạt: NPP g ử i đ ơ n (hoặ c s ử a đ ơ n). Công th ứ c: N ợ  hiệ n tại + giá trị các đ ơ n đang x ử  lý
+ch ư a xuấ t hóa đ ơ n + giá trị đ ơ n m ớ i ≤ Hạn m ứ c và không có hóa đ ơ n quá hạn v ượ t ng ưỡ ng
+ngày.
+1. Hệ  thố ng lấ y số  d ư  công n ợ  t ừ  s ổ  công n ợ  (FR-06.02) và đ ơ n đang x ử  lý.
+2. Tính hạn m ứ c còn lại; nế u ≥ giá trị đ ơ n m ớ i và không n ợ  quá hạn → Đạt, tiế p tục BF-01.
+3. Nế u ≥ ng ưỡ ng c ả nh báo (ví dụ 80%) nh ư ng ch ư a v ượ t → đ ơ n đi tiế p, g ử i c ả nh báo cho
+kế  toán NSX và NPP.
+4. Nế u v ượ t → đ ơ n "Gi ữ  – v ượ t hạn m ứ c"; sinh yêu cầ u duyệ t kèm công n ợ , tu ổ i n ợ , lịch
+s ử  thanh toán, g ử i qu ả n lý NSX (và kế  toán nế u cầ n).
+5. Ng ườ i duyệ t chọn: Duyệ t ngoại lệ  (có th ể  tạm nâng hạn m ứ c có th ờ i hạn), Yêu cầ u
+NPP thanh toán tr ướ c, hoặ c T ừ  chố i. Mọi quyế t định ghi nhậ t ký.
+6. NPP thấ y trạng thái và lý do trên Portal; khi thanh toán đ ượ c ghi nhậ n, đ ơ n bị gi ữ  đ ượ c
+ki ể m tra lại t ự  độ ng.
+B ướ c Tác nhân Hành độ ng Hệ  thố ng th ự c hiệ n D ữ  liệ u ghi nhậ n
+5 NSX Duyệ t / T ừ  chố i /
+Yêu cầ u b ổ  sung
+Ghi quyế t định, thông báo NPP Ng ườ i duyệ t,
+th ờ i đi ể m, lý do
+6 NSX/Kho Xác nhậ n số  có th ể
+đáp ứ ng và ngày
+giao d ự  kiế n
+Cậ p nhậ t số  xác nhậ n t ừ ng
+dòng, gi ữ  tồ n
+Số  xác nhậ n,
+ngày giao
+7 Kho NSX Xuấ t kho theo
+FEFO
+Tr ừ  tồ n, ghi lô và hạn dùng Số  th ự c xuấ t, lô,
+HSD
+8 Vậ n
+chuy ể n
+Giao hàng Cậ p nhậ t trạng thái vậ n
+chuy ể n
+Trạng thái, th ờ i
+gian
+9 NPP Xác nhậ n nhậ n
+hàng (BF-04)
+Ghi nhậ n th ự c
+nhậ n/thiế u/h ỏ ng/hoàn; cộ ng
+tồ n NPP
+Số  th ự c nhậ n
+10 Hệ  thố ng Cuố i ngày Đ ư a d ữ  liệ u vào đố i soát (BF-
+03)
+–
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 23 of 50
+=== PAGE 24 ===
+5.3. BF-03 – Đối soát cuối ngày và chốt kỳ (l ớ p 1 → l ớ p 2)
+Tác nhân: Scheduler, A04, A03, A07. Kích hoạt: job đêm hằ ng ngày; chố t tuầ n/tháng/quý
+theo lịch.
+Ki ể m soát: ch ỉ  kỳ ch ư a khóa m ớ i đ ượ c chố t lại; kỳ đã chố t ch ỉ  thay đ ổ i qua BF-04b. Chênh
+lệ ch gi ữ a l ớ p 1 và l ớ p 2 v ượ t ng ưỡ ng (ví dụ 5%) → c ả nh báo ng ườ i phụ trách.
+5.4. BF-04 – Xác nhận nhận hàng và x ử  lý chênh lệch
+Tác nhân: A07/A09 NPP, A03. Tiề n điề u kiệ n: đ ơ n ở  trạng thái "Đã giao".
+1. NPP m ở  đ ơ n, nhậ p th ự c nhậ n t ừ ng dòng, đánh dấ u thiế u/h ỏ ng/hoàn, kèm ả nh.
+Giai đoạn Nộ i dung Kế t qu ả
+Làm sạch Loại đ ơ n h ủ y, tr ừ  hàng hoàn,
+gộ p đ ơ n trùng, chu ẩ n hóa mã
+NPP và SKU
+Tậ p d ữ  liệ u sạch c ủ a ngày
+Kh ớ p ba bên So đ ơ n đặ t – hàng xuấ t kho –
+hàng NPP xác nhậ n nhậ n
+Đ ơ n kh ớ p / danh sách ngoại lệ
+Đố i chiế u công n ợ Hóa đ ơ n, thanh toán, khấ u tr ừ
+khuyế n mãi; đố i chiế u ERP/kế
+toán nế u có
+Chênh lệ ch công n ợ
+X ử  lý ngoại lệ Gán ng ườ i phụ trách t ừ ng đ ơ n
+lệ ch. Ví dụ: đã giao nh ư ng NPP
+ch ư a xác nhậ n >48h → nhắ c;
+quá hạn quy định → t ự  xác nhậ n
+theo th ự c giao
+Ngoại lệ  đã x ử  lý hoặ c còn tồ n
+Chố t ngày (T+1, 6h) Kế t s ổ  ngày: sell-in th ự c, hoàn,
+ngoại lệ
+Báo cáo ngày (qu ả n lý vùng, kế
+toán)
+Chố t tuầ n (sáng th ứ
+Hai)
+Sell-in theo NPP/SKU, tiế n độ
+target, công n ợ
+Báo cáo qu ả n lý kênh
+Chố t tháng (ngày làm
+việ c th ứ  3–5)
+Sell-in chính th ứ c, công n ợ  đã
+đố i soát (DSO), chiế t khấ u và
+th ưở ng, xế p hạng NPP
+Khóa kỳ, phát hành báo cáo lãnh
+đạo/tài chính/trade marketing
+Chố t quý Xu h ướ ng, sell-in so v ớ i sell-out
+so v ớ i tồ n (sell-through), d ự  báo
+s ả n xuấ t
+Báo cáo ban lãnh đạo
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 24 of 50
+=== PAGE 25 ===
+2. Hệ  thố ng so sánh v ớ i số  th ự c xuấ t; nế u lệ ch → tạo b ả n ghi chênh lệ ch và việ c theo dõi
+gắ n đúng dòng đ ơ n.
+3. NSX xem chênh lệ ch, chọn ph ươ ng án: giao bù, tr ừ  công n ợ , hoàn nhậ p kho (phiế u
+hoàn FR-08.05) hoặ c t ừ  chố i (kèm lý do).
+4. Hệ  thố ng cậ p nhậ t tồ n NPP, công n ợ  và số  đố i soát t ự  độ ng.
+5. Nế u NPP không xác nhậ n quá 48h → nhắ c; quá hạn quy định → t ự  xác nhậ n theo th ự c
+giao, ghi nhậ n "t ự  xác nhậ n".
+5.5. BF-04b – Điều ch ỉ nh sau khi đã chốt kỳ
+1. Ng ườ i dùng có quyề n tạo phiế u điề u ch ỉ nh (lý do, đố i t ượ ng, giá trị tr ướ c/sau, ch ứ ng
+t ừ ).
+2. Workflow duyệ t theo giá trị (kế  toán → qu ả n lý → lãnh đạo nế u l ớ n).
+3. Khi duyệ t: phiế u ghi vào kỳ phát sinh (kỳ hiệ n tại), kỳ cũ gi ữ  nguyên; báo cáo hi ể n thị
+dòng điề u ch ỉ nh.
+4. Mọi b ướ c ghi nhậ t ký (ai, khi nào, s ử a gì).
+5.6. BF-05 – Kế hoạch nhập hàng và sell-out (NPP → NSX)
+1. DMS t ự  t ổ ng h ợ p tồ n, đ ơ n, sell-out theo SKU/khu v ự c t ừ  đ ơ n bán c ử a hàng (M17); NPP
+b ổ  sung phầ n ch ư a có (Excel nế u dùng phầ n mề m khác).
+2. Hệ  thố ng đề  xuấ t kế  hoạch nhậ p (theo tố c độ  tiêu thụ + tồ n an toàn + chu kỳ); NPP
+ch ỉ nh s ử a và g ử i kế  hoạch theo SKU, số  l ượ ng, th ờ i gian.
+3. NSX thấ y kế  hoạch t ổ ng h ợ p theo NPP/vùng/SKU, đố i chiế u v ớ i sell-in, sell-out, tồ n;
+chấ p nhậ n/điề u ch ỉ nh và ph ả n hồ i.
+4. Cuố i kỳ hệ  thố ng tính sell-through; NPP nhậ p nhiề u nh ư ng bán ra ít đ ượ c đánh dấ u đ ể
+xem xét (tránh th ưở ng nhầ m cho nhậ p dồ n).
+5. Kế  hoạch đã chấ p nhậ n là đầ u vào g ợ i ý đ ơ n đặ t hàng (BF-01 b ướ c 1).
+5.7. BF-06 – Khiếu nại/đ ổ i tr ả  (ticket)
+Tác nhân: ng ườ i tạo (NPP/sales/c ử a hàng), A06, bộ  phậ n liên quan.
+1. Ng ườ i tạo chọn đ ơ n/SKU/lô liên quan, loại vấ n đề , số  l ượ ng, ả nh/video, mô t ả .
+2. Hệ  thố ng ki ể m tra thông tin bắ t buộ c, gán mã ticket và SLA theo loại; định tuyế n đế n
+đúng bộ  phậ n (chấ t l ượ ng → CSKH/QA; công n ợ  → kế  toán; giao hàng → điề u phố i kho).
+3. Ng ườ i x ử  lý tiế p nhậ n, yêu cầ u b ổ  sung (trạng thái "Ch ờ  b ổ  sung") hoặ c đề  xuấ t
+ph ươ ng án.
+4. Ph ươ ng án đ ượ c duyệ t (nế u v ượ t th ẩ m quyề n → workflow duyệ t): sinh phiế u hoàn/
+đ ổ i/giao bù/điề u ch ỉ nh công n ợ  t ươ ng ứ ng.
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 25 of 50
+=== PAGE 26 ===
+5. Ng ườ i tạo xác nhậ n kế t qu ả ; ticket "Đã gi ả i quyế t" → "Đóng" sau chấ m đi ể m hài lòng.
+Nế u không hài lòng → m ở  lại.
+6. Quá SLA → nhắ c và leo thang; ticket lặ p lại nhiề u v ớ i cùng SKU/lô → c ả nh báo chấ t
+l ượ ng cho NSX.
+5.8. BF-07 – Đề xuất hỗ tr ợ  trade marketing
+1. NPP tạo đề  xuấ t (loại hỗ  tr ợ , khu v ự c, s ả n ph ẩ m, số  l ượ ng, mục tiêu, ngân sách mong
+muố n).
+2. Workflow duyệ t: trade marketing xem xét → (v ượ t giá trị) qu ả n lý/lãnh đạo.
+3. Kế t qu ả : Duyệ t/Duyệ t mộ t phầ n/T ừ  chố i/Yêu cầ u b ổ  sung; nế u duyệ t, phân b ổ  ngân
+sách và tạo công việ c tri ể n khai.
+4. NPP cậ p nhậ t th ự c hiệ n ( ả nh, số  liệ u); NSX đo kế t qu ả  so v ớ i mục tiêu và ghi nhậ n vào
+hiệ u qu ả  h ợ p tác (BF-13).
+5.9. BF-08 – Ph ả n hồi thị tr ườ ng
+1. NPP hoặ c sales ghi ph ả n hồ i nhanh (SKU, nhóm vấ n đề , khu v ự c, m ứ c ả nh h ưở ng, ả nh).
+2. Hệ  thố ng t ổ ng h ợ p theo SKU/khu v ự c/th ờ i gian; g ợ i ý nhóm các ph ả n hồ i t ươ ng t ự .
+3. CSKH/Chấ t l ượ ng c ủ a NSX đánh giá; chuy ể n thành ticket chấ t l ượ ng hoặ c đề  xuấ t c ả i
+tiế n.
+4. NSX ph ả n hồ i ph ươ ng án đế n NPP và l ư u vào lịch s ử  s ả n ph ẩ m.
+5.10. BF-09 – Tìm và phát tri ể n c ử a hàng m ớ i (CRM + DMS)
+Tác nhân: A10, A11, Hệ  thố ng. Kích hoạt: nhân viên tạo lead, import danh sách hoặ c hệ
+thố ng g ợ i ý vùng trố ng.
+1. Tạo lead (tên, địa ch ỉ  + tọa độ , loại hình, quy mô, liên hệ ); hệ  thố ng ki ể m tra trùng
+(SĐT/tọa độ /tên) tr ướ c khi l ư u.
+2. Giám sát phân loại tiề m năng và giao nhân viên; lead hiệ n trên b ả n đồ  khu v ự c.
+3. Sales cậ p nhậ t trạng thái: Ch ư a tiế p cậ n → Đã liên hệ  → Đang t ư  vấ n → Đã mua (hoặ c
+T ừ  chố i kèm lý do) và ghi t ươ ng tác, báo giá.
+4. Khi lead đặ t đ ơ n đầ u: CRM chuy ể n thành c ử a hàng trong hồ  s ơ  dùng chung; DMS gán
+NPP, vùng, tuyế n, nhóm giá; tạo l ượ t ghé định kỳ.
+5. Hệ  thố ng tạo việ c chăm sóc cho 30 ngày đầ u (nhắ c mua lại, kh ả o sát hài lòng).
+5.11. BF-10 – Đi tuyến, ghé c ử a hàng và lên đ ơ n (Sales)
+Tác nhân: A11, A10, NPP (kho/giao). Kích hoạt: đầ u ngày làm việ c.
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 26 of 50
+=== PAGE 27 ===
+Ngoại lệ : c ử a hàng đóng c ử a → ghi "không gặ p" và đề  xuấ t ghé lại; không đ ủ  tồ n → NPP xác
+nhậ n số  thấ p h ơ n (BF-14); giá đ ổ i trong lúc offline → hệ  thố ng ki ể m tra lại giá khi đồ ng bộ
+(BF-12).
+5.12. BF-11 – Lên đ ơ n lặp t ừ  đ ơ n gần nhất
+1. Trong hồ  s ơ  c ử a hàng, sales chọn "Đặ t lại t ừ  đ ơ n gầ n nhấ t".
+2. Hệ  thố ng nạp các dòng hàng, hi ể n thị đ ơ n vị rõ ràng (thùng/lố c/chai) và c ả nh báo khi
+số  l ượ ng bấ t th ườ ng so v ớ i lịch s ử  (ví dụ lố c nhậ p thành thùng).
+3. Cậ p nhậ t giá và ư u đãi hiệ n hành; đánh dấ u SKU ng ừ ng bán/hế t hàng và đề  xuấ t thay
+thế .
+4. Sales s ử a số  l ượ ng, ki ể m tra tóm tắ t (t ổ ng tiề n, ư u đãi, ngày giao d ự  kiế n) rồ i g ử i.
+B ướ c Hành độ ng Hệ  thố ng
+1 Sales m ở  màn hình "Hôm nay" Hi ể n thị l ượ t ghé theo tuyế n, gi ờ  hẹn,
+việ c sắ p đế n hạn, link hồ  s ơ  (FR-18.01)
+2 M ở  hồ  s ơ  c ử a hàng chu ẩ n bị Đ ơ n gầ n nhấ t, việ c d ở , l ờ i hẹn, g ợ i ý đ ơ n
+nháp, g ợ i ý nên h ỏ i gì
+3 Check-in tại c ử a hàng Ki ể m tra GPS trong bán kính; ghi gi ờ  vào;
+ngoài vị trí → c ả nh báo + lý do bắ t buộ c
+4 Kh ả o sát tồ n, ghi nhu cầ u, chụp ả nh
+tr ư ng bày (BF-18)
+L ư u vào hồ  s ơ ; c ả nh báo sắ p hế t hàng
+5 Lên đ ơ n (BF-11/BF-12) Ki ể m tra tồ n kh ả  dụng, giá, khuyế n mãi
+theo nhóm c ử a hàng, hạn m ứ c (nế u bậ t)
+6 G ử i đ ơ n Đ ơ n đế n NPP, trạng thái "Ch ờ  NPP xác
+nhậ n"; hạn xác nhậ n bắ t đầ u đế m
+7 NPP xác nhậ n số  đáp ứ ng và ngày giao Thông báo sales; c ử a hàng biế t ngày nhậ n
+8 NPP xuấ t kho – giao Cậ p nhậ t trạng thái; giao hàng ghi th ự c
+giao/thu tiề n/đ ổ i tr ả
+9 CRM ghi lịch s ử  mua t ự  độ ng Hồ  s ơ  c ử a hàng cậ p nhậ t; có thiế u/khiế u
+nại → tạo việ c/ticket
+10 Check-out Ghi kế t qu ả  l ượ t ghé (có/không đ ơ n, lý do
+không mua)
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 27 of 50
+=== PAGE 28 ===
+5.13. BF-12 – Lập đ ơ n khi mất mạng (offline-first)
+1. App phát hiệ n mấ t kế t nố i → vẫ n cho tạo đ ơ n; l ư u đ ơ n nháp cục bộ  v ớ i mã định danh
+duy nhấ t (client-side UUID/idempotency key) và trạng thái "Ch ờ  g ử i".
+2. Giao diệ n hi ể n thị rõ số  đ ơ n ch ờ  g ử i; sales không cầ n nhậ p lại hay bấ m nhiề u lầ n.
+3. Khi có mạng, app t ự  đồ ng bộ  theo th ứ  t ự  th ờ i gian: g ử i kèm idempotency key.
+4. Máy ch ủ  ki ể m tra lại giá/tồ n/khuyế n mãi; nế u giá thay đ ổ i → chấ p nhậ n theo chính sách
+(giá cũ trong th ờ i gian cho phép hoặ c yêu cầ u xác nhậ n lại); nế u key đã tồ n tại → tr ả  lại
+đ ơ n cũ, không tạo đ ơ n trùng.
+5. App cậ p nhậ t trạng thái "Đã g ử i" hoặ c "Cầ n x ử  lý" (lỗ i, hế t hàng) và thông báo sales.
+5.14. BF-13 – Đánh giá hiệu qu ả  h ợ p tác NPP–NSX (5 b ướ c tích h ợ p)
+5.15. BF-14 – Giao thiếu: c ử a hàng nhận thiếu hàng
+Ví dụ: c ử a hàng đặ t 10 thùng, NPP xác nhậ n 10, th ự c giao 8.
+B ướ c NPP NSX DMS CRM
+1 Cậ p nhậ t tình
+hình kinh doanh
+– Ghi tồ n, đ ơ n,
+sell-out, tố c độ
+tiêu thụ theo
+SKU
+L ư u ph ả n hồ i c ử a
+hàng, nhu cầ u, vấ n
+đề  phát sinh
+2 G ử i kế  hoạch
+nhậ p, đề  xuấ t hỗ
+tr ợ , ph ả n hồ i
+chấ t l ượ ng,
+ticket, đố i soát
+– T ổ ng h ợ p báo
+cáo hoạt độ ng
+NPP
+Ticket/đề
+xuấ t/ph ả n hồ i
+3 – Tiế p nhậ n và phân
+công: kinh doanh,
+trade marketing, kế
+toán, CSKH/chấ t
+l ượ ng
+Chuy ể n đúng bộ
+phậ n theo loại
+Gán ng ườ i x ử  lý,
+SLA
+4 Theo dõi trạng
+thái trên cùng hệ
+thố ng
+Duyệ t/t ừ  chố i/yêu
+cầ u b ổ  sung
+Thông báo khi có
+ph ả n hồ i hoặ c
+quá hạn
+Lịch s ử  x ử  lý
+5 G ử i đề  xuấ t kế
+hoạch kỳ t ớ i
+Đánh giá sell-in/sell-
+out/tồ n, chính sách,
+ch ươ ng trình, ch ỉ
+tiêu
+Báo cáo hiệ u qu ả
+h ợ p tác
+Đi ể m hài lòng, tầ n
+suấ t t ươ ng tác
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 28 of 50
+=== PAGE 29 ===
+1. Hệ  thố ng l ư u riêng số  đặ t = 10, số  xác nhậ n = 10, số  th ự c giao = 8 trên dòng đ ơ n.
+2. Khi nhân viên giao/c ử a hàng xác nhậ n 8, hệ  thố ng phát hiệ n chênh lệ ch và tạo việ c
+theo dõi gắ n đúng đ ơ n/dòng (CRM) cho ng ườ i phụ trách NPP.
+3. NPP chọn ph ươ ng án: giao bù (kèm ngày), hoàn tiề n/tr ừ  n ợ , hoặ c h ủ y phầ n thiế u; ghi lý
+do.
+4. Sales nhậ n thông báo, xem mặ t hàng thiế u và b ướ c đang x ử  lý, báo lại c ử a hàng.
+5. Khi giao bù hoàn tấ t, việ c đóng; tồ n và công n ợ  cậ p nhậ t; lịch s ử  c ử a hàng ghi nhậ n s ự
+cố .
+5.16. BF-15 – L ờ i hẹn gọi lại khách
+1. Sales l ư u l ờ i hẹn trong hồ  s ơ  c ử a hàng: nộ i dung, ng ườ i phụ trách, hạn (ví dụ tr ướ c
+10h30), đố i t ượ ng liên quan (đ ơ n).
+2. Hệ  thố ng nhắ c tr ướ c hạn (ví dụ 30 phút) và khi quá hạn; nhắ c c ả  khi NPP đang ki ể m
+tra.
+3. Sales báo kế t qu ả , đóng l ờ i hẹn; nế u ch ư a có kế t qu ả , gia hạn kèm lý do. Quá hạn nhiề u
+lầ n → báo giám sát.
+5.17. BF-16 – Bàn giao khi sales ngh ỉ /đ ổ i tuyến
+1. Qu ả n lý chọn nhân viên ngh ỉ  và phạm vi (l ượ t ghé hôm nay, việ c đang d ở , c ả  tuyế n),
+chọn ng ườ i đi thay.
+2. Hệ  thố ng chuy ể n l ượ t ghé, l ờ i hẹn, việ c d ở  sang ng ườ i nhậ n; ng ườ i cũ vẫ n xem lịch s ử .
+3. Ng ườ i nhậ n m ở  hồ  s ơ : đ ơ n liên quan, l ờ i hẹn, đầ u mố i NPP, ghi chú nên tiế p tục ở  b ướ c
+nào; thông báo t ớ i c ử a hàng bị ả nh h ưở ng (tùy chọn).
+4. Khi sales tr ở  lại hoặ c chấ m d ứ t bàn giao, quyề n đ ượ c hoàn lại; nhậ t ký ghi đầ y đ ủ .
+5.18. BF-17 – Báo cáo cuối ngày t ự  động
+1. Cuố i ca (hoặ c gi ờ  cấ u hình), hệ  thố ng t ổ ng h ợ p t ừ  d ữ  liệ u sales đã ghi: l ượ t ghé, check-
+in/out, đ ơ n, doanh số , ph ả n ánh, l ờ i hẹn.
+2. Sales m ở  b ả n nháp, ki ể m tra và b ổ  sung việ c phát sinh còn thiế u rồ i nộ p.
+3. Giám sát xem báo cáo, m ở  lại d ữ  liệ u gố c (đ ơ n, ả nh, ghi chú) khi cầ n; nế u doanh nghiệ p
+dùng báo cáo này thay bi ể u mẫ u trùng thì sales không ph ả i chép số  liệ u.
+5.19. BF-18 – Ki ể m tra tr ư ng bày bằng AI
+Tác nhân: A11, AI Service, A10/A05. Tiề n điề u kiệ n: tiêu chí tr ư ng bày đã đ ượ c duyệ t và áp
+dụng cho c ử a hàng.
+1. Sales chụp ả nh kệ  theo h ướ ng dẫ n; app ki ể m tra chấ t l ượ ng ả nh (sáng, m ờ , góc).
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 29 of 50
+=== PAGE 30 ===
+2. Ả nh đ ượ c g ử i t ớ i AI Service: nhậ n diệ n SKU, đế m số  mặ t quay ra ngoài, tính đi ể m theo
+tiêu chí.
+3. Kế t qu ả  hi ể n thị ngay: SKU đạt/thiế u, đi ể m đề  xuấ t. Ví dụ "ch ư a thấ y s ả n ph ẩ m B" →
+sales b ổ  sung lên kệ  và chụp lại.
+4. Nế u độ  tin cậ y thấ p hoặ c ả nh khó chấ m → chuy ể n ng ườ i phụ trách xem; họ xác
+nhậ n/ch ỉ nh đi ể m, hệ  thố ng l ư u ả nh gố c và ng ườ i duyệ t.
+5. Nế u ư u đãi phụ thuộ c l ượ ng mua: đố i chiế u số  đã giao và hàng tr ả  (FR-19.06); đạt c ả  hai
+m ớ i duyệ t th ưở ng tr ư ng bày.
+6. Kế t qu ả  gắ n vào hồ  s ơ  c ử a hàng và báo cáo ch ươ ng trình.
+5.20. BF-19 – Duy trì quan hệ & c ả nh báo nguy c ơ  ng ừ ng mua
+1. Job hằ ng ngày tính chu kỳ mua t ừ ng c ử a hàng t ừ  lịch s ử  đ ơ n (DMS).
+2. Nế u v ượ t chu kỳ th ườ ng lệ  hoặ c tầ n suấ t/doanh số  gi ả m so v ớ i ng ưỡ ng → c ả nh báo, hạ
+đi ể m gắ n kế t, tạo việ c chăm sóc cho sales phụ trách.
+3. Hệ  thố ng g ợ i ý khuyế n mãi/s ả n ph ẩ m phù h ợ p (t ừ  nhóm c ử a hàng, hàng bán chạy cùng
+nhóm).
+4. Sales liên hệ , ghi kế t qu ả ; nế u c ử a hàng đặ t lại thì đóng c ả nh báo; nế u không → ghi
+nhậ n lý do (đố i th ủ , giá, dịch vụ).
+5.21. BF-20 – Soạn, duyệt và áp dụng chính sách/khuyến mãi
+1. Trade marketing soạn chính sách/ch ươ ng trình ở  trạng thái Nháp (đố i t ượ ng, SKU, điề u
+kiệ n, th ờ i gian, ngân sách).
+2. Trình duyệ t theo workflow; sau duyệ t chuy ể n Đã phát hành (có ngày hiệ u l ự c).
+3. NPP nhậ n thông báo, vào Trung tâm chính sách xác nhậ n đã tiế p nhậ n.
+4. Khi lậ p đ ơ n, độ ng c ơ  chính sách t ự  áp ư u đãi phù h ợ p; xung độ t gi ả i quyế t theo độ  ư u
+tiên; ngân sách chạm ng ưỡ ng → c ả nh báo, hế t ngân sách → ng ừ ng áp dụng.
+5. Hế t hạn ch ươ ng trình → t ự  đóng; đánh giá hiệ u qu ả  (tr ướ c/sau, chi phí th ự c tế ) (FR-
+03.07).
+5.22. BF-21 – Gom đ ơ n đa kênh (website, hotline, sàn)
+1. Đ ơ n đế n t ừ  website, hotline, sàn TMĐT đ ượ c tạo hoặ c import vào SYNERA v ớ i nguồ n
+đ ơ n.
+2. Hệ  thố ng xác định NPP theo địa bàn/c ử a hàng; không xác định đ ượ c → hàng đ ợ i phân
+loại cho NSX.
+3. Đ ơ n chuy ể n đế n NPP th ự c hiệ n; NPP xác nhậ n và x ử  lý nh ư  BF-10 t ừ  b ướ c 7.
+4. Doanh số  đ ượ c ghi theo nguồ n đ ể  NSX đánh giá kênh.
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 30 of 50
+=== PAGE 31 ===
+5.23. Luồng đồng bộ DMS ↔  CRM bằng s ự  kiện
+DMS và CRM dùng chung hồ  s ơ  c ử a hàng và giao tiế p qua s ự  kiệ n nghiệ p vụ đ ể  "kích hoạt
+công việ c cho nhau":
+6. Mô hình trạng thái (State Machine)
+6.1. Đ ơ n sell-in (NPP → NSX)
+S ự  kiệ n phát sinh T ừ Hành độ ng t ự  độ ng Đế n
+OrderCreated  /
+OrderStatusChanged
+DMS Ghi lịch s ử  mua, cậ p nhậ t
+trạng thái quan hệ , thông
+báo sales
+CRM
+DeliveryShort DMS Tạo việ c theo dõi gắ n đ ơ n,
+giao ng ườ i phụ trách
+CRM
+ReturnPosted DMS Ghi nhậ n vào hồ  s ơ ; nế u do
+chấ t l ượ ng → g ợ i ý ticket
+CRM
+LeadConverted CRM Đ ư a c ử a hàng vào mạng
+l ướ i: vùng, tuyế n, nhóm giá
+DMS
+AppointmentDue CRM Nhắ c nhân viên; liên kế t
+đ ơ n nế u có
+CRM/App
+StoreAtRisk CRM (dùng d ữ
+liệ u đ ơ n DMS)
+Tạo việ c chăm sóc, g ợ i ý
+khuyế n mãi
+CRM
+TicketResolved CRM Sinh phiế u hoàn/đ ổ i hoặ c
+điề u ch ỉ nh công n ợ
+DMS
+PromotionPublished DMS Thông báo NPP; phân nhóm
+c ử a hàng mục tiêu
+CRM
+StockLow DMS G ợ i ý nhậ p lại cho c ử a
+hàng/NPP
+CRM/DMS
+Trạng thái Chuy ể n t ừ Điề u kiệ n/Tác
+nhân
+Chuy ể n đế n
+DRAFT (Nháp) – NPP đang soạn SUBMITTED, CANCELLED
+SUBMITTED (Đã g ử i) DRAFT G ử i, qua ki ể m
+tra
+PENDING_APPROVAL,
+APPROVED
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 31 of 50
+=== PAGE 32 ===
+6.2. Đ ơ n bán cho c ử a hàng (sell-out)
+DRAFT (cục bộ /offline) → PENDING_SYNC → SUBMITTED → NPP_CONFIRMED (hoặ c
+PARTIALLY_CONFIRMED) → PICKING → DELIVERING → DELIVERED /
+DELIVERED_SHORT → COMPLETED. Nhánh: REJECTED, CANCELLED, RETURNED (mộ t
+phầ n/toàn phầ n). Ghi chú: PENDING_SYNC ch ỉ  tồ n tại trên thiế t bị cho t ớ i khi g ử i thành
+công.
+6.3. Ticket
+NEW → ACKNOWLEDGED → IN_PROGRESS ⇄  WAITING_INFO → RESOLVED → CLOSED.
+Nhánh: REOPENED (t ừ  RESOLVED/CLOSED khi ch ư a hài lòng), REJECTED (có lý do),
+ESCALATED (quá SLA – là c ờ , không thay thế  trạng thái chính).
+Trạng thái Chuy ể n t ừ Điề u kiệ n/Tác
+nhân
+Chuy ể n đế n
+ON_HOLD_CREDIT (Gi ữ  –
+v ượ t hạn m ứ c)
+SUBMITTED Vi phạm FR-
+06.03
+PENDING_APPROVAL,
+REJECTED, CANCELLED
+PENDING_APPROVAL (Ch ờ
+duyệ t)
+SUBMITTED,
+ON_HOLD_CREDIT
+Ch ờ  NSX APPROVED, REJECTED,
+NEED_INFO
+NEED_INFO (Cầ n b ổ  sung) PENDING_APPROVAL NSX yêu cầ u PENDING_APPROVAL,
+CANCELLED
+APPROVED (Đã duyệ t) PENDING_APPROVAL,
+SUBMITTED
+Ng ườ i
+duyệ t/auto
+CONFIRMED_QTY,
+CANCELLED
+CONFIRMED_QTY (Đã xác
+nhậ n số  l ượ ng)
+APPROVED NSX xác nhậ n
+số  đáp ứ ng,
+ngày giao
+SHIPPED, PARTIAL_SHIPPED
+PARTIAL_SHIPPED / SHIPPED
+(Đã xuấ t kho)
+CONFIRMED_QTY Kho xuấ t IN_DELIVERY
+IN_DELIVERY (Đang giao) SHIPPED Vậ n chuy ể n DELIVERED
+DELIVERED (Đã giao) IN_DELIVERY Ch ờ  NPP xác
+nhậ n
+RECEIVED,
+RECEIVED_DISCREPANCY,
+AUTO_RECEIVED
+RECEIVED /
+RECEIVED_DISCREPANCY /
+AUTO_RECEIVED
+DELIVERED NPP xác nhậ n /
+có chênh lệ ch /
+quá hạn t ự  xác
+nhậ n
+RECONCILED
+RECONCILED (Đã đố i soát) các trạng thái nhậ n Job đố i
+soát/ngoại lệ
+đã x ử  lý
+CLOSED (chố t kỳ)
+REJECTED / CANCELLED – Kế t thúc –
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 32 of 50
+=== PAGE 33 ===
+6.4. Lead c ử a hàng
+NOT_CONTACTED → CONTACTED → CONSULTING → WON (thành c ử a hàng) / LOST
+(kèm lý do). Cho phép quay lại CONSULTING khi LOST đ ượ c m ở  lại sau th ờ i gian ch ờ .
+6.5. Kỳ báo cáo (chốt)
+OPEN → PRE_CLOSE (đã chạy đố i soát, còn ngoại lệ ) → CLOSED (đã chố t) → LOCKED
+(khóa, ch ỉ  điề u ch ỉ nh bằ ng phiế u) → PUBLISHED (đã phát hành báo cáo l ớ p 2). Chuy ể n
+ng ượ c PRE_CLOSE → OPEN cho phép khi ch ư a LOCKED và có lý do.
+6.6. Các đối t ượ ng khác
+7. Thiết kế d ữ  liệu
+7.1. Nguyên tắc
+CSDL quan hệ  (MySQL 8, InnoDB, utf8mb4); khóa chính BIGINT  t ự  tăng hoặ c UUID
+cho d ữ  liệ u sinh offline (đ ơ n nháp t ừ  app).
+Đố i t ượ ng Trạng thái
+Chính sách/khuyế n mãi DRAFT → PENDING_APPROVAL → PUBLISHED →
+ACTIVE (đế n ngày hiệ u l ự c) →
+EXPIRED/SUSPENDED
+Đề  xuấ t trade marketing DRAFT → SUBMITTED → UNDER_REVIEW →
+APPROVED/PARTIALLY_APPROVED/REJECTED →
+IN_EXECUTION → COMPLETED
+Phiế u điề u ch ỉ nh sau chố t DRAFT → PENDING_APPROVAL → APPROVED →
+POSTED (ghi vào kỳ hiệ n tại) / REJECTED
+Kế  hoạch nhậ p hàng DRAFT → SUBMITTED →
+ACCEPTED/ADJUSTED/REJECTED
+L ờ i hẹn/công việ c OPEN → DUE_SOON → OVERDUE → DONE /
+CANCELLED
+L ượ t ghé PLANNED → CHECKED_IN → CHECKED_OUT →
+(SKIPPED/RESCHEDULED)
+Kế t qu ả  chấ m tr ư ng bày SUBMITTED → AI_SCORED → (NEEDS_REVIEW) →
+CONFIRMED
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 33 of 50
+=== PAGE 34 ===
+Mọi b ả ng nghiệ p vụ có created_at, created_by, updated_at, updated_by ,
+version  (optimistic lock) và xóa mề m deleted_at  khi cầ n.
+Tách s ự  kiệ n/ch ứ ng t ừ (bấ t biế n sau khi chố t) kh ỏ i danh mục (có phiên b ả n).
+Số  l ượ ng l ư u theo đ ơ n vị c ơ  s ở ; tiề n l ư u DECIMAL(18,2) ; mọi b ả ng có org_id / npp_id
+đ ể  áp phạm vi d ữ  liệ u (row-level).
+B ả ng s ự  kiệ n đố i soát/báo cáo ( fact_* , snapshot_* ) tách kh ỏ i b ả ng giao dịch đ ể
+chố ng s ử a tr ự c tiế p.
+7.2. S ơ  đồ quan hệ t ổ ng quát
+ORGANIZATION ─< USER >─ ROLE ─< PERMISSION
+ORGANIZATION(NSX) ─< ORGANIZATION(NPP) ─< STORE ─< ROUTE_STOP >─ ROUTE >─ 
+SALES_REP
+PRODUCT ─< SKU ─< SKU_UOM         PRICE_LIST ─< PRICE_ITEM >─ SKU
+PROMOTION ─< PROMOTION_RULE
+NPP ─< SELL_IN_ORDER ─< SELL_IN_ORDER_LINE >─ SKU
+NPP ─< INVOICE / PAYMENT >─ CREDIT_LEDGER
+STORE ─< SALES_ORDER ─< SALES_ORDER_LINE >─ SKU
+WAREHOUSE ─< STOCK_BALANCE (sku, lot) ─< STOCK_MOVEMENT
+STORE ─< INTERACTION / APPOINTMENT / TICKET / DISPLAY_AUDIT
+PERIOD ─< PERIOD_SNAPSHOT ─< ADJUSTMENT
+7.3. Nhóm b ả ng chính
+A. T ổ  ch ứ c & quyề n
+B ả ng Tr ườ ng chính Ghi chú
+organization id, type (NSX/REGION/NPP/BRANCH),
+code, name, parent_id, tax_code, status
+Cây t ổ  ch ứ c
+app_user id, org_id, username, email, phone,
+password_hash, status, last_login_at,
+mfa_enabled
+role / permission /
+role_permission
+role_id, code, name; permission_id,
+resource, action
+RBAC
+user_role_scope user_id, role_id, scope_type
+(ORG/REGION/ROUTE/STORE), scope_id
+Phạm vi d ữ
+liệ u
+audit_log id, user_id, entity, entity_id, action,
+before_json, after_json, ip, created_at
+Bấ t biế n
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 34 of 50
+=== PAGE 35 ===
+B. Danh mục
+C. Chính sách & giá
+B ả ng Tr ườ ng chính Ghi chú
+system_param key, value, scope, effective_from Ng ưỡ ng, lịch
+chố t
+B ả ng Tr ườ ng chính
+product_category, brand id, name, parent_id
+sku id, code, barcode, name, category_id, brand_id,
+base_uom, status, shelf_life_days
+sku_uom sku_id, uom_code (THUNG/LOC/CHAI),
+factor_to_base, is_sell_uom
+region, province, ward id, code, name, parent_id
+store id, code, name, type, size_class, address, lat, lng,
+phone, npp_id, route_id, price_group_id, status,
+owner_user_id, score, last_order_at
+store_group, store_group_member group_id, store_id
+reason_code id, type
+(REJECT/RETURN/DAMAGE/COMPLAINT/ADJUS
+T), name
+B ả ng Tr ườ ng chính
+price_list id, scope (NSX_TO_NPP/NPP_TO_STORE),
+group_id, name, version, status, effective_from,
+effective_to
+price_item price_list_id, sku_id, uom, price
+promotion id, code, name, type, scope_json, budget,
+used_budget, status, effective_from, effective_to,
+priority
+promotion_rule promotion_id, condition_json, benefit_json (gi ả m
+giá, tặ ng hàng, voucher)
+policy_document id, title, content, attachment, audience, status,
+published_at
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 35 of 50
+=== PAGE 36 ===
+D. Đ ơ n hàng sell-in và công n ợ
+E. Kho
+B ả ng Tr ườ ng chính
+policy_ack policy_id, npp_id, acknowledged_by,
+acknowledged_at
+B ả ng Tr ườ ng chính
+sell_in_order id, code, npp_id, source
+(PORTAL/WEB/HOTLINE/MARKET), status,
+subtotal, discount, total, credit_check_result,
+hold_reason, submitted_at, approved_by,
+approved_at, expected_delivery, idempotency_key
+sell_in_order_line order_id, sku_id, uom, qty_ordered, qty_confirmed,
+qty_shipped, qty_received, qty_damaged, price,
+discount, promotion_id, lot_no
+order_status_history order_id, from_status, to_status, actor_id, reason,
+at
+approval_request id, entity, entity_id, type, requested_by,
+assignee_id, due_at, decision, decided_at, note
+credit_limit npp_id, limit_amount, overdue_days_threshold,
+warn_pct, valid_from, valid_to
+invoice id, npp_id, order_id, amount, issue_date, due_date,
+status
+payment id, npp_id, amount, method, paid_at, evidence,
+status (REPORTED/CONFIRMED)
+credit_ledger id, npp_id, doc_type, doc_id, debit, credit,
+balance_after, posted_at
+reconciliation_item id, order_id, period_date, ordered, shipped,
+received, diff, status, assignee_id, resolution
+B ả ng Tr ườ ng chính
+warehouse id, org_id, code, name, address
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 36 of 50
+=== PAGE 37 ===
+F. Bán cho c ử a hàng (sell-out)
+G. CRM và tuyế n
+B ả ng Tr ườ ng chính
+stock_balance warehouse_id, sku_id, lot_no, expiry_date,
+qty_on_hand, qty_reserved
+stock_movement id, warehouse_id, sku_id, lot_no, type
+(IN/OUT/TRANSFER/ADJUST/RETURN), qty,
+ref_doc_type, ref_doc_id, at
+stocktake, stocktake_line session, system_qty, counted_qty, diff,
+approved_by
+delivery_trip, delivery_stop trip_id, vehicle, driver_id, order_id, status,
+delivered_at, collected_amount
+return_note, return_line id, ref_order_id, reason_id, sku_id, lot_no, qty,
+photo, status
+B ả ng Tr ườ ng chính
+sales_order id (UUID), code, npp_id, store_id, sales_rep_id,
+source, status, total, client_created_at,
+idempotency_key, synced_at
+sales_order_line order_id, sku_id, uom, qty_ordered, qty_confirmed,
+qty_delivered, price, discount, promotion_id
+sell_out_daily date, npp_id, sku_id, region_id, qty, amount, source
+(ORDER/IMPORT)
+demand_plan, demand_plan_line npp_id, period, status; sku_id, qty, expected_date,
+nsx_feedback
+B ả ng Tr ườ ng chính
+lead id, name, address, lat, lng, type, size_class, status,
+assigned_to, lost_reason, converted_store_id
+interaction id, store_id, user_id, type
+(CALL/VISIT/MESSAGE/QUOTE), content,
+outcome, at, attachment
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 37 of 50
+=== PAGE 38 ===
+H. Ticket, đề  xuấ t, ph ả n hồ i
+I. Báo cáo/chố t kỳ & AI
+B ả ng Tr ườ ng chính
+appointment id, store_id, owner_id, due_at, ref_type, ref_id,
+status, remind_at
+quotation, quotation_line id, store_id, status, converted_order_id
+route, route_stop route_id, owner_id, frequency_rule; store_id, seq
+visit id, route_stop_id, planned_date, check_in_at,
+check_in_lat/lng, check_out_at, result,
+reason_no_order
+handover id, from_user, to_user, scope, from_date, to_date,
+status
+store_stock_survey visit_id, store_id, sku_id, qty, at
+daily_report id, user_id, date, summary_json, status,
+submitted_at
+campaign, campaign_target id, name, store_group_id, content, sent_at,
+responded
+B ả ng Tr ườ ng chính
+ticket id, code, type, source_org_id, store_id, order_id,
+sku_id, lot_no, qty, description, status, assignee_id,
+sla_due_at, satisfaction_score
+ticket_event ticket_id, actor, event_type, note, at
+trade_request id, npp_id, type, region_id, sku_id, qty, objective,
+budget_requested, status, approved_budget
+budget_allocation id, scope, period, allocated, committed, spent
+market_feedback id, sku_id, topic, region_id, severity, content,
+source_user, status
+target, target_progress npp_id, period, sku_id, target_value, actual_value,
+bonus_rule
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 38 of 50
+=== PAGE 39 ===
+7.4. Ràng buộc và quy tắc d ữ  liệu quan trọng
+sell_in_order_line : qty_confirmed ≤ qty_ordered  (cho phép v ượ t nế u cấ u hình);
+qty_received ≤ qty_shipped ; quy đ ổ i đ ơ n vị luôn qua sku_uom .
+Mỗ i idempotency_key  là duy nhấ t trong (sales_rep_id | npp_id)  đ ể  chặ n đ ơ n
+trùng khi g ử i lại.
+period_snapshot  và credit_ledger  ch ỉ  thêm (append-only); s ử a bằ ng b ả n ghi điề u
+ch ỉ nh.
+Mộ t c ử a hàng thuộ c đúng mộ t NPP và mộ t tuyế n chính tại mộ t th ờ i đi ể m; lịch s ử  đ ổ i
+NPP/tuyế n l ư u b ả ng lịch s ử .
+Ch ỉ  promotion  ở  trạng thái PUBLISHED/ACTIVE m ớ i đ ượ c độ ng c ơ  chính sách dùng;
+used_budget  cậ p nhậ t trong cùng giao dịch v ớ i đ ơ n.
+Xóa c ứ ng bị cấ m v ớ i ch ứ ng t ừ ; h ủ y bằ ng trạng thái.
+B ả ng Tr ườ ng chính
+report_period id, type (DAY/WEEK/MONTH/QUARTER), start,
+end, status, closed_by, locked_at
+period_snapshot period_id, npp_id, sku_id, region_id, sell_in_qty,
+sell_in_amount, return_qty, ending_stock, dso, ...
+(bấ t biế n)
+adjustment id, period_id, ref_doc, reason_id, delta_json, status,
+approved_by, posted_period_id
+display_criteria id, name, rules_json, version, status
+display_audit id, store_id, visit_id, criteria_id, image_urls,
+ai_result_json, ai_score, confidence, review_status,
+reviewed_by, final_score
+notification id, user_id, channel, type, payload, read_at, sent_at
+attachment id, owner_type, owner_id, file_path, mime, size,
+uploaded_by
+domain_event_outbox id, event_type, aggregate_id, payload_json, status,
+created_at
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 39 of 50
+=== PAGE 40 ===
+8. Thiết kế kiến trúc hệ thống
+8.1. Phong cách kiến trúc
+Modular monolith nhiề u tầ ng (giai đoạn 1) v ớ i ranh gi ớ i module rõ theo phân hệ  M01–M20,
+sẵ n sàng tách dịch vụ (đặ c biệ t AI và thông báo) khi cầ n m ở  rộ ng. Lý do: độ i nh ỏ , giao dịch
+DMS cầ n nhấ t quán mạnh (đ ơ n – tồ n – công n ợ ), tránh ph ứ c tạp phân tán s ớ m.
+┌──────────────────────── Client ───────────────────────────┐
+│ Web điều hành NSX │ Portal NPP │ Web DMS+CRM NPP │ App Sales (PWA) │
+└─────────────── ┬ ───────────────────────────────────────────┘
+                │ HTTPS / REST JSON (+ server-rendered pages)
+┌───────────────▼───────────────────────────────────────────┐
+│ API Gateway / Spring Security (JWT/Session, RBAC, scope)   │
+├ ──────────────────────────────────────────────────────────── ┤
+│ Web layer: Controller (Spring MVC) · Validation · DTO      │
+├ ──────────────────────────────────────────────────────────── ┤
+│ Service layer – module: Org · Catalog · Policy · Order ·   │
+│ Credit · Inventory · Delivery · Reconcile · Demand ·       │
+│ Ticket · TradeMkt · CRM · Route · SalesApp · Display · Report│
+│ Workflow/SLA engine · Notification · Domain events (outbox) │
+├ ──────────────────────────────────────────────────────────── ┤
+│ Persistence: JPA/MyBatis · MySQL │ Cache (Redis) │ File store│
+├ ──────────────────────────────────────────────────────────── ┤
+│ Background: Scheduler (đối soát đêm, chốt kỳ, nhắc việc)    │
+│ Integration: Excel I/O · ERP · SMS/Zalo OA/Email · Maps · AI│
+└────────────────────────────────────────────────────────────┘
+8.2. Công nghệ đề xuất
+L ớ p L ự a chọn Ghi chú
+Backend Java 25 (LTS) + Spring MVC/Spring Boot,
+Spring Security, Spring Data JPA
+(hoặ c MyBatis cho báo cáo)
+Phù h ợ p stack Spring
+MVC/Java/MySQL đang dùng
+Giao diệ n
+web
+JSP/Thymeleaf cho trang qu ả n trị +
+JavaScript; hoặ c SPA (React/Vue)
+gọi REST nế u cầ n UX phong phú
+Chọn mộ t h ướ ng, thố ng nhấ t theo
+năng l ự c độ i
+Bi ể u đồ Chart.js (dashboard), SVG cho s ơ
+đồ  tuyế n/b ả n đồ  đ ơ n gi ả n; b ả n đồ :
+Leaflet/Google Maps
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 40 of 50
+=== PAGE 41 ===
+8.3. Các thành phần cắt ngang
+Workflow/SLA engine: b ả ng định nghĩa b ướ c (loại đố i t ượ ng, điề u kiệ n, ng ườ i duyệ t
+theo vai trò/phạm vi, SLA, leo thang); dùng cho duyệ t đ ơ n, ticket, đề  xuấ t, phiế u điề u
+ch ỉ nh.
+Độ ng c ơ  chính sách giá/khuyế n mãi: nhậ n (NPP/c ử a hàng, SKU, số  l ượ ng, ngày) → tr ả
+danh sách giá, ư u đãi áp dụng và lý do; có cache theo phiên b ả n b ả ng giá.
+Domain events + Outbox: ghi s ự  kiệ n cùng giao dịch, worker phát đi đ ể  CRM/Thông
+báo/Báo cáo x ử  lý (đ ả m b ả o "at-least-once", x ử  lý idempotent).
+Scheduler: job đố i soát đêm, chố t kỳ, nhắ c hạn, tính đi ể m c ử a hàng/nguy c ơ  ng ừ ng
+mua, t ự  xác nhậ n quá hạn, t ổ ng h ợ p báo cáo cuố i ngày. Khóa phân tán đ ể  ch ỉ  chạy mộ t
+lầ n.
+Đồ ng bộ  offline: API nhậ n lô đ ơ n nháp v ớ i idempotency_key ; tr ả  kế t qu ả  t ừ ng đ ơ n
+(OK/Trùng/Cầ n x ử  lý).
+Báo cáo: l ớ p 1 đọc tr ự c tiế p b ả ng giao dịch/view t ổ ng h ợ p (cache ngắ n); l ớ p 2 đọc
+period_snapshot  đã chố t.
+Nhậ t ký ki ể m toán: interceptor ghi t ự  độ ng cho thao tác nhạy c ả m.
+L ớ p L ự a chọn Ghi chú
+App Sales PWA (Service Worker + IndexedDB)
+đ ể  offline-first, cài nh ư  app
+Giai đoạn sau có th ể  bọc native
+CSDL MySQL 8; ch ỉ  mục theo npp_id ,
+status , created_at ; phân vùng
+b ả ng s ự  kiệ n l ớ n
+Cache/Queue Redis (cache tham số , phiên, rate-
+limit); hàng đ ợ i tin nhắ n
+(RabbitMQ) hoặ c outbox +
+scheduler
+L ư u tệ p Object storage (S3-compatible)
+cho ả nh tr ư ng bày, ch ứ ng t ừ
+AI Dịch vụ nhậ n diệ n ả nh (mô hình
+detect SKU/shelf) tách riêng, gọi
+qua REST bấ t đồ ng bộ
+Độ  tin cậ y thấ p → duyệ t tay
+Tri ể n khai Docker, Nginx reverse proxy, CI/CD,
+môi tr ườ ng dev/stage/prod, backup
+hằ ng ngày
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 41 of 50
+=== PAGE 42 ===
+8.4. Tích h ợ p ngoài
+9. Thiết kế API (m ứ c t ổ ng quan)
+Quy ướ c: REST/JSON, tiề n tố  /api/v1 , xác th ự c Bearer token; lỗ i chu ẩ n {code,
+message, details} ; phân trang page,size,sort ; mọi POST tạo ch ứ ng t ừ  nhậ n header
+Idempotency-Key .
+Tích h ợ p Ph ươ ng th ứ c Mục đích
+ERP/kế  toán NSX,
+phầ n mề m NPP
+Import/Export Excel (giai đoạn 1),
+REST/SFTP (giai đoạn 2)
+Hóa đ ơ n, thanh toán, tồ n, sell-
+out khi NPP dùng hệ  thố ng
+riêng
+SMS/Zalo OA/Email API nhà cung cấ p Thông báo, OTP
+B ả n đồ  & GPS Maps API, trình duyệ t/thiế t bị B ả n đồ  c ử a hàng, check-in
+Vậ n chuy ể n Webhook/REST (đi ể m tích h ợ p) Cậ p nhậ t trạng thái giao
+AI nhậ n diệ n ả nh REST bấ t đồ ng bộ  + callback Chấ m tr ư ng bày
+Kênh đ ơ n b ổ  sung API/import (website, hotline, sàn) Gom đ ơ n về  NPP
+Nhóm Endpoint tiêu bi ể u Ph ươ ng th ứ c Ch ứ c
+năng
+Xác th ự c /auth/login , /auth/refresh ,
+/auth/logout , /auth/otp/verify
+POST FR-01.04
+Ng ườ i dùng /users , /users/{id} , /roles ,
+/users/{id}/scopes
+GET/POST/PUT FR-
+01.02–03
+Danh mục /skus , /uoms , /stores ,
+/stores/{id}/360 , /npps , /regions
+CRUD M02
+Chính sách /price-lists , /promotions ,
+/promotions/{id}/publish ,
+/pricing/quote
+CRUD/POST M03
+Đ ơ n sell-in /sell-in-orders , /sell-in-
+orders/{id}/submit , /approve , /reject ,
+/confirm-qty , /ship , /receive ,
+/reorder
+GET/POST M05
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 42 of 50
+=== PAGE 43 ===
+Nhóm Endpoint tiêu bi ể u Ph ươ ng th ứ c Ch ứ c
+năng
+Hạn m ứ c/công
+n ợ
+/credit/check , /credit-limits ,
+/ledger , /payments ,
+/reconciliations/{id}/confirm
+GET/POST M06
+Kho /warehouses , /stock , /stock-
+movements , /stocktakes , /transfers
+CRUD M07
+Giao nhậ n/đ ổ i
+tr ả
+/delivery-trips ,
+/deliveries/{id}/confirm , /returns
+CRUD/POST M08
+Chố t kỳ /periods , /periods/{id}/close , /lock ,
+/exceptions , /adjustments ,
+/reports/layer1 , /reports/layer2
+GET/POST M09
+Kế  hoạch/sell-
+out
+/demand-plans , /sell-out/import ,
+/sell-through
+CRUD/POST M10
+Ticket /tickets , /tickets/{id}/assign ,
+/status , /comments , /satisfaction
+CRUD/POST M11
+Trade
+mkt/ph ả n hồ i
+/trade-requests , /budgets , /market-
+feedbacks
+CRUD M12–13
+Ch ỉ  tiêu /targets , /performance/me GET/POST M14
+CRM /leads , /leads/{id}/convert ,
+/interactions , /appointments ,
+/quotations , /campaigns
+CRUD/POST M15
+Tuyế n /routes , /visits , /visits/{id}/check-
+in , /check-out , /handovers , /kpi
+CRUD/POST M16
+Đ ơ n bán c ử a
+hàng
+/sales-orders , /sales-orders/sync
+(batch offline), /sales-
+orders/{id}/confirm , /deliver
+CRUD/POST M17–18
+App Sales /me/today , /stores/{id}/prepare ,
+/me/daily-report
+GET/POST M18
+Tr ư ng bày AI /display-criteria , /display-audits ,
+/display-audits/{id}/review
+CRUD/POST M19
+Báo cáo /dashboards/{role} , /reports/{code} ,
+/exports
+GET M20
+Thông báo /notifications ,
+/notifications/{id}/read
+GET/PUT M04
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 43 of 50
+=== PAGE 44 ===
+Ví dụ h ợ p đồ ng: POST /api/v1/sales-orders/sync  — Request: danh sách {clientId,
+storeId, lines[{skuId, uom, qty, clientPrice}], createdAt, idempotencyKey} .
+Response: m ả ng {clientId, status: CREATED|DUPLICATE|REJECTED|PRICE_CHANGED,
+orderId?, message?, serverPrice?} .
+10. Thiết kế giao diện
+10.1. Nguyên tắc
+Portal NPP ph ả i dễ  h ơ n Zalo: đặ t lại đ ơ n cũ mộ t chạm; thấ y n ợ , hạn m ứ c, tồ n ngay trên
+màn hình đặ t hàng.
+App Sales ư u tiên ngón tay cái: nút l ớ n, ít b ướ c, hoạt độ ng offline, hi ể n thị rõ đ ơ n vị
+(thùng/lố c) và trạng thái "Ch ờ  g ử i".
+Số  liệ u l ớ p 1 luôn gắ n nhãn "Tạm tính, cậ p nhậ t lúc hh:mm"; số  l ớ p 2 gắ n "Đã chố t" và
+hi ể n thị cạnh nhau, không trộ n.
+Responsive; hỗ  tr ợ  tiế ng Việ t/tiế ng Anh; chế  độ  sáng/tố i; truy cậ p bằ ng bàn phím cho
+màn hình văn phòng.
+10.2. Danh sách màn hình
+Ứ ng dụng Màn hình chính
+Chung Đăng nhậ p/OTP, quên mậ t kh ẩ u, hồ  s ơ  cá nhân,
+trung tâm thông báo, tìm kiế m toàn cục
+Web điề u hành NSX Dashboard điề u hành (đ ơ n, NPP n ợ , sắ p hế t hàng,
+sell-in), Danh sách đ ơ n ch ờ  duyệ t + chi tiế t duyệ t
+(hi ể n thị công n ợ /hạn m ứ c), Qu ả n lý NPP (hồ  s ơ ,
+hạn m ứ c), Chính sách & khuyế n mãi (soạn, duyệ t,
+hiệ u qu ả ), Công n ợ  & đố i soát, Ngoại lệ  đố i soát,
+Lịch chố t & khóa kỳ, Báo cáo l ớ p 2, Kế  hoạch nhậ p &
+sell-out t ổ ng h ợ p, Ticket, Trade marketing & ngân
+sách, Ph ả n hồ i thị tr ườ ng, Ch ỉ  tiêu & xế p hạng NPP,
+Qu ả n trị ng ườ i dùng/vai trò/nhậ t ký
+Portal NPP Trang ch ủ  (g ợ i ý nhậ p, đ ơ n đang x ử  lý, công n ợ ),
+Catalog & gi ỏ  hàng, Đ ơ n c ủ a tôi + dòng th ờ i gian,
+Xác nhậ n nhậ n hàng, Công n ợ  & đố i soát, Kế  hoạch
+nhậ p hàng, Báo cáo sell-out, Tạo/theo dõi ticket,
+Trung tâm chính sách, Đề  xuấ t trade marketing,
+Hiệ u qu ả  & ch ỉ  tiêu
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 44 of 50
+=== PAGE 45 ===
+10.3. Màn hình trọng yếu (mô t ả  bố cục)
+Màn hình duyệ t đ ơ n (NSX). Cộ t trái: danh sách đ ơ n ch ờ  (lọc: v ượ t hạn m ứ c, n ợ  quá hạn).
+Gi ữ a: chi tiế t đ ơ n (dòng, giá, ư u đãi áp dụng). Ph ả i: th ẻ  công n ợ  NPP (hạn m ứ c, n ợ , quá hạn,
+DSO, lịch s ử  thanh toán) và nút Duyệ t/T ừ  chố i/Yêu cầ u b ổ  sung/Duyệ t ngoại lệ ; bắ t buộ c
+nhậ p lý do khi t ừ  chố i hoặ c ngoại lệ .
+Màn hình đặ t hàng (NPP). Thanh trên: hạn m ứ c còn lại và công n ợ . Danh sách SKU có ô số
+l ượ ng, đ ơ n vị, giá, ư u đãi, tồ n NSX, nhãn "g ợ i ý nhậ p". Nút Đặ t lại đ ơ n gầ n nhấ t; gi ỏ  hàng cố
+định hi ể n thị t ổ ng và c ả nh báo v ượ t hạn m ứ c tr ướ c khi g ử i.
+Hồ  s ơ  c ử a hàng 360°. Đầ u trang: tên, trạng thái, nhóm, đi ể m tiề m năng, ng ườ i phụ trách.
+Tab: T ổ ng quan · Đ ơ n hàng (t ừ  DMS) · T ươ ng tác · Lịch hẹn/việ c · Ticket · Tr ư ng bày · Tồ n ghi
+nhậ n · B ả n đồ . Hành độ ng nhanh: Gọi, Check-in, Tạo đ ơ n, L ư u l ờ i hẹn, Tạo ticket.
+Dashboard đố i chiế u hai l ớ p. Hai th ẻ  cạnh nhau "Tạm tính hôm nay" và "Đã chố t gầ n nhấ t",
+bi ể u đồ  chênh lệ ch, danh sách ngoại lệ  có ng ườ i phụ trách.
+11. Yêu cầu phi ch ứ c năng
+Ứ ng dụng Màn hình chính
+Web DMS+CRM NPP Kho & tồ n (nhậ p/xuấ t/ki ể m kê), Đ ơ n bán cho c ử a
+hàng, Điề u phố i giao hàng, Danh sách c ử a hàng +
+b ả n đồ , Hồ  s ơ  c ử a hàng 360°, Lead, Tuyế n & phân
+công, KPI nhân viên, Bàn giao, Chiế n dịch chăm sóc,
+Ticket c ử a hàng, Báo cáo bán hàng
+App Sales (PWA) Hôm nay, Hồ  s ơ  c ử a hàng (chu ẩ n bị), Check-in, Lậ p
+đ ơ n nhanh/đ ơ n nháp (offline), Chụp kệ  & kế t qu ả
+AI, L ờ i hẹn/việ c, Đ ơ n c ủ a tôi (trạng thái, giao thiế u),
+Báo cáo cuố i ngày, KPI cá nhân
+Nhóm Yêu cầ u
+Hiệ u năng T ả i trang chính < 2 giây (p95); g ử i đ ơ n < 3 giây;
+dashboard l ớ p 1 làm m ớ i ≤ 60 giây; báo cáo l ớ p 2 m ở
+< 5 giây; hỗ  tr ợ  tố i thi ể u 200 ng ườ i dùng đồ ng th ờ i
+giai đoạn thí đi ể m, m ở  rộ ng ngang khi cầ n
+Kh ả  dụng 99,5% trong gi ờ  làm việ c; job đêm hoàn thành tr ướ c
+5h30 sáng đ ể  chố t T+1 lúc 6h; sao l ư u hằ ng ngày,
+RPO ≤ 24h giai đoạn đầ u (mục tiêu ≤ 1h), RTO ≤ 4h
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 45 of 50
+=== PAGE 46 ===
+12. B ả o mật và phân quyền d ữ  liệu (chi tiết)
+1. Xác th ự c: phiên ngắ n + refresh token; khóa tài kho ả n sau 5 lầ n sai; thiế t bị m ớ i yêu cầ u
+OTP v ớ i vai trò nhạy c ả m.
+2. Phân quyề n: ki ể m tra ở  ba l ớ p: giao diệ n ( ẩ n nút), controller ( @PreAuthorize ), và truy
+vấ n (bộ  lọc org/npp/region/route  t ự  độ ng theo scope ng ườ i dùng).
+3. Cách ly NPP: mọi truy vấ n c ủ a ng ườ i dùng NPP bắ t buộ c kèm npp_id ; NSX xem theo
+vùng/kênh đ ượ c gán.
+4. D ữ  liệ u nhạy c ả m: công n ợ , chính sách giá c ủ a NPP khác không đ ượ c lộ ; ả nh ch ỉ  truy
+cậ p qua URL ký có th ờ i hạn.
+Nhóm Yêu cầ u
+B ả o mậ t HTTPS/TLS; băm mậ t kh ẩ u bcrypt/argon2; 2FA vai
+trò nhạy c ả m; chố ng CSRF/XSS/SQLi; gi ớ i hạn tố c
+độ ; che d ữ  liệ u nhạy c ả m; phân quyề n theo phạm vi
+ở  tầ ng truy vấ n (NPP ch ỉ  thấ y d ữ  liệ u c ủ a mình)
+Toàn vẹn d ữ  liệ u Giao dịch ACID cho đ ơ n–tồ n–công n ợ ; khóa lạc
+quan chố ng ghi đè; kỳ đã chố t bấ t biế n, ch ỉ  điề u
+ch ỉ nh bằ ng phiế u; idempotency cho mọi thao tác
+g ử i lại
+Kh ả  năng dùng Tố i ư u cho điệ n thoại tầ m trung và 3G/4G yế u;
+offline cho lậ p đ ơ n; c ỡ  ch ữ /nút l ớ n; h ướ ng dẫ n tại
+chỗ
+T ươ ng thích Chrome, Edge, Safari, Firefox b ả n m ớ i; Android 9+,
+iOS 14+ (PWA)
+Kh ả  năng m ở  rộ ng Module hóa theo phân hệ ; đa NSX (multi-tenant
+theo org_id ) tùy chọn; API công khai có phiên b ả n
+Quan sát Log tậ p trung, metric, c ả nh báo job lỗ i, theo dõi SLA
+ticket/đ ơ n
+Tuân th ủ L ư u nhậ t ký thao tác ≥ 12 tháng; l ư u ch ứ ng t ừ  theo
+quy định; chính sách b ả o vệ  d ữ  liệ u cá nhân (SĐT, vị
+trí GPS ch ỉ  thu thậ p trong gi ờ  làm việ c, có thông
+báo rõ)
+Địa ph ươ ng hóa Tiế ng Việ t chu ẩ n, định dạng tiề n VND, múi gi ờ
+UTC+7
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 46 of 50
+=== PAGE 47 ===
+5. Nhậ t ký & c ả nh báo bấ t th ườ ng: nhiề u lầ n duyệ t ngoại lệ , s ử a hạn m ứ c, xuấ t d ữ  liệ u
+l ớ n, check-in ngoài vị trí liên tục.
+6. Quyề n đố i v ớ i tệ p t ả i lên: ki ể m tra loại/dung l ượ ng, quét mã độ c, đ ổ i tên l ư u tr ữ .
+13. Lộ trình tri ể n khai đề xuất
+Nguồ n tài liệ u nêu rõ th ứ  t ự  tri ể n khai và phạm vi MVP ch ư a đ ượ c chố t; d ướ i đây là đề
+xuấ t đ ể  nhóm cùng thố ng nhấ t.
+Tiêu chí thành công thí đi ể m: th ờ i gian x ử  lý đ ơ n gi ả m, số  đ ơ n sai gi ả m, số  ngày n ợ  gi ả m;
+NPP th ự c s ự  chuy ể n t ừ  Zalo sang Portal (t ỷ  lệ  đ ơ n qua Portal); sales gi ả m th ờ i gian nhậ p
+liệ u cuố i ngày.
+Giai đoạn Nộ i dung Kế t qu ả  đo đ ượ c
+0. Chu ẩ n bị (2–3
+tuầ n)
+Chố t phạm vi MVP, lịch chố t kỳ
+v ớ i NSX, chu ẩ n hóa danh mục
+SKU/đ ơ n vị/NPP/c ử a hàng, thiế t
+kế  UI
+Bộ  danh mục sạch, tài liệ u duyệ t
+1. MVP lõi sell-in (6–
+8 tuầ n)
+M01, M02, M03 (c ơ  b ả n), M05,
+M06, M07, M08, báo cáo l ớ p 1;
+Portal NPP + Web điề u hành
+Thí đi ể m 1–2 NPP; đo th ờ i gian
+x ử  lý đ ơ n, số  đ ơ n sai, số  ngày
+n ợ tr ướ c/sau
+2. Đố i soát & chố t
+kỳ (4–6 tuầ n)
+M09 hai l ớ p, ngoại lệ , phiế u điề u
+ch ỉ nh, M20 báo cáo l ớ p 2
+Mộ t con số  chính th ứ c; c ả nh báo
+chênh lệ ch
+3. CRM + Sales app
+(8–10 tuầ n)
+M15, M16, M17, M18 (offline), M04
+nhắ c việ c
+Gi ả m th ờ i gian chu ẩ n bị và nhậ p
+lại; báo cáo cuố i ngày t ự  độ ng
+4. NPP → NSX (6
+tuầ n)
+M10, M11, M12, M13, M14 Th ờ i gian x ử  lý ticket, độ  chính
+xác d ự  báo
+5. AI & m ở  rộ ng (6+
+tuầ n)
+M19 AI tr ư ng bày; tích h ợ p ERP;
+EX-02…EX-05 theo nhu cầ u
+Gi ả m th ờ i gian chấ m ả nh, số  lầ n
+ghé lại
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 47 of 50
+=== PAGE 48 ===
+14. Gi ả  định, r ủ i ro và câu h ỏ i m ở
+14.1. R ủ i ro và biện pháp
+14.2. Gi ả  định
+NSX có th ể  cung cấ p b ả ng giá, chính sách, hạn m ứ c và lịch chố t kỳ; NPP cung cấ p danh
+sách c ử a hàng/tuyế n.
+Đ ơ n vị vậ n t ả i ch ỉ  hỗ  tr ợ  th ự c hiệ n đ ơ n; app riêng cho đi ể m bán là tùy chọn.
+Sell-out ch ủ  yế u lấ y t ự  độ ng t ừ  đ ơ n bán c ử a hàng trong DMS; phầ n còn lại nhậ p Excel.
+14.3. Câu h ỏ i cần chốt cùng nhóm/khách hàng
+1. Phạm vi MVP và th ứ  t ự  tri ể n khai (mục 13 là đề  xuấ t).
+2. Sales là nhân viên NSX hỗ  tr ợ  NPP, nhân viên NPP, hay c ả  hai? Quyề n s ở  h ữ u c ử a hàng
+khi có hai bên cùng chăm sóc?
+3. Ng ưỡ ng và lịch chố t kỳ (T+1 lúc 6h, th ứ  Hai, ngày làm việ c th ứ  3–5) và th ờ i hạn t ự  xác
+nhậ n nhậ n hàng (48h) có đ ượ c NSX đồ ng ý?
+R ủ i ro M ứ c Biệ n pháp
+NPP không chuy ể n t ừ  Zalo/Excel
+sang Portal
+Cao UX đặ t lại đ ơ n mộ t chạm, xem n ợ /tồ n
+ngay; thí đi ể m 1–2 NPP, đào tạo; hỗ  tr ợ
+nhậ p Excel
+NPP đã có kế  toán/phầ n mề m riêng Cao Cho nhậ p Excel, kế t nố i dầ n, không bắ t
+đ ổ i toàn bộ  hệ  thố ng
+D ữ  liệ u danh mục/c ử a hàng b ẩ n,
+trùng
+Cao Import có ki ể m tra, chố ng trùng, giai đoạn
+0 chu ẩ n hóa
+Mạng yế u ở  đi ể m bán Trung
+bình
+Offline-first, idempotency, đồ ng bộ  nề n
+AI nhậ n diệ n sai trên ả nh khó Trung
+bình
+Ng ưỡ ng tin cậ y, chuy ể n ng ườ i duyệ t, l ư u
+ả nh gố c
+Khác biệ t quy tắ c chố t kỳ gi ữ a các
+NSX
+Trung
+bình
+Lịch/ng ưỡ ng cấ u hình đ ượ c, thố ng nhấ t
+v ớ i NSX t ừ  giai đoạn 0
+Phạm vi CRM 5in1 phình to Trung
+bình
+Tậ p trung CloudX tr ướ c; các thành phầ n
+còn lại làm sau theo giá trị
+Quyề n riêng t ư  (GPS, ả nh) Trung
+bình
+Thu thậ p trong gi ờ  làm việ c, thông báo rõ,
+l ư u tố i thi ể u
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 48 of 50
+=== PAGE 49 ===
+4. Có cầ n c ổ ng đặ t hàng riêng cho c ử a hàng ở  giai đoạn đầ u không?
+5. M ứ c độ  tích h ợ p ERP/kế  toán mong muố n và hệ  thố ng nào cầ n kế t nố i?
+6. Tiêu chí chấ m tr ư ng bày và ư u đãi đi kèm (có phụ thuộ c l ượ ng mua không)?
+15. Phụ lục – Ma trận truy vết nỗi đau → ch ứ c năng → luồng
+Đố i t ượ ng Nỗ i đau Ch ứ c năng (FR) Luồ ng (BF)
+NSX Đặ t hàng r ờ i rạc FR-05.01–05.02, 05.07 BF-01
+NSX Công n ợ  khó ki ể m soát FR-06.01, 06.03, 06.06 BF-02
+NSX Chính sách truyề n đạt sai FR-03.01–03.06 BF-20
+NSX NPP nhậ p hàng c ả m tính FR-05.03, 07.06 BF-01, BF-05
+NSX Sell-in đẹp nh ư ng ch ư a chắ c
+thậ t
+FR-10.02–10.03 BF-05
+NSX Giao nhậ n, đố i soát lệ ch FR-08.02–08.03, 09.02–
+09.03
+BF-03, BF-
+04
+NSX Báo cáo t ổ ng h ợ p tay FR-09.01–09.07, M20 BF-03, BF-
+04b
+NPP → NSX Khó truyề n đạt nhu cầ u nhậ p FR-10.01 BF-05
+NPP → NSX Không có kênh ph ả n hồ i tiêu thụ FR-10.02 BF-05
+NPP → NSX Khó yêu cầ u hỗ  tr ợ  khi hàng có
+vấ n đề
+FR-11.01–11.06 BF-06
+NPP → NSX Thiế u minh bạch công n ợ FR-06.02, 06.05 BF-03
+NPP → NSX Khó cậ p nhậ t chính sách FR-03.06 BF-20
+NPP → NSX Khó đề  xuấ t hỗ  tr ợ  kinh doanh FR-12.01–12.04 BF-07
+NPP → NSX Không có ph ả n hồ i c ả i tiế n s ả n
+ph ẩ m
+FR-13.01–13.03 BF-08
+NPP → NSX Khó theo dõi ch ỉ  tiêu, quyề n l ợ i FR-14.01–14.04 BF-13
+NPP → C ử a
+hàng
+Khó tìm và phát tri ể n c ử a hàng
+m ớ i
+FR-15.01–15.02 BF-09
+NPP → C ử a
+hàng
+Khó duy trì quan hệ FR-15.03, 15.08 BF-19
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 49 of 50
+=== PAGE 50 ===
+Ghi chú nguồ n: tệ p "Ch ứ c năng tham kh ả o cho SYNERA" đ ượ c t ả i lên không có nộ i dung
+đọc đ ượ c; các ch ứ c năng tham kh ả o đã đ ượ c suy ra t ừ  tài liệ u ý t ưở ng và mô hình DMS 2in1.
+Cầ n đố i chiế u lại nế u b ả n gố c có ch ứ c năng khác.
+Đố i t ượ ng Nỗ i đau Ch ứ c năng (FR) Luồ ng (BF)
+NPP → C ử a
+hàng
+Khó ki ể m soát nhân viên thị
+tr ườ ng
+FR-16.01–16.05 BF-10
+NPP → C ử a
+hàng
+Không nắ m nhu cầ u th ự c FR-18.07, 15.07 BF-10, BF-19
+NPP → C ử a
+hàng
+Khó qu ả n lý giá/khuyế n mãi FR-03.01–03.05 BF-20
+NPP → C ử a
+hàng
+Khó x ử  lý khiế u nại FR-15.10, M11 BF-06
+NPP → C ử a
+hàng
+Không biế t c ử a hàng hiệ u qu ả FR-15.07, M20 BF-19
+Sales H ỏ i NPP nhiề u lầ n về  mộ t đ ơ n FR-05.08, 18.05 BF-10
+Sales C ử a hàng nhậ n thiế u hàng FR-08.04, 18.06 BF-14
+Sales Quên l ờ i hẹn gọi lại FR-15.05, 04.02 BF-15
+Sales Ng ườ i đi thay thiế u thông tin FR-16.06 BF-16
+Sales Mấ t th ờ i gian chu ẩ n bị ghé c ử a
+hàng
+FR-18.01–18.02 BF-10
+Sales Nhậ p lại đ ơ n lặ p FR-18.03 BF-11
+Sales Mấ t mạng gi ữ a lúc ghi đ ơ n FR-18.04 BF-12
+Sales Cuố i ngày ph ả i chép báo cáo FR-18.08 BF-17
+Sales Ki ể m tra tr ư ng bày mấ t th ờ i gian M19 BF-18
+SYNERA – Tài liệu Phân tích & Thiết kế Hệ thống
+Page 50 of 50
