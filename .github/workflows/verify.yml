@@ -88,7 +88,7 @@ jobs:
           DB_USERNAME: synera
           MIGRATION_USERNAME: root
           MYSQL_ROOT_PASSWORD: CiOnlyRootPassword2026
-        run: java -jar backend/target-verified/synera-backend-1.0.0-SNAPSHOT.jar --migrate-only
+        run: java -jar backend/target-verified/synera-backend-1.0.0-SNAPSHOT.jar --migrate-only 2>&1 | tee artifacts-ci-migration.log
       - name: Start integrated production assets with local identities
         env:
           LOCAL_MYSQL_PASSWORD: CiOnlyDatabasePassword2026
@@ -115,4 +115,6 @@ jobs:
         if: always()
         with:
           name: integrated-website-evidence
-          path: artifacts/
+          path: |
+            artifacts/
+            artifacts-ci-migration.log

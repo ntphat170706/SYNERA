@@ -1,5 +1,9 @@
 # Quyết định kiến trúc
 
+## 2026-11-13 — Khởi tạo quyền MySQL thống nhất trên Docker và portable
+
+CI đã áp dụng đủ migration V119 nhưng dừng khi thu hồi grant `synera_local`: Docker lưu tên schema với dấu `_` được escape, khác bootstrap portable. Migration thu hồi có điều kiện cả hai cách ghi, sau đó chỉ cấp SELECT/INSERT/UPDATE/DELETE cho đúng schema; đọc `partial_revokes` để tránh hiểu `_` thành wildcard. Không bỏ bước hạn chế quyền và không cấp quyền DDL cho runtime. Kiểm thử MySQL riêng xác nhận chạy lặp lại, tài khoản mới, bootstrap Docker/portable, quyền CRUD và từ chối DDL/schema tương tự tên. Tham chiếu: [MySQL REVOKE](https://dev.mysql.com/doc/refman/8.4/en/revoke.html), [MySQL GRANT](https://dev.mysql.com/doc/refman/8.4/en/grant.html).
+
 ## 2026-11-13 — Web NSX theo hồ sơ và mạng lưới
 
 Người dùng chỉ định cấu trúc CloudGO từ bộ ảnh của mình: rail xanh gọn, hồ sơ 360° với đầu hồ sơ/tab/thông tin hai cột, tuyến/MCP dạng bảng, báo cáo nhóm cột và bộ lọc. Áp dụng riêng `.nsx-portal`, giữ thế giới NPP/native và các token semantic. Không sao chép thương hiệu hoặc dựng tính năng voucher/quà tặng chưa có contract.

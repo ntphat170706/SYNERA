@@ -34,29 +34,53 @@ public final class DatabaseMigration {
         .cleanDisabled(true)
         .load()
         .migrate();
-    String database = value("DB_NAME"),
-        account = System.getenv().getOrDefault("DB_USERNAME", "synera"),
-        host = System.getenv().getOrDefault("DB_APP_HOST", "%");
+    try (var connection =
+        java.sql.DriverManager.getConnection(
+            url, value("MIGRATION_USERNAME"), value("MYSQL_ROOT_PASSWORD"))) {
+      restrictRuntimeGrants(
+          connection,
+          value("DB_NAME"),
+          System.getenv().getOrDefault("DB_USERNAME", "synera"),
+          System.getenv().getOrDefault("DB_APP_HOST", "%"));
+    } catch (java.sql.SQLException e) {
+      throw new IllegalStateException("Could not restrict runtime database grants", e);
+    }
+  }
+
+  static void restrictRuntimeGrants(
+      java.sql.Connection connection, String database, String account, String host)
+      throws java.sql.SQLException {
     if (!database.matches("[A-Za-z0-9_]+")
         || !account.matches("[A-Za-z0-9_]+")
         || !Set.of("%", "localhost").contains(host))
       throw new IllegalStateException("Invalid database grant target");
-    try (var connection =
-            java.sql.DriverManager.getConnection(
-                url, value("MIGRATION_USERNAME"), value("MYSQL_ROOT_PASSWORD"));
-        var statement = connection.createStatement()) {
-      statement.execute(
-          "REVOKE ALL PRIVILEGES ON `" + database + "`.* FROM '" + account + "'@'" + host + "'");
+    try (var statement = connection.createStatement()) {
+      boolean partialRevokes;
+      try (var settings = statement.executeQuery("SELECT @@GLOBAL.partial_revokes")) {
+        settings.next();
+        partialRevokes = settings.getBoolean(1);
+      }
+      String exactDatabase = partialRevokes ? database : database.replace("_", "\\_");
+      // Docker escapes underscores in database grants; the portable bootstrap historically did not.
+      // Revoke both spellings without failing when one has never been granted.
+      for (String target : new LinkedHashSet<>(List.of(database, exactDatabase))) {
+        statement.execute(
+            "REVOKE IF EXISTS ALL PRIVILEGES ON `"
+                + target
+                + "`.* FROM '"
+                + account
+                + "'@'"
+                + host
+                + "'");
+      }
       statement.execute(
           "GRANT SELECT,INSERT,UPDATE,DELETE ON `"
-              + database
+              + exactDatabase
               + "`.* TO '"
               + account
               + "'@'"
               + host
               + "'");
-    } catch (java.sql.SQLException e) {
-      throw new IllegalStateException("Could not restrict runtime database grants", e);
     }
   }
 }
